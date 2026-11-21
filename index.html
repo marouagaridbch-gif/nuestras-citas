@@ -1004,6 +1004,34 @@ button.nc-dc{cursor:pointer}button.nc-dc:hover{background:rgba(255,255,255,.12)}
 #lock .langs button:not([aria-pressed="true"]){color:var(--soft)!important}
 #lock .langs{background:var(--paper2)!important;border-color:var(--line)!important}
 
+.a-cnt b{font-size:22px!important;line-height:1.1}
+.a-cnt span{font-size:11px;max-width:90px;display:block;margin:0 auto}
+.a-bar{height:18px;margin:4px 0 10px}
+.a-bar i{display:block;height:100%}
+.a-leg{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--ink)}
+.a-leg span{display:inline-flex;align-items:center;gap:5px}
+.a-leg i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.a-gauge{position:relative;height:16px;border-radius:999px;background:linear-gradient(90deg,#BFE3C1 0 50%,#F6E1A6 50% 66%,#F3CFC9 66%);overflow:hidden}
+.a-gauge i{position:absolute;inset-block:0;inset-inline-start:0;border-radius:999px;background:var(--night2);opacity:.85}
+.a-gauge s{position:absolute;top:0;bottom:0;width:2px;background:var(--paper)}
+.a-rule.ok{border-color:#9FD0A4}.a-rule.mid{border-color:#E8C76A}.a-rule.bad{border-color:#E39A8F}
+.lm-pill.a-ok{background:#D7EFD8;color:#245A2E}.lm-pill.a-mid{background:#F8E9B8;color:#7A5A10}.lm-pill.a-bad{background:#F3CFC9;color:#8C2F25}
+.a-chosen{border-color:#C9A04A!important;box-shadow:0 0 0 3px rgba(244,213,141,.45)}
+.a-off{opacity:.6}
+.a-search{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.a-search .st-in{flex:1;min-width:160px;width:auto}
+.a-cmp{overflow-x:auto;border:2px solid var(--line);border-radius:16px;background:var(--paper2)}
+.a-cmp table{border-collapse:collapse;width:100%;font-size:14px;color:var(--ink);min-width:420px}
+.a-cmp th,.a-cmp td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:start;white-space:nowrap}
+.a-cmp thead th{font-family:var(--f-display);font-size:15px;background:var(--paper)}
+.a-cmp tbody th{color:var(--soft);font-weight:700}
+.a-cmp td.best{background:#D7EFD8;font-weight:800}
+.a-total{border-top:2px solid var(--line);margin-top:4px;padding-top:8px;font-size:17px}
+.a-month{display:flex;align-items:center;gap:10px;margin:0 0 14px;flex-wrap:wrap}
+.a-month b{font-family:var(--f-display);font-size:20px;color:var(--ink);min-width:150px;text-align:center}
+.a-pig{display:flex;align-items:center;gap:12px}
+.a-pig svg{width:70px;height:70px;flex:none}
+
 @keyframes ncTw{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
 @keyframes lmFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-6px) rotate(2deg)}}
 .lm-scene .float{animation:lmFloat 4s ease-in-out infinite;transform-origin:center}
@@ -1437,6 +1465,72 @@ ar:{nav6:'الزفاف',b_title:'زفافنا',b_hand:'أجمل يوم، مخط�
 };
 for(const l in T5)Object.assign(T[l],T5[l]);
 
+/* ================= textos: alquiler ================= */
+const T6={
+es:{nav7:'Alquiler',a_title1:'Nuestro',a_title2:'alquiler',a_hand:'el piso, las facturas y el dinero, todo bien pensado',
+ a_resumen:'Resumen',a_pisos:'Pisos',a_entrada:'Coste de entrada',a_gastos:'Gastos fijos',a_mes:'Este mes',a_ahorro:'Ahorro',a_contrato:'Contrato y papeles',
+ a_intro_pisos:'Los pisos que os gustan, comparados: precio, metros, gastos y cuánto os supone de vuestro sueldo.',a_intro_entrada:'Todo el dinero que hace falta el día que firméis y entréis a vivir.',a_intro_gastos:'Las facturas de cada mes: alquiler, luz, agua, internet, súper… y quién paga qué.',a_intro_mes:'Marcad las facturas pagadas, apuntad los gastos del día a día y mirad quién le debe a quién.',a_intro_ahorro:'Metas de ahorro con lo que os falta y cuánto apartar cada mes.',a_intro_contrato:'Los datos del contrato, los papeles que piden y lo que dice la ley.',
+ one_piso:'piso',one_gfijo:'gasto fijo',one_gvar:'gasto',one_ahorro:'meta de ahorro',apapel:'Papeles',intro_apapel:'Documentos y pasos para alquilar, entrar y salir del piso.',one_apapel:'paso',
+ a_form_adatos:'💶 Ingresos y datos',a_form_acontrato:'📄 Datos del contrato',a_form_aentrada:'💼 Gastos de entrada',
+ f_income1:'Ingresos netos al mes de {n} (€)',f_income2:'Ingresos netos al mes de {n} (€)',f_split:'Cómo repartís los gastos',sp_igual:'A medias (50/50)',sp_prop:'Según lo que gana cada uno',f_city:'Ciudad o zona donde buscáis',f_maxRent:'Alquiler máximo (€/mes)',f_moveDate:'Fecha prevista para entrar a vivir',f_an1:'Nombre 1',f_an2:'Nombre 2',
+ f_ptitle2:'Nombre o dirección',f_zone:'Zona / barrio',f_rent:'Alquiler (€/mes)',f_comm:'Comunidad y otros gastos fijos del piso (€/mes)',f_m2:'Metros (m²)',f_rooms:'Habitaciones',f_baths:'Baños',f_furn:'Amueblado',f_lift:'Ascensor',f_terr:'Terraza o balcón',f_park:'Parking',f_extra:'Garantía adicional pedida (meses, máx. 2)',f_pstatus:'Estado',f_visit:'Fecha de visita',f_pros:'Lo bueno 👍',f_cons:'Lo malo 👎',
+ ps_interesa:'Me interesa',ps_visita:'Visita pedida',ps_visto:'Visto',ps_descartado:'Descartado',ps_elegido:'¡El elegido!',
+ f_gtitle:'Concepto',f_amount:'Importe (€)',f_freq:'Cada cuánto',fq_1:'Cada mes',fq_2:'Cada 2 meses',fq_3:'Cada 3 meses',fq_6:'Cada 6 meses',fq_12:'Cada año',f_whoPays:'Quién lo paga',f_day:'Día de cobro',f_company:'Compañía',f_payer:'Quién lo pagó',f_forWho:'Para quién',f_target:'Objetivo (€)',f_saved:'Ahorrado (€)',f_goalDate:'Para cuándo',
+ c_addr:'Dirección',c_landlord:'Casero o agencia (contacto)',c_start:'Fecha de inicio',c_years:'Duración (años)',c_rent:'Alquiler del contrato (€/mes)',c_day:'Día de pago',c_deposit:'Fianza pagada (€)',c_update:'Actualización anual (IPC, IRAV…)',c_notice:'Preaviso para irse (días)',
+ e_extra:'Garantía adicional (meses, máx. 2)',e_move:'Mudanza (€)',e_furn:'Muebles y electrodomésticos (€)',e_supplies:'Altas de luz, agua, internet (€)',e_insur:'Seguro de hogar (€)',e_other:'Otros (€)',
+ gc_vivienda:'Vivienda',gc_suministros:'Luz, agua y gas',gc_conexion:'Internet y móvil',gc_seguros:'Seguros',gc_comida:'Comida y súper',gc_transporte:'Transporte',gc_salud:'Salud y farmacia',gc_ocio:'Ocio y salidas',gc_suscripciones:'Suscripciones',gc_familia:'Familia y niños',gc_mascotas:'Mascotas',gc_ropa:'Ropa y cuidado',gc_ahorro:'Ahorro',gc_otros:'Otros',
+ a_welcome:'¡Empezamos! Poned cuánto gana cada uno al mes y la ciudad donde buscáis. Con eso la web os calcula todo.',a_setData:'💶 Poner ingresos y datos',a_editData:'Editar ingresos',a_income:'Ingresos al mes',a_fixed:'Gastos fijos al mes',a_varM:'Gastos del día a día este mes',a_left:'Os queda al mes',a_leftShort:'quedan al mes',a_over:'Gastáis más de lo que entra',a_rule:'El alquiler es el {p}% de lo que ganáis',a_ruleTip:'Lo recomendable es que no pase del 30–35%.',a_ruleOk:'¡Perfecto! 👌',a_ruleMid:'Ojo, va justo 😬',a_ruleBad:'Demasiado alto 😟',a_split:'Reparto de gastos',a_pays:'{n} pone',a_perMonth:'/mes',a_nextBills:'Próximos cobros',a_noBills:'Añadid vuestras facturas en «Gastos fijos».',a_day:'día {d}',a_contractEnd:'El contrato termina el {d}',a_noticeBy:'Avisad antes del {d} si os vais',a_goals:'Ahorro',
+ a_search:'Buscar piso en',a_searchPh:'Ciudad o barrio',a_compare:'Comparativa',a_total:'Total al mes',a_perM2:'€/m²',a_ofIncome:'de vuestros ingresos',a_entryEst:'Para entrar',a_choose:'🔑 Es este',a_map:'🗺️ Mapa',a_noIncome:'(poned los ingresos)',
+ a_based:'Calculado con un alquiler de {r} €/mes',a_noRent:'Elegid un piso o poned el alquiler máximo para calcularlo.',a_fianza:'Fianza (1 mes, obligatoria)',a_garantia:'Garantía adicional ({m} meses)',a_first:'Primer mes de alquiler',a_agency:'Agencia inmobiliaria',a_agencyNote:'0 € — la paga el propietario',a_move:'Mudanza',a_furn:'Muebles y electrodomésticos',a_supp:'Altas de luz, agua e internet',a_insur:'Seguro de hogar',a_other:'Otros',a_entryTotal:'Total para entrar',a_saveFor:'Ahorrando {a} al mes hasta el {d}',a_each:'{n}: {a}',a_editEntry:'✏️ Cambiar gastos de entrada',a_backDeposit:'La fianza os la devuelven al irte si el piso queda bien.',
+ a_monthly:'Al mes',a_yearly:'Al año',a_quickBills:'Facturas típicas',a_mine:'Lo de {n}',a_shared:'Compartido',a_paidThis:'Pagado este mes',a_toPayThis:'Por pagar este mes',a_markP:'Marcar pagado',a_varTitle:'Gastos del día a día',a_addVar:'+ Apuntar gasto',a_noVar:'Aún no hay gastos apuntados este mes.',a_balance:'Cuentas claras',a_owes:'{a} le debe {x} a {b}',a_even:'¡Estáis en paz! 🤝',a_byCat:'Por categoría',
+ a_goalLeft:'faltan {a}',a_goalMonth:'{a} al mes',a_goalDone:'¡Conseguido! 🎉',a_add50:'+50 €',a_add100:'+100 €',a_quickGoals:'Metas sugeridas',g_colchon:'Colchón de emergencia (6 meses)',g_entrada:'Entrar al piso',g_muebles:'Muebles para la casa',g_boda:'La boda',g_luna:'Luna de miel',
+ a_contractData:'Datos del contrato',a_editContract:'✏️ Editar contrato',a_noContract:'Cuando firméis, apuntad aquí los datos del contrato.',a_endsOn:'Termina el',a_lawTitle:'Lo que dice la ley (vivienda habitual)',a_law:['Fianza: 1 mes de alquiler, que el casero deposita en el organismo de la Comunidad.','Garantía adicional: como mucho 2 meses más.','Honorarios de la agencia: los paga el propietario, no vosotros.','El contrato se puede prorrogar hasta 5 años (7 si el casero es una empresa).','La subida anual del alquiler está limitada por ley.'],a_lawNote:'Es una guía orientativa: revisad siempre el contrato y, si dudáis, preguntad en la oficina de vivienda de vuestro ayuntamiento.',
+ qbills:[['Alquiler','vivienda',1],['Comunidad','vivienda',1],['Luz','suministros',1],['Agua','suministros',2],['Gas','suministros',2],['Internet y fibra','conexion',1],['Móviles','conexion',1],['Seguro de hogar','seguros',12],['Supermercado','comida',1],['Gasolina o transporte','transporte',1],['Plataformas (Netflix, Spotify…)','suscripciones',1],['Gimnasio','ocio',1],['Ahorro mensual','ahorro',1]],
+ qpapers:['Copia del DNI o NIE','Últimas 3 nóminas','Contrato de trabajo','Declaración de la renta','Revisar bien el contrato antes de firmar','Pedir el recibo de la fianza','Hacer fotos del piso al entrar','Inventario de muebles y electrodomésticos','Anotar las lecturas de luz, agua y gas','Cambiar los suministros a vuestro nombre','Empadronarse','Contratar el seguro de hogar','Guardar el contacto del casero','Al irse: avisar con el preaviso y pedir la fianza']},
+en:{nav7:'Renting',a_title1:'Our',a_title2:'rental',a_hand:'the flat, the bills and the money, all well planned',
+ a_resumen:'Overview',a_pisos:'Flats',a_entrada:'Move-in cost',a_gastos:'Fixed bills',a_mes:'This month',a_ahorro:'Savings',a_contrato:'Contract & papers',
+ a_intro_pisos:'The flats you like, compared: price, size, costs and how much of your income they take.',a_intro_entrada:'All the money you need the day you sign and move in.',a_intro_gastos:'Monthly bills: rent, electricity, water, internet, groceries… and who pays what.',a_intro_mes:'Tick off paid bills, log everyday spending and see who owes whom.',a_intro_ahorro:'Savings goals with what’s left and how much to put aside each month.',a_intro_contrato:'Contract details, the papers they ask for and what the law says.',
+ one_piso:'flat',one_gfijo:'fixed bill',one_gvar:'expense',one_ahorro:'savings goal',apapel:'Papers',intro_apapel:'Documents and steps to rent, move in and move out.',one_apapel:'step',
+ a_form_adatos:'💶 Income & details',a_form_acontrato:'📄 Contract details',a_form_aentrada:'💼 Move-in costs',
+ f_income1:'{n}’s net monthly income (€)',f_income2:'{n}’s net monthly income (€)',f_split:'How you split costs',sp_igual:'Half and half (50/50)',sp_prop:'By what each earns',f_city:'City or area you’re looking in',f_maxRent:'Maximum rent (€/month)',f_moveDate:'Planned move-in date',f_an1:'Name 1',f_an2:'Name 2',
+ f_ptitle2:'Name or address',f_zone:'Area / neighbourhood',f_rent:'Rent (€/month)',f_comm:'Building fees and other fixed costs (€/month)',f_m2:'Size (m²)',f_rooms:'Bedrooms',f_baths:'Bathrooms',f_furn:'Furnished',f_lift:'Lift',f_terr:'Terrace or balcony',f_park:'Parking',f_extra:'Extra guarantee asked (months, max 2)',f_pstatus:'Status',f_visit:'Viewing date',f_pros:'Pros 👍',f_cons:'Cons 👎',
+ ps_interesa:'Interested',ps_visita:'Viewing booked',ps_visto:'Viewed',ps_descartado:'Discarded',ps_elegido:'The one!',
+ f_gtitle:'Item',f_amount:'Amount (€)',f_freq:'How often',fq_1:'Monthly',fq_2:'Every 2 months',fq_3:'Every 3 months',fq_6:'Every 6 months',fq_12:'Yearly',f_whoPays:'Who pays',f_day:'Charge day',f_company:'Company',f_payer:'Who paid',f_forWho:'For whom',f_target:'Target (€)',f_saved:'Saved (€)',f_goalDate:'By when',
+ c_addr:'Address',c_landlord:'Landlord or agency (contact)',c_start:'Start date',c_years:'Length (years)',c_rent:'Contract rent (€/month)',c_day:'Payment day',c_deposit:'Deposit paid (€)',c_update:'Yearly update (CPI, IRAV…)',c_notice:'Notice to leave (days)',
+ e_extra:'Extra guarantee (months, max 2)',e_move:'Moving (€)',e_furn:'Furniture & appliances (€)',e_supplies:'Utility set-up (€)',e_insur:'Home insurance (€)',e_other:'Other (€)',
+ gc_vivienda:'Housing',gc_suministros:'Utilities',gc_conexion:'Internet & phone',gc_seguros:'Insurance',gc_comida:'Food & groceries',gc_transporte:'Transport',gc_salud:'Health & pharmacy',gc_ocio:'Fun & going out',gc_suscripciones:'Subscriptions',gc_familia:'Family & kids',gc_mascotas:'Pets',gc_ropa:'Clothes & care',gc_ahorro:'Savings',gc_otros:'Other',
+ a_welcome:'Let’s start! Enter what each of you earns per month and the city you’re looking in. The site works out the rest.',a_setData:'💶 Set income & details',a_editData:'Edit income',a_income:'Monthly income',a_fixed:'Fixed bills per month',a_varM:'Everyday spending this month',a_left:'Left each month',a_leftShort:'left per month',a_over:'You spend more than you earn',a_rule:'Rent is {p}% of your income',a_ruleTip:'Ideally it shouldn’t go above 30–35%.',a_ruleOk:'Perfect! 👌',a_ruleMid:'Careful, it’s tight 😬',a_ruleBad:'Too high 😟',a_split:'Cost split',a_pays:'{n} pays',a_perMonth:'/month',a_nextBills:'Upcoming charges',a_noBills:'Add your bills in “Fixed bills”.',a_day:'day {d}',a_contractEnd:'The contract ends on {d}',a_noticeBy:'Give notice by {d} if you’re leaving',a_goals:'Savings',
+ a_search:'Search flats on',a_searchPh:'City or area',a_compare:'Comparison',a_total:'Total per month',a_perM2:'€/m²',a_ofIncome:'of your income',a_entryEst:'To move in',a_choose:'🔑 This one',a_map:'🗺️ Map',a_noIncome:'(add your income)',
+ a_based:'Based on rent of {r} €/month',a_noRent:'Choose a flat or set a maximum rent to calculate it.',a_fianza:'Deposit (1 month, required)',a_garantia:'Extra guarantee ({m} months)',a_first:'First month’s rent',a_agency:'Estate agency',a_agencyNote:'0 € — the landlord pays it',a_move:'Moving',a_furn:'Furniture & appliances',a_supp:'Utility set-up',a_insur:'Home insurance',a_other:'Other',a_entryTotal:'Total to move in',a_saveFor:'Saving {a} a month until {d}',a_each:'{n}: {a}',a_editEntry:'✏️ Change move-in costs',a_backDeposit:'You get the deposit back when you leave if the flat is in good condition.',
+ a_monthly:'Per month',a_yearly:'Per year',a_quickBills:'Typical bills',a_mine:'{n}’s own',a_shared:'Shared',a_paidThis:'Paid this month',a_toPayThis:'To pay this month',a_markP:'Mark paid',a_varTitle:'Everyday spending',a_addVar:'+ Log expense',a_noVar:'No expenses logged this month yet.',a_balance:'Fair and square',a_owes:'{a} owes {x} to {b}',a_even:'You’re even! 🤝',a_byCat:'By category',
+ a_goalLeft:'{a} to go',a_goalMonth:'{a} a month',a_goalDone:'Reached! 🎉',a_add50:'+50 €',a_add100:'+100 €',a_quickGoals:'Suggested goals',g_colchon:'Emergency fund (6 months)',g_entrada:'Moving into the flat',g_muebles:'Furniture for the home',g_boda:'The wedding',g_luna:'Honeymoon',
+ a_contractData:'Contract details',a_editContract:'✏️ Edit contract',a_noContract:'When you sign, write the contract details here.',a_endsOn:'Ends on',a_lawTitle:'What Spanish law says (main home)',a_law:['Deposit: 1 month’s rent, which the landlord lodges with the regional authority.','Extra guarantee: 2 more months at most.','Estate agency fees: paid by the landlord, not by you.','The contract can be extended up to 5 years (7 if the landlord is a company).','Yearly rent increases are capped by law.'],a_lawNote:'This is a guide only: always read the contract and, if in doubt, ask your town hall’s housing office.',
+ qbills:[['Rent','vivienda',1],['Building fees','vivienda',1],['Electricity','suministros',1],['Water','suministros',2],['Gas','suministros',2],['Internet','conexion',1],['Mobile phones','conexion',1],['Home insurance','seguros',12],['Groceries','comida',1],['Fuel or transport','transporte',1],['Streaming (Netflix, Spotify…)','suscripciones',1],['Gym','ocio',1],['Monthly savings','ahorro',1]],
+ qpapers:['Copy of ID or NIE','Last 3 payslips','Employment contract','Tax return','Read the contract carefully before signing','Ask for the deposit receipt','Take photos of the flat when moving in','Inventory of furniture and appliances','Note the meter readings','Put utilities in your name','Register at the town hall (empadronarse)','Get home insurance','Save the landlord’s contact','When leaving: give notice and ask for the deposit']},
+it:{nav7:'Affitto',a_title1:'Il nostro',a_title2:'affitto',a_hand:'la casa, le bollette e i soldi, tutto ben pensato',
+ a_resumen:'Riepilogo',a_pisos:'Case',a_entrada:'Costo d’ingresso',a_gastos:'Spese fisse',a_mes:'Questo mese',a_ahorro:'Risparmi',a_contrato:'Contratto e documenti',
+ a_intro_pisos:'Le case che vi piacciono, a confronto: prezzo, metri, spese e quanto pesano sullo stipendio.',a_intro_entrada:'Tutti i soldi che servono il giorno in cui firmate ed entrate.',a_intro_gastos:'Le bollette del mese: affitto, luce, acqua, internet, spesa… e chi paga cosa.',a_intro_mes:'Segnate le bollette pagate, annotate le spese quotidiane e vedete chi deve a chi.',a_intro_ahorro:'Obiettivi di risparmio con quanto manca e quanto mettere da parte al mese.',a_intro_contrato:'I dati del contratto, i documenti richiesti e cosa dice la legge.',
+ one_piso:'casa',one_gfijo:'spesa fissa',one_gvar:'spesa',one_ahorro:'obiettivo',apapel:'Documenti',intro_apapel:'Documenti e passi per affittare, entrare e uscire.',one_apapel:'passo',
+ a_form_adatos:'💶 Entrate e dati',a_form_acontrato:'📄 Dati del contratto',a_form_aentrada:'💼 Spese d’ingresso',
+ f_income1:'Entrate nette al mese di {n} (€)',f_income2:'Entrate nette al mese di {n} (€)',f_split:'Come dividete le spese',sp_igual:'A metà (50/50)',sp_prop:'In base a quanto guadagna ognuno',f_city:'Città o zona',f_maxRent:'Affitto massimo (€/mese)',f_moveDate:'Data prevista per entrare',f_an1:'Nome 1',f_an2:'Nome 2',
+ f_ptitle2:'Nome o indirizzo',f_zone:'Zona / quartiere',f_rent:'Affitto (€/mese)',f_comm:'Condominio e altre spese fisse (€/mese)',f_m2:'Metri (m²)',f_rooms:'Camere',f_baths:'Bagni',f_furn:'Arredato',f_lift:'Ascensore',f_terr:'Terrazzo o balcone',f_park:'Parcheggio',f_extra:'Garanzia aggiuntiva (mesi, max 2)',f_pstatus:'Stato',f_visit:'Data visita',f_pros:'Pro 👍',f_cons:'Contro 👎',
+ ps_interesa:'Mi interessa',ps_visita:'Visita chiesta',ps_visto:'Vista',ps_descartado:'Scartata',ps_elegido:'È lei!',
+ f_gtitle:'Voce',f_amount:'Importo (€)',f_freq:'Ogni quanto',fq_1:'Ogni mese',fq_2:'Ogni 2 mesi',fq_3:'Ogni 3 mesi',fq_6:'Ogni 6 mesi',fq_12:'Ogni anno',f_whoPays:'Chi paga',f_day:'Giorno di addebito',f_company:'Compagnia',f_payer:'Chi ha pagato',f_forWho:'Per chi',f_target:'Obiettivo (€)',f_saved:'Risparmiato (€)',f_goalDate:'Entro quando',
+ c_addr:'Indirizzo',c_landlord:'Proprietario o agenzia (contatto)',c_start:'Data di inizio',c_years:'Durata (anni)',c_rent:'Affitto del contratto (€/mese)',c_day:'Giorno di pagamento',c_deposit:'Deposito pagato (€)',c_update:'Aggiornamento annuale (ISTAT/IPC…)',c_notice:'Preavviso per lasciare (giorni)',
+ e_extra:'Garanzia aggiuntiva (mesi, max 2)',e_move:'Trasloco (€)',e_furn:'Mobili ed elettrodomestici (€)',e_supplies:'Attivazione utenze (€)',e_insur:'Assicurazione casa (€)',e_other:'Altro (€)',
+ gc_vivienda:'Casa',gc_suministros:'Luce, acqua e gas',gc_conexion:'Internet e telefono',gc_seguros:'Assicurazioni',gc_comida:'Cibo e spesa',gc_transporte:'Trasporti',gc_salud:'Salute e farmacia',gc_ocio:'Svago',gc_suscripciones:'Abbonamenti',gc_familia:'Famiglia e bambini',gc_mascotas:'Animali',gc_ropa:'Vestiti e cura',gc_ahorro:'Risparmio',gc_otros:'Altro',
+ a_welcome:'Iniziamo! Inserite quanto guadagna ognuno al mese e la città. Il sito calcola il resto.',a_setData:'💶 Inserisci entrate e dati',a_editData:'Modifica entrate',a_income:'Entrate al mese',a_fixed:'Spese fisse al mese',a_varM:'Spese quotidiane questo mese',a_left:'Vi resta al mese',a_leftShort:'restano al mese',a_over:'Spendete più di quanto entra',a_rule:'L’affitto è il {p}% delle vostre entrate',a_ruleTip:'L’ideale è non superare il 30–35%.',a_ruleOk:'Perfetto! 👌',a_ruleMid:'Attenzione, è al limite 😬',a_ruleBad:'Troppo alto 😟',a_split:'Divisione delle spese',a_pays:'{n} mette',a_perMonth:'/mese',a_nextBills:'Prossimi addebiti',a_noBills:'Aggiungete le bollette in «Spese fisse».',a_day:'giorno {d}',a_contractEnd:'Il contratto scade il {d}',a_noticeBy:'Avvisate entro il {d} se ve ne andate',a_goals:'Risparmi',
+ a_search:'Cerca casa su',a_searchPh:'Città o zona',a_compare:'Confronto',a_total:'Totale al mese',a_perM2:'€/m²',a_ofIncome:'delle vostre entrate',a_entryEst:'Per entrare',a_choose:'🔑 È questa',a_map:'🗺️ Mappa',a_noIncome:'(inserite le entrate)',
+ a_based:'Calcolato con un affitto di {r} €/mese',a_noRent:'Scegliete una casa o inserite l’affitto massimo.',a_fianza:'Deposito (1 mese, obbligatorio)',a_garantia:'Garanzia aggiuntiva ({m} mesi)',a_first:'Primo mese d’affitto',a_agency:'Agenzia immobiliare',a_agencyNote:'0 € — la paga il proprietario',a_move:'Trasloco',a_furn:'Mobili ed elettrodomestici',a_supp:'Attivazione utenze',a_insur:'Assicurazione casa',a_other:'Altro',a_entryTotal:'Totale per entrare',a_saveFor:'Risparmiando {a} al mese fino al {d}',a_each:'{n}: {a}',a_editEntry:'✏️ Cambia spese d’ingresso',a_backDeposit:'Il deposito vi viene restituito quando lasciate la casa in buono stato.',
+ a_monthly:'Al mese',a_yearly:'All’anno',a_quickBills:'Bollette tipiche',a_mine:'Di {n}',a_shared:'In comune',a_paidThis:'Pagato questo mese',a_toPayThis:'Da pagare questo mese',a_markP:'Segna pagato',a_varTitle:'Spese quotidiane',a_addVar:'+ Annota spesa',a_noVar:'Nessuna spesa annotata questo mese.',a_balance:'Conti chiari',a_owes:'{a} deve {x} a {b}',a_even:'Siete pari! 🤝',a_byCat:'Per categoria',
+ a_goalLeft:'mancano {a}',a_goalMonth:'{a} al mese',a_goalDone:'Raggiunto! 🎉',a_add50:'+50 €',a_add100:'+100 €',a_quickGoals:'Obiettivi suggeriti',g_colchon:'Fondo d’emergenza (6 mesi)',g_entrada:'Entrare in casa',g_muebles:'Mobili per la casa',g_boda:'Il matrimonio',g_luna:'Luna di miele',
+ a_contractData:'Dati del contratto',a_editContract:'✏️ Modifica contratto',a_noContract:'Quando firmate, annotate qui i dati del contratto.',a_endsOn:'Scade il',a_lawTitle:'Cosa dice la legge spagnola (abitazione principale)',a_law:['Deposito: 1 mese d’affitto, depositato dal proprietario presso l’ente regionale.','Garanzia aggiuntiva: al massimo 2 mesi.','Commissioni d’agenzia: le paga il proprietario, non voi.','Il contratto si può prorogare fino a 5 anni (7 se il proprietario è un’azienda).','Gli aumenti annuali dell’affitto sono limitati per legge.'],a_lawNote:'È solo una guida: leggete sempre il contratto e, nel dubbio, chiedete all’ufficio casa del comune.',
+ qbills:[['Affitto','vivienda',1],['Condominio','vivienda',1],['Luce','suministros',1],['Acqua','suministros',2],['Gas','suministros',2],['Internet','conexion',1],['Cellulari','conexion',1],['Assicurazione casa','seguros',12],['Spesa','comida',1],['Benzina o trasporti','transporte',1],['Abbonamenti (Netflix, Spotify…)','suscripciones',1],['Palestra','ocio',1],['Risparmio mensile','ahorro',1]],
+ qpapers:['Copia del documento o NIE','Ultime 3 buste paga','Contratto di lavoro','Dichiarazione dei redditi','Leggere bene il contratto prima di firmare','Chiedere la ricevuta del deposito','Fare foto della casa all’ingresso','Inventario di mobili ed elettrodomestici','Annotare le letture dei contatori','Intestare le utenze','Fare la residenza (empadronarse)','Fare l’assicurazione casa','Salvare il contatto del proprietario','Quando si lascia: dare il preavviso e chiedere il deposito']},
+ar:{nav7:'الإيجار',a_title1:'إيجار',a_title2:'بيتنا',a_resumen:'الملخص',a_pisos:'الشقق',a_entrada:'تكلفة الدخول',a_gastos:'المصاريف الثابتة',a_mes:'هذا الشهر',a_ahorro:'الادخار',a_contrato:'العقد والأوراق'}
+};
+for(const l in T6)Object.assign(T[l],T6[l]);
+
 const LOC={es:'es-ES',en:'en-GB',it:'it-IT',ar:'ar'};
 let L='es';
 const t=(k,v)=>{let s=(T[L]&&T[L][k])??T.es[k]??k;if(v)for(const x in v)s=String(s).replace('{'+x+'}',v[x]);return s};
@@ -1460,14 +1554,14 @@ const imgOf=i=>i.photo||safeUrl(i.img)||'';
 /* ================= estado y datos ================= */
 let fdb=null;try{fdb=getFirestore(getApp())}catch(e){}
 let sp=null,unsubs=[];
-const S={luna:{items:{},trip:{}},casa:{items:{}},stock:{items:{}},juegos:{},boda:{items:{},meta:{}},gal:{},citas:{}};let seeded=false,mapOpen={},wx={},rates=null,conv={a:100,c:''};
+const S={luna:{items:{},trip:{}},casa:{items:{}},stock:{items:{}},juegos:{},boda:{items:{},meta:{}},alquiler:{items:{},meta:{}},gal:{},citas:{}};let seeded=false,mapOpen={},wx={},rates=null,conv={a:100,c:''};
 let view='cal',tabL='resumen',tabC='resumen',filt={},editing=null,pendingPhoto,showMagic=false,pendingImport=null;
 try{view=localStorage.getItem('nc-view')||'cal';tabL=localStorage.getItem('nc-lmtab')||'resumen';tabC=localStorage.getItem('nc-casatab')||'resumen'}catch(e){}
 
 function connect(){
   let s=null;try{s=localStorage.getItem('nc-space')}catch(e){}
   if(s===sp)return;
-  unsubs.forEach(u=>u());unsubs=[];sp=s;S.luna={items:{},trip:{}};S.casa={items:{}};S.gal={};S.citas={};S.stock={items:{}};S.juegos={};S.boda={items:{},meta:{}};seeded=false;
+  unsubs.forEach(u=>u());unsubs=[];sp=s;S.luna={items:{},trip:{}};S.casa={items:{}};S.gal={};S.citas={};S.stock={items:{}};S.juegos={};S.boda={items:{},meta:{}};S.alquiler={items:{},meta:{}};seeded=false;
   if(!s||!fdb){render();return}
   const sub=(path,fn)=>unsubs.push(onSnapshot(collection(fdb,'espacios',s,path),snap=>{const m={};snap.forEach(d=>{m[d.id]={...d.data(),id:d.id}});fn(m);render()},()=>toast(t('errSave'))));
   sub('luna',m=>S.luna.items=m);
@@ -1475,6 +1569,8 @@ function connect(){
   sub('galeria',m=>S.gal=m);
   sub('stock',m=>S.stock.items=m);
   sub('boda',m=>S.boda.items=m);
+  sub('alquiler',m=>S.alquiler.items=m);
+  unsubs.push(onSnapshot(doc(fdb,'espacios',s,'alqmeta','datos'),d=>{S.alquiler.meta=d.exists()?d.data():{};render()},()=>{}));
   unsubs.push(onSnapshot(doc(fdb,'espacios',s,'bodameta','datos'),d=>{S.boda.meta=d.exists()?d.data():{};render()},()=>{}));
   unsubs.push(onSnapshot(collection(fdb,'espacios',s,'juegos'),snap=>{const m={};snap.forEach(d=>{m[d.id]={...d.data(),id:d.id}});S.juegos=m;onJuegosSnap()},()=>{}));
   unsubs.push(onSnapshot(collection(fdb,'espacios',s,'citas'),snap=>{const m={};snap.forEach(d=>{const x=d.data();m[d.id]={titulo:x.titulo,fecha:x.fecha,hora:x.hora,hecho:x.hecho}});S.citas=m;renderDash()},()=>{}));
@@ -1496,7 +1592,7 @@ async function delGal(id){delete S.gal[id];render();if(fdb&&sp)try{await deleteD
 async function toCal(store,id){
   const it=S[store].items[id];if(!it)return;if(!it.date){toast(t('needDate'));return}
   const titulo=it.kind==='transporte'?`${MODES[it.sub||'tren']} ${it.from} → ${it.to}`:`${KEMO[it.kind]||''} ${it.title}`;
-  try{await setDoc(doc(fdb,'espacios',sp,'citas',rid()),{titulo:titulo.trim().slice(0,120),fecha:it.date,hora:it.time||'',nota:it.notes||'',cat:store==='casa'?'casa':'viaje',hecho:false,fotos:[],creado:Date.now()});put(store,{...it,inCal:true});toast(t('addedCal'))}catch(e){toast(t('errSave'))}
+  try{await setDoc(doc(fdb,'espacios',sp,'citas',rid()),{titulo:titulo.trim().slice(0,120),fecha:it.date,hora:it.time||'',nota:it.notes||'',cat:(store==='casa'||store==='alquiler')?'casa':'viaje',hecho:false,fotos:[],creado:Date.now()});put(store,{...it,inCal:true});toast(t('addedCal'))}catch(e){toast(t('errSave'))}
 }
 function priceTrack(old,np){
   if(np==null)return{};
@@ -1551,7 +1647,7 @@ const FIELDS={
  tarea:()=>[F('title','f_title_pendiente','text',{req:1,full:1}),F('date','f_deadline','date'),F('time','f_time','time'),F('notes','f_notes','textarea')],
  producto:()=>[F('link','f_link','url',{full:1,ph:'ph_link'}),F('title','f_title_producto','text',{req:1,full:1}),F('room','f_room','room'),F('cat','f_cat','sel',{opts:CCATS,pre:'cat_'}),F('prio','f_prio','prio'),F('qty','f_qty','number',{min:1}),F('price','f_price','number',{min:0,step:'0.01'}),F('bought','f_bought','check'),F('img','f_img','url',{full:1}),F('photo','f_photo','photo',{full:1}),F('notes','f_notes','textarea')]
 };
-const STORE_OF=k=>['btarea','invitado','mesa','proveedor','programa','cancion','bnota'].includes(k)?'boda':k==='stock'?'stock':['rincon','producto','cnota','tarea'].includes(k)?'casa':'luna';
+const STORE_OF=k=>['piso','gfijo','gvar','ahorro','apapel','anota'].includes(k)?'alquiler':['btarea','invitado','mesa','proveedor','programa','cancion','bnota'].includes(k)?'boda':k==='stock'?'stock':['rincon','producto','cnota','tarea'].includes(k)?'casa':'luna';
 
 /* ================= dibujos ================= */
 const tw=(x,y,d,s)=>`<span class="tw" style="inset-inline-start:${x}%;top:${y}%;animation-delay:${d}s;font-size:${s||12}px">✦</span>`;
@@ -1591,6 +1687,7 @@ const ICON_PLANE=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
 const ICON_BOX=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg>`;
 const ICON_GAME=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M6 8h12a4 4 0 0 1 4 4v2a3 3 0 0 1-5.4 1.8L15 14H9l-1.6 1.8A3 3 0 0 1 2 14v-2a4 4 0 0 1 4-4z"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="16" cy="11.5" r=".6" fill="currentColor"/><circle cx="18" cy="13" r=".6" fill="currentColor"/></svg>`;
 const ICON_RING=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><circle cx="12" cy="15" r="6"/><path d="M9 5l1.5-2h3L15 5l-3 4z"/></svg>`;
+const ICON_KEY=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M14 9l2 2"/></svg>`;
 const ICON_HOME=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M12 17.2c-1.5-1.1-2.8-2-2.8-3.1a1.4 1.4 0 0 1 2.8-.4 1.4 1.4 0 0 1 2.8.4c0 1.1-1.3 2-2.8 3.1z" fill="currentColor" stroke="none"/></svg>`;
 
 /* ================= cielo estrellado ================= */
@@ -1625,7 +1722,7 @@ function setDeco(){
 const app=$('app');
 const topbar=app.querySelector('.topbar');
 const sw=document.createElement('div');sw.className='lm-switch';
-sw.innerHTML=`<button type="button" data-view="cal">${ICON_CAL}<span id="ncN1"></span></button><button type="button" data-view="luna">${ICON_PLANE}<span id="ncN2"></span></button><button type="button" data-view="casa">${ICON_HOME}<span id="ncN3"></span></button><button type="button" data-view="stock">${ICON_BOX}<span id="ncN4"></span></button><button type="button" data-view="boda">${ICON_RING}<span id="ncN6"></span></button><button type="button" data-view="juegos">${ICON_GAME}<span id="ncN5"></span></button>`;
+sw.innerHTML=`<button type="button" data-view="cal">${ICON_CAL}<span id="ncN1"></span></button><button type="button" data-view="luna">${ICON_PLANE}<span id="ncN2"></span></button><button type="button" data-view="casa">${ICON_HOME}<span id="ncN3"></span></button><button type="button" data-view="alquiler">${ICON_KEY}<span id="ncN7"></span></button><button type="button" data-view="stock">${ICON_BOX}<span id="ncN4"></span></button><button type="button" data-view="boda">${ICON_RING}<span id="ncN6"></span></button><button type="button" data-view="juegos">${ICON_GAME}<span id="ncN5"></span></button>`;
 topbar.after(sw);
 const footer=app.querySelector('footer');
 const luna=document.createElement('section');luna.id='luna';luna.className='ncv';luna.hidden=true;footer.before(luna);
@@ -1636,11 +1733,11 @@ document.body.append(dlg);
 ['lmPlaces','lmLists'].forEach(id=>{const d=document.createElement('datalist');d.id=id;document.body.append(d)});
 
 function applyView(){
-  const own=[topbar,sw,footer,luna,casa,stock,juegos,boda,$('ncDash')];
+  const own=[topbar,sw,footer,luna,casa,stock,juegos,boda,alquiler,$('ncDash')];
   [...app.children].forEach(c=>{if(own.includes(c))return;
     if(c.id==='banner'){if(view!=='cal'){if(c.dataset.lmh==null)c.dataset.lmh=c.hidden?'1':'0';c.hidden=true}else if(c.dataset.lmh!=null){c.hidden=c.dataset.lmh==='1';delete c.dataset.lmh}return}
     c.style.display=view==='cal'?'':'none'});
-  luna.hidden=view!=='luna';casa.hidden=view!=='casa';stock.hidden=view!=='stock';juegos.hidden=view!=='juegos';boda.hidden=view!=='boda';if(view!=='juegos')stopTimer();
+  luna.hidden=view!=='luna';casa.hidden=view!=='casa';stock.hidden=view!=='stock';juegos.hidden=view!=='juegos';boda.hidden=view!=='boda';alquiler.hidden=view!=='alquiler';if(view!=='juegos')stopTimer();
   sw.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));
   setDeco();render();
 }
@@ -1652,22 +1749,23 @@ function fieldHtml(f,v){
   else if(f.ty==='prio')inp=`<select id="${id}" name="${f.k}">${PRIO.map(s=>`<option value="${s}"${s===(val||'necesario')?' selected':''}>${t('pr_'+s)}</option>`).join('')}</select>`;
   else if(f.ty==='sel')inp=`<select id="${id}" name="${f.k}">${Object.entries(f.opts).map(([a,e])=>`<option value="${a}"${a===val?' selected':''}>${e} ${t(f.pre+a)}</option>`).join('')}</select>`;
   else if(f.ty==='room'){const rooms=Object.values(S.casa.items).filter(i=>i.kind==='rincon').sort((a,b)=>(a.created||0)-(b.created||0));inp=`<select id="${id}" name="${f.k}"><option value="">— ${t('noRoom')} —</option>${rooms.map(r=>`<option value="${r.id}"${r.id===val?' selected':''}>${r.emoji||'🏠'} ${esc(r.title)}</option>`).join('')}</select>`}
-  else if(f.ty==='opts')inp=`<select id="${id}" name="${f.k}">${f.opts().map(([a,l])=>`<option value="${esc(a)}"${a===val?' selected':''}>${esc(l)}</option>`).join('')}</select>`;
+  else if(f.ty==='opts')inp=`<select id="${id}" name="${f.k}">${f.opts().map(([a,l])=>`<option value="${esc(a)}"${String(a)===String(val)?' selected':''}>${esc(l)}</option>`).join('')}</select>`;
   else if(f.ty==='emoji')inp=`<select id="${id}" name="${f.k}">${ROOM_EMO.map(e=>`<option${e===(val||'🛋️')?' selected':''}>${e}</option>`).join('')}</select>`;
   else if(f.ty==='check')inp=`<label style="display:flex;gap:8px;align-items:center;font-weight:700;color:var(--ink);font-size:14px"><input type="checkbox" id="${id}" name="${f.k}" class="nc-check"${val?' checked':''}> ✓</label>`;
   else if(f.ty==='palette'){const cols=Array.isArray(val)?val:[];inp=`<div id="ncPal">${cols.map(palRow).join('')}</div><button type="button" class="lm-ic" id="ncAddCol">${t('addColor')}</button>`}
   else if(f.ty==='textarea')inp=`<textarea id="${id}" name="${f.k}"${f.req?' required':''}>${esc(val)}</textarea>`;
   else if(f.ty==='photo')inp=`<input id="${id}" type="file" accept="image/*"><img class="prev" id="lmPrev" alt=""${pendingPhoto?` src="${pendingPhoto}"`:' hidden'}><button type="button" class="lm-ic" id="lmRmPh"${pendingPhoto?'':' hidden'}>${t('removePhoto')}</button>`;
   else inp=`<input id="${id}" name="${f.k}" type="${f.ty}" value="${esc(val)}"${f.req?' required':''}${f.ph?` placeholder="${esc(t(f.ph))}"`:''}${f.list?` list="${f.list}" autocomplete="off"`:''}${f.min!=null?` min="${f.min}"`:''}${f.step?` step="${f.step}"`:''}>`;
-  return `<div class="lm-f${f.full||f.ty==='textarea'?' full':''}"><label for="${id}">${t(f.l)}</label>${inp}</div>`;
+  return `<div class="lm-f${f.full||f.ty==='textarea'?' full':''}"><label for="${id}">${t(f.l,f.lv)}</label>${inp}</div>`;
 }
 const palRow=c=>`<div class="nc-palrow"><input type="color" value="${esc(c&&c.hex||'#E2B4A5')}" aria-label="color"><input type="text" value="${esc(c&&c.name||'')}" placeholder="${esc(t('f_colorName'))}" style="flex:1;min-width:0"><button type="button" class="lm-ic" data-rmcol="1">✕</button></div>`;
+const AMETA=['adatos','acontrato','aentrada'];
 function openForm(kind,it,preset){
   editing={kind,id:it?it.id:null};pendingPhoto=it?it.photo:undefined;
   const one=kind==='trip'?'':(KEMO[kind]||'')+' '+t('one_'+kind);
-  $('lmDT').textContent=kind==='trip'?t('editTrip'):kind==='bdatos'?'💍 '+tl('b_editData'):(it?t('edit'):t('add'))+' '+one;
+  $('lmDT').textContent=kind==='trip'?t('editTrip'):kind==='bdatos'?'💍 '+tl('b_editData'):AMETA.includes(kind)?tl('a_form_'+kind):(it?t('edit'):t('add'))+' '+one;
   $('lmDX').textContent=t('close');$('lmDC').textContent=t('cancel');$('lmDS').textContent=t('save');$('lmDF').hidden=false;
-  const v=kind==='trip'?S.luna.trip:kind==='bdatos'?{...S.boda.meta}:(it||{status:'idea',prio:'necesario',qty:1,...(preset||{})});
+  const v=kind==='trip'?S.luna.trip:kind==='bdatos'?{...S.boda.meta}:AMETA.includes(kind)?{n1:(S.boda.meta.n1||''),n2:(S.boda.meta.n2||''),split:'igual',...S.alquiler.meta}:(it||{status:'idea',prio:'necesario',qty:1,...(preset||{})});
   if(!it&&filt[kind]&&filt[kind]!=='*'){if(kind==='guardado')v.list=v.list||filt[kind];else if(kind==='producto')v.room=v.room||filt[kind];else v.place=v.place||filt[kind]}
   if(!it&&kind==='producto'&&filt.producto_c&&filt.producto_c!=='*')v.cat=v.cat||filt.producto_c;
   $('lmDB').innerHTML=FIELDS[kind]().map(f=>fieldHtml(f,v)).join('');
@@ -1687,11 +1785,12 @@ $('lmForm').addEventListener('submit',e=>{
   e.preventDefault();if(!editing)return;
   const req=[...$('lmDB').querySelectorAll('[required]')].find(i=>!i.value.trim());if(req){req.focus();return}
   const data={};new FormData($('lmForm')).forEach((v,k)=>{if(typeof v==='string')data[k]=v.trim()});
-  ['price','nights','budget','qty','min','paid','seats','kids','plus','guestsGoal'].forEach(k=>{if(k in data)data[k]=data[k]===''?null:Number(data[k])});
+  ['price','nights','budget','qty','min','paid','seats','kids','plus','guestsGoal','inc1','inc2','maxRent','rent','comm','m2','rooms','baths','extra','amount','freq','day','target','saved','cyears','crent','cday','cdeposit','cnotice','extraM','eMove','eFurn','eSupp','eInsur','eOther'].forEach(k=>{if(k in data)data[k]=data[k]===''?null:Number(data[k])});
   $('lmDB').querySelectorAll('input[type=checkbox][name]').forEach(c=>{data[c.name]=c.checked});
   if($('ncPal'))data.colors=[...$('ncPal').querySelectorAll('.nc-palrow')].map(r=>{const [c,n]=r.querySelectorAll('input');return{hex:c.value,name:n.value.trim()}});
   if(editing.kind==='trip')putTrip({...S.luna.trip,...data});
   else if(editing.kind==='bdatos')putBodaMeta({...S.boda.meta,...data});
+  else if(AMETA.includes(editing.kind))putAlqMeta({...S.alquiler.meta,...data});
   else{const store=STORE_OF(editing.kind);const old=editing.id?S[store].items[editing.id]:null;
     const it={...(old||{}),...data,id:editing.id||rid(),kind:editing.kind,created:old?.created||Date.now()};
     if('price' in data)Object.assign(it,priceTrack(old,data.price));
@@ -1717,7 +1816,7 @@ function askImport(){
   $('lmDT').textContent=t('whereSave');$('lmDX').textContent=t('close');$('lmDF').hidden=true;
   $('lmDB').innerHTML=`<div class="lm-f full">${safeUrl(d.i)?`<img class="prev" src="${esc(d.i)}" alt="">`:''}<b style="margin-top:6px">${esc(d.t)}</b><span class="lm-meta">${esc(prettyHost(d.u))}</span></div>
    ${(d.v||0)<6?`<div class="lm-f full" style="background:var(--butter);border-radius:12px;padding:10px;font-weight:700;font-size:13px;color:var(--ink)">⚠️ ${esc(t('oldBtn'))}</div>`:''}
-   <div class="lm-choice"><button type="button" data-imp="luna"${stay?' style="border-color:var(--star)"':''}><b>✈️</b>${t('saveLuna')}<small>${t('saveLunaD')}</small></button><button type="button" data-imp="casa"${!stay?' style="border-color:var(--star)"':''}><b>🏡</b>${t('saveCasa')}<small>${t('saveCasaD')}</small></button><button type="button" data-imp="boda"><b>💍</b>${tl('b_saveB')}<small>${tl('b_saveBD')}</small></button><button type="button" data-imp="stock"><b>📦</b>${tl('s_saveStock')}<small>${tl('s_saveStockD')}</small></button></div>`;
+   <div class="lm-choice"><button type="button" data-imp="luna"${stay?' style="border-color:var(--star)"':''}><b>✈️</b>${t('saveLuna')}<small>${t('saveLunaD')}</small></button><button type="button" data-imp="casa"${!stay?' style="border-color:var(--star)"':''}><b>🏡</b>${t('saveCasa')}<small>${t('saveCasaD')}</small></button><button type="button" data-imp="boda"><b>💍</b>${tl('b_saveB')}<small>${tl('b_saveBD')}</small></button><button type="button" data-imp="alquiler"><b>🔑</b>${tl('a_saveA')}<small>${tl('a_saveAD')}</small></button><button type="button" data-imp="stock"><b>📦</b>${tl('s_saveStock')}<small>${tl('s_saveStockD')}</small></button></div>`;
   if(!dlg.open)dlg.showModal();
 }
 $('lmDB').addEventListener('click',e=>{const b=e.target.closest('[data-imp]');if(!b||!pendingImport)return;const d=pendingImport;
@@ -1725,6 +1824,7 @@ $('lmDB').addEventListener('click',e=>{const b=e.target.closest('[data-imp]');if
   const preset={link:safeUrl(d.u),title:(d.t||'').split(' · ')[0].slice(0,120),img:safeUrl(d.i)};const pz=parsePrice(d.p);if(pz!=null)preset.price=pz;
   let abNote='';if(d.ab&&d.ab.a){const amt=parsePrice(d.ab.a);if(amt!=null){if(/noche|night|notte|nuit/.test(d.ab.u))preset.price=amt;else if(d.n>0){preset.price=Math.round(amt/d.n*100)/100;abNote=t('abTotal',{a:eur(amt),n:d.n})}else abNote=t('abTotal0',{a:eur(amt)})}}
   if(b.dataset.imp==='luna'){view='luna';tabL='guardado';try{localStorage.setItem('nc-view',view);localStorage.setItem('nc-lmtab',tabL)}catch(_){}applyView();openForm('guardado',null,{...preset,notes:[abNote,(d.t||'').includes(' · ')?d.t:''].filter(Boolean).join('\n')})}
+  else if(b.dataset.imp==='alquiler'){view='alquiler';tabA='pisos';try{localStorage.setItem('nc-view',view);localStorage.setItem('nc-atab',tabA)}catch(_){}applyView();openForm('piso',null,{title:preset.title,link:preset.link,img:preset.img,rent:preset.price,pstatus:'interesa',zone:am().city||''})}
   else if(b.dataset.imp==='boda'){view='boda';tabB='proveedores';try{localStorage.setItem('nc-view',view);localStorage.setItem('nc-btab',tabB)}catch(_){}applyView();openForm('proveedor',null,{title:preset.title,link:preset.link,img:preset.img,price:preset.price,vstatus:'presupuesto'})}
   else if(b.dataset.imp==='stock'){view='stock';tabS='todo';try{localStorage.setItem('nc-view',view);localStorage.setItem('nc-sttab',tabS)}catch(_){}applyView();openForm('stock',null,{title:preset.title,link:preset.link,img:preset.img,price:preset.price,qty:1,min:1})}
   else{view='casa';tabC='producto';try{localStorage.setItem('nc-view',view);localStorage.setItem('nc-casatab',tabC)}catch(_){}applyView();openForm('producto',null,preset)}
@@ -2553,6 +2653,262 @@ function bodaClick(e){
 boda.addEventListener('click',e=>{if(!bodaClick(e))onClick(e)});
 boda.addEventListener('change',e=>{const id=e.target.dataset&&e.target.dataset.bmesa;if(id){const g=S.boda.items[id];if(g&&e.target.value)put('boda',{...g,mesa:e.target.value});return}onChange(e)});
 
+/* ================= ALQUILER Y GASTOS ================= */
+const T7={
+es:{anota:'Notas',intro_anota:'Dudas para el casero, ideas, recordatorios…',one_anota:'nota',a_settle:'🤝 Saldar cuentas',a_settled:'Cuentas saldadas',a_toGoal:'🎯 Crear meta de ahorro con esto',a_useCasa:'Usar lo que falta de «Nuestra casa» ({a})',a_calEnd:'📅 Recordatorio en el calendario',a_calDone:'En el calendario ✓',a_sources:'Fuentes',a_saveA:'Piso de alquiler',a_saveAD:'Para comparar pisos',a_noPisos:'Guardad aquí los pisos que veáis. En Idealista o Fotocasa también podéis usar el botón mágico.',a_dashNo:'Planificad el piso y el dinero',a_dash:'Os quedan {a} al mes',a_rentRef:'Alquiler',a_byPerson:'Cada uno pone',a_noGoals:'Cread vuestra primera meta con los botones de arriba 👆',a_needIncome:'Poned vuestros ingresos para ver el %.',a_paidBy:'pagó {n}',a_forW:'para {n}',a_noticeShort:'Avisar antes del',a_ends:'Fin del contrato',a_totalFixed:'Total gastos fijos',a_ownTotal:'Lo de cada uno',a_vsLast:'El mes pasado: {a}',a_months:'{n} meses',a_cal:'Calendario',a_chosen:'Piso elegido',a_left2:'Libre después de gastos',a_dayEvery:'cada {n} meses',a_settleQ:'Apuntado: {a} le ha pagado {x} a {b}',a_entryCal:'Entrada al piso',a_rentAdded:'Alquiler añadido a los gastos fijos ✓',a_daysMove:'días para mudaros',a_n1:'Persona 1',a_n2:'Persona 2'},
+en:{anota:'Notes',intro_anota:'Questions for the landlord, ideas, reminders…',one_anota:'note',a_settle:'🤝 Settle up',a_settled:'Settled up',a_toGoal:'🎯 Make a savings goal from this',a_useCasa:'Use what’s left in “Our home” ({a})',a_calEnd:'📅 Reminder in the calendar',a_calDone:'In the calendar ✓',a_sources:'Sources',a_saveA:'Rental flat',a_saveAD:'To compare flats',a_noPisos:'Save the flats you see here. On Idealista or Fotocasa you can also use the magic button.',a_dashNo:'Plan the flat and the money',a_dash:'{a} left each month',a_rentRef:'Rent',a_byPerson:'Each of you puts in',a_noGoals:'Create your first goal with the buttons above 👆',a_needIncome:'Add your income to see the %.',a_paidBy:'{n} paid',a_forW:'for {n}',a_noticeShort:'Give notice by',a_ends:'Contract ends',a_totalFixed:'Total fixed bills',a_ownTotal:'Each one’s share',a_vsLast:'Last month: {a}',a_months:'{n} months',a_cal:'Calendar',a_chosen:'Chosen flat',a_left2:'Free after bills',a_dayEvery:'every {n} months',a_settleQ:'Logged: {a} paid {x} to {b}',a_entryCal:'Moving into the flat',a_rentAdded:'Rent added to fixed bills ✓',a_daysMove:'days until you move',a_n1:'Partner 1',a_n2:'Partner 2'},
+it:{anota:'Note',intro_anota:'Domande per il proprietario, idee, promemoria…',one_anota:'nota',a_settle:'🤝 Pareggiare i conti',a_settled:'Conti pareggiati',a_toGoal:'🎯 Crea un obiettivo di risparmio',a_useCasa:'Usa quanto manca in «La nostra casa» ({a})',a_calEnd:'📅 Promemoria nel calendario',a_calDone:'Nel calendario ✓',a_sources:'Fonti',a_saveA:'Casa in affitto',a_saveAD:'Per confrontare case',a_noPisos:'Salvate qui le case che vedete. Su Idealista o Fotocasa potete usare anche il bottone magico.',a_dashNo:'Pianificate casa e soldi',a_dash:'Vi restano {a} al mese',a_rentRef:'Affitto',a_byPerson:'Ognuno mette',a_noGoals:'Create il primo obiettivo con i bottoni sopra 👆',a_needIncome:'Inserite le entrate per vedere la %.',a_paidBy:'ha pagato {n}',a_forW:'per {n}',a_noticeShort:'Avvisare entro il',a_ends:'Fine del contratto',a_totalFixed:'Totale spese fisse',a_ownTotal:'La parte di ognuno',a_vsLast:'Il mese scorso: {a}',a_months:'{n} mesi',a_cal:'Calendario',a_chosen:'Casa scelta',a_left2:'Libero dopo le spese',a_dayEvery:'ogni {n} mesi',a_settleQ:'Annotato: {a} ha dato {x} a {b}',a_entryCal:'Ingresso in casa',a_rentAdded:'Affitto aggiunto alle spese fisse ✓',a_daysMove:'giorni al trasloco',a_n1:'Persona 1',a_n2:'Persona 2'}};
+for(const l in T7)Object.assign(T[l],T7[l]);
+const alquiler=document.createElement('section');alquiler.id='alquiler';alquiler.className='ncv';alquiler.hidden=true;footer.before(alquiler);
+const GCATS={vivienda:'🏠',suministros:'💡',conexion:'📶',seguros:'🛡️',comida:'🛒',transporte:'🚗',salud:'💊',ocio:'🎬',suscripciones:'📺',familia:'👶',mascotas:'🐾',ropa:'👕',ahorro:'🐷',otros:'✨'};
+const GCOL={vivienda:'#7C8CE0',suministros:'#F2C35B',conexion:'#6BC1C9',seguros:'#9C86D6',comida:'#7DBE7A',transporte:'#E79A6B',salud:'#E58AA8',ocio:'#D96E6E',suscripciones:'#5D6FB8',familia:'#F0A7C0',mascotas:'#B8946A',ropa:'#C7A3E0',ahorro:'#4FA58A',otros:'#A9AFC4'};
+const PST={interesa:'💭',visita:'📞',visto:'👀',descartado:'❌',elegido:'🔑'};
+const ATABS=[['resumen','🔑'],['pisos','🏠'],['entrada','💼'],['gastos','🧾'],['mes','📅'],['ahorro','🐷'],['contrato','📄'],['anota','📝']];
+Object.assign(KEMO,{piso:'🏠',gfijo:'🧾',gvar:'🛒',ahorro:'🐷',apapel:'📋',anota:'📝'});
+Object.assign(EMPTY_FOR,{piso:'house',gfijo:'cart',gvar:'cart',ahorro:'bag',apapel:'bag',anota:'plane'});
+const am=()=>S.alquiler.meta||{};
+const an=k=>(am()[k]||'').trim()||((S.boda&&S.boda.meta&&S.boda.meta[k])||'').trim()||tl('a_'+k);
+const al=k=>Object.values(S.alquiler.items).filter(i=>i.kind===k);
+const incs=()=>[+am().inc1||0,+am().inc2||0];
+const incT=()=>incs()[0]+incs()[1];
+const ratio=()=>{const[a,b]=incs();return am().split==='prop'&&a+b>0?a/(a+b):.5};
+const monthly=i=>(+i.amount||0)/(+i.freq||1);
+const fixedM=()=>al('gfijo').reduce((a,i)=>a+monthly(i),0);
+const ymOf=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+const ymNow=()=>ymOf(new Date());
+const ymShift=(m,n)=>{const[y,mm]=m.split('-').map(Number);return ymOf(new Date(y,mm-1+n,1))};
+const ymLabel=m=>{const[y,mm]=m.split('-').map(Number);const x=new Date(y,mm-1,15).toLocaleDateString(LOC[L],{month:'long',year:'numeric'});return x.charAt(0).toUpperCase()+x.slice(1)};
+const curM=()=>filt.aMonth||ymNow();
+const varOf=m=>al('gvar').filter(x=>(x.date||'').startsWith(m)&&!x.settle);
+const sumV=l=>l.reduce((a,x)=>a+(+x.amount||0),0);
+const chosen=()=>al('piso').find(p=>p.pstatus==='elegido');
+const rentRef=()=>+am().crent||(chosen()?+chosen().rent||0:0)||+am().maxRent||0;
+const pisoTotal=p=>(+p.rent||0)+(+p.comm||0);
+const who=k=>k==='n1'?'💗 '+an('n1'):k==='n2'?'💙 '+an('n2'):'💞 '+tl('a_shared');
+const whoOpts=()=>[['ambos','💞 '+tl('a_shared')],['n1','💗 '+an('n1')],['n2','💙 '+an('n2')]];
+const payerOpts=()=>[['n1','💗 '+an('n1')],['n2','💙 '+an('n2')]];
+const shareOf=(amt,k)=>k==='n1'?[amt,0]:k==='n2'?[0,amt]:[amt*ratio(),amt*(1-ratio())];
+const monthsTo=d=>Math.max(1,Math.ceil(daysTo(d)/30.44));
+const extraOpts=()=>[['0','0'],['1','1'],['2','2']];
+FIELDS.adatos=()=>[F('n1','f_an1','text'),F('n2','f_an2','text'),F('inc1','f_income1','number',{min:0,lv:{n:an('n1')}}),F('inc2','f_income2','number',{min:0,lv:{n:an('n2')}}),F('split','f_split','opts',{opts:()=>[['igual','⚖️ '+tl('sp_igual')],['prop','📊 '+tl('sp_prop')]],full:1}),F('city','f_city','text',{ph:'a_searchPh'}),F('maxRent','f_maxRent','number',{min:0}),F('moveDate','f_moveDate','date')];
+FIELDS.acontrato=()=>[F('addr','c_addr','text',{full:1}),F('landlord','c_landlord','text',{full:1}),F('cstart','c_start','date'),F('cyears','c_years','number',{min:1}),F('crent','c_rent','number',{min:0,step:'0.01'}),F('cday','c_day','number',{min:1}),F('cdeposit','c_deposit','number',{min:0,step:'0.01'}),F('cnotice','c_notice','number',{min:0}),F('cupdate','c_update','text',{full:1}),F('notes','f_notes','textarea')];
+FIELDS.aentrada=()=>[F('extraM','e_extra','opts',{opts:extraOpts}),F('eMove','e_move','number',{min:0}),F('eFurn','e_furn','number',{min:0}),F('eSupp','e_supplies','number',{min:0}),F('eInsur','e_insur','number',{min:0}),F('eOther','e_other','number',{min:0})];
+FIELDS.piso=()=>[F('title','f_ptitle2','text',{req:1,full:1}),F('zone','f_zone','text'),F('pstatus','f_pstatus','sel',{opts:PST,pre:'ps_'}),F('rent','f_rent','number',{min:0,step:'0.01'}),F('comm','f_comm','number',{min:0,step:'0.01'}),F('m2','f_m2','number',{min:0}),F('rooms','f_rooms','number',{min:0}),F('baths','f_baths','number',{min:0}),F('extra','f_extra','opts',{opts:extraOpts}),F('furn','f_furn','check'),F('lift','f_lift','check'),F('terr','f_terr','check'),F('park','f_park','check'),F('date','f_visit','date'),F('time','f_time','time'),F('contact','f_contact','text',{full:1}),F('link','f_link','url',{full:1}),F('img','f_img','url',{full:1}),F('photo','f_photo','photo',{full:1}),F('pros','f_pros','textarea'),F('cons','f_cons','textarea'),F('notes','f_notes','textarea')];
+FIELDS.gfijo=()=>[F('title','f_gtitle','text',{req:1,full:1}),F('cat','f_cat','sel',{opts:GCATS,pre:'gc_'}),F('amount','f_amount','number',{min:0,step:'0.01',req:1}),F('freq','f_freq','opts',{opts:()=>[1,2,3,6,12].map(n=>[String(n),tl('fq_'+n)])}),F('who','f_whoPays','opts',{opts:whoOpts}),F('day','f_day','number',{min:1}),F('company','f_company','text'),F('link','f_link','url'),F('notes','f_notes','textarea')];
+FIELDS.gvar=()=>[F('title','f_gtitle','text',{req:1,full:1}),F('amount','f_amount','number',{min:0,step:'0.01',req:1}),F('cat','f_cat','sel',{opts:GCATS,pre:'gc_'}),F('date','f_date','date'),F('payer','f_payer','opts',{opts:payerOpts}),F('forWho','f_forWho','opts',{opts:whoOpts}),F('notes','f_notes','textarea')];
+FIELDS.ahorro=()=>[F('title','f_gtitle','text',{req:1,full:1}),F('target','f_target','number',{min:0,req:1}),F('saved','f_saved','number',{min:0}),F('date','f_goalDate','date'),F('notes','f_notes','textarea')];
+FIELDS.apapel=()=>[F('title','f_title_pendiente','text',{req:1,full:1}),F('date','f_deadline','date'),F('done','f_done','check'),F('notes','f_notes','textarea')];
+FIELDS.anota=FIELDS.cnota;
+let tabA='resumen';try{tabA=localStorage.getItem('nc-atab')||'resumen'}catch(e){}
+async function putAlqMeta(x){S.alquiler.meta=x;render();if(!fdb||!sp)return;try{await setDoc(doc(fdb,'espacios',sp,'alqmeta','datos'),clean(x))}catch(e){toast(t('errSave'))}}
+function aHead(k,addKind,extra=''){const lab=k==='anota'?t('anota'):tl('a_'+k);return `<div class="lm-head"><div><h3>${ATABS.find(x=>x[0]===k)[1]} ${lab}</h3><p>${k==='anota'?t('intro_anota'):tl('a_intro_'+k)||''}</p></div>${addKind||extra?`<div class="lm-acts">${extra}${addKind?`<button class="lm-btn" type="button" data-aadd="${addKind}">+ ${t('add')} ${t('one_'+addKind)}</button>`:''}</div>`:''}</div>`}
+function contractEnd(){const m=am();if(!m.cstart)return null;return addMonths(m.cstart,12*(+m.cyears||1),0)}
+function noticeDate(){const e=contractEnd();if(!e)return null;const x=new Date(e+'T12:00:00');x.setDate(x.getDate()-(am().cnotice!=null&&am().cnotice!==''?+am().cnotice:30));return x.toISOString().slice(0,10)}
+function entry(){const m=am();const r=rentRef();const ch=chosen();const exRaw=m.extraM!=null&&m.extraM!==''?m.extraM:(ch?ch.extra:0);const ex=Math.min(2,Math.max(0,+exRaw||0));
+  const rows=[['🔒',tl('a_fianza'),r],['🛡️',tl('a_garantia').replace('{m}',ex),ex*r],['🏠',tl('a_first'),r],['🏢',tl('a_agency'),0,tl('a_agencyNote')],['🚚',tl('a_move'),+m.eMove||0],['🛋️',tl('a_furn'),+m.eFurn||0],['💡',tl('a_supp'),+m.eSupp||0],['☂️',tl('a_insur'),+m.eInsur||0],['✨',tl('a_other'),+m.eOther||0]];
+  return{r,ex,rows,total:rows.reduce((a,x)=>a+x[2],0)}}
+function balance(){const net=[0,0];al('gvar').forEach(x=>{const a=+x.amount||0;const p=x.payer==='n2'?1:0;net[p]+=a;const o=shareOf(a,x.forWho||'ambos');net[0]-=o[0];net[1]-=o[1]});return net}
+function rentPct(){const it=incT();const r=rentRef();return it>0&&r>0?Math.round(r/it*100):null}
+function pctTone(p){return p<=30?'ok':p<=40?'mid':'bad'}
+function aCount(){const it=incT();if(!it)return{n:'🔑',l:tl('a_dashNo')};const left=it-fixedM();return{n:eur(Math.round(left)),l:left>=0?tl('a_leftShort'):tl('a_over')}}
+function catBar(list,fn){const by={};list.forEach(i=>{const c=i.cat||'otros';by[c]=(by[c]||0)+fn(i)});const tot=Object.values(by).reduce((a,x)=>a+x,0);if(!tot)return'';const ks=Object.keys(GCATS).filter(c=>by[c]);
+  return `<div class="lm-track a-bar">${ks.map(c=>`<i style="width:${by[c]/tot*100}%;background:${GCOL[c]}" title="${esc(tl('gc_'+c))}"></i>`).join('')}</div><div class="a-leg">${ks.map(c=>`<span><i style="background:${GCOL[c]}"></i>${GCATS[c]} ${esc(tl('gc_'+c))} <b>${eur(Math.round(by[c]))}</b></span>`).join('')}</div>`}
+function nextBills(){const today=new Date();const d0=today.getDate();const m=ymNow();
+  return al('gfijo').filter(i=>(+i.freq||1)===1).map(i=>{const dd=+i.day||0;if(!dd)return{i,dd,paid:(i.paidM||[]).includes(m),inDays:99};const paid=(i.paidM||[]).includes(m);const inDays=paid?(dd>=d0?dd-d0+31:dd+31-d0):(dd>=d0?dd-d0:dd+31-d0);return{i,dd,paid,inDays}}).sort((a,b)=>a.inDays-b.inDays)}
+/* ---- resumen ---- */
+function aResumen(){
+  const m=am();const it=incT();const fx=fixedM();const vm=sumV(varOf(ymNow()));const left=it-fx-vm;const p=rentPct();const r=ratio();
+  const welcome=!it?`<div class="lm-box" style="margin-bottom:16px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:space-between"><b style="flex:1;min-width:200px">${tl('a_welcome')}</b><button class="lm-btn gold sm" type="button" data-adata="adatos">${tl('a_setData')}</button></div>`:'';
+  const stats=`<div class="lm-stats"><button type="button" class="lm-stat" data-adata="adatos"><b>${eur(it)}</b><span>💶 ${tl('a_income')}</span></button><button type="button" class="lm-stat" data-atab="gastos"><b>${eur(Math.round(fx))}</b><span>🧾 ${tl('a_fixed')}</span></button><button type="button" class="lm-stat" data-atab="mes"><b>${eur(Math.round(vm))}</b><span>🛒 ${tl('a_varM')}</span></button><div class="lm-stat"><b style="color:${left<0?'#B2453A':'#3E7D4E'}">${eur(Math.round(left))}</b><span>${left<0?'⚠️ '+tl('a_over'):'✨ '+tl('a_left')}</span></div></div>`;
+  let rule='';if(p!=null){const tn=pctTone(p);rule=`<div class="lm-box a-rule ${tn}"><div class="a-gauge"><i style="width:${Math.min(100,p/60*100)}%"></i><s style="left:${30/60*100}%"></s><s style="left:${35/60*100}%"></s></div><p style="margin:8px 0 0"><b>${tl('a_rule').replace('{p}',p)}</b> — ${tl(tn==='ok'?'a_ruleOk':tn==='mid'?'a_ruleMid':'a_ruleBad')}</p><p class="lm-meta" style="margin:2px 0 0">${tl('a_ruleTip')} · ${tl('a_rentRef')}: ${eur(rentRef())}</p></div>`}
+  else if(!it&&rentRef())rule=`<div class="lm-box"><p class="lm-meta" style="margin:0">${tl('a_needIncome')}</p></div>`;
+  // split
+  let own=[0,0];al('gfijo').forEach(i=>{const s=shareOf(monthly(i),i.who||'ambos');own[0]+=s[0];own[1]+=s[1]});
+  const split=`<div class="lm-box"><h4 class="lm-sub">⚖️ ${tl('a_split')} <small style="font-size:13px;color:var(--soft)">${m.split==='prop'?tl('sp_prop'):tl('sp_igual')}</small></h4>
+   <div class="lm-track" style="height:22px"><i style="width:${(fx?own[0]/fx:r)*100}%;background:var(--pink-d)"></i><i style="width:${(fx?own[1]/fx:1-r)*100}%;background:#7C8CE0"></i></div>
+   <div class="lm-ev"><span class="k">💗</span><span class="x">${tl('a_pays').replace('{n}',esc(an('n1')))}</span><b>${eur(Math.round(own[0]))}${tl('a_perMonth')}</b></div>
+   <div class="lm-ev"><span class="k">💙</span><span class="x">${tl('a_pays').replace('{n}',esc(an('n2')))}</span><b>${eur(Math.round(own[1]))}${tl('a_perMonth')}</b></div>
+   ${it?`<p class="lm-meta" style="margin:6px 0 0">${esc(an('n1'))}: ${eur(Math.round(incs()[0]-own[0]))} · ${esc(an('n2'))}: ${eur(Math.round(incs()[1]-own[1]))} ${tl('a_leftShort')}</p>`:''}</div>`;
+  const nb=nextBills().slice(0,6);
+  const bills=`<div class="lm-box"><h4 class="lm-sub">📅 ${tl('a_nextBills')}</h4>${nb.length?nb.map(({i,dd,paid})=>`<div class="lm-ev"><span class="k">${GCATS[i.cat]||'✨'}</span><span class="x"><b>${esc(i.title)}</b> <small>${dd?'· '+tl('a_day').replace('{d}',dd)+' ':''}· ${who(i.who)}</small></span><span>${paid?'<span class="lm-pill ok">✓</span>':`<b>${eur(+i.amount||0)}</b>`}</span></div>`).join(''):`<p class="lm-meta" style="margin:0">${tl('a_noBills')}</p><button class="lm-btn sm" type="button" data-atab="gastos" style="margin-top:8px">${tl('a_gastos')} ➜</button>`}</div>`;
+  const ce=contractEnd(),nd=noticeDate();const ch=chosen();
+  const card=`<div class="lm-box nightbox"><h4 class="lm-sub">🔑 ${esc(m.addr||(ch&&ch.title)||tl('a_title1')+' '+tl('a_title2'))}</h4>
+    ${m.city?`<p style="margin:0 0 4px">📍 ${esc(m.city)}</p>`:''}${rentRef()?`<p style="margin:0 0 4px">🏠 ${tl('a_rentRef')}: ${eur(rentRef())}${tl('a_perMonth')}</p>`:''}
+    ${m.moveDate?`<p style="margin:0 0 4px">🚚 ${fd(m.moveDate,{day:'numeric',month:'long',year:'numeric'})}${daysTo(m.moveDate)>0?` · ${daysTo(m.moveDate)} ${tl('a_daysMove')}`:''}</p>`:''}
+    ${ce?`<p style="margin:0 0 4px">📄 ${tl('a_contractEnd').replace('{d}',fd(ce,{day:'numeric',month:'long',year:'numeric'}))}</p>`:''}
+    ${nd&&daysTo(nd)>=0&&daysTo(nd)<=120?`<p style="margin:0 0 4px;color:var(--star)">⏰ ${tl('a_noticeBy').replace('{d}',fd(nd,{day:'numeric',month:'long'}))}</p>`:''}
+    <button type="button" class="lm-btn gold sm" data-adata="adatos" style="margin-top:6px">✏️ ${tl('a_editData')}</button></div>`;
+  const gs=al('ahorro').sort((a,b)=>(a.created||0)-(b.created||0)).slice(0,4);
+  const goals=`<div class="lm-box"><h4 class="lm-sub">🐷 ${tl('a_goals')}</h4>${gs.length?gs.map(g=>{const pc=Math.min(100,(+g.saved||0)/(+g.target||1)*100);return `<div style="margin:6px 0"><div class="lm-meta" style="justify-content:space-between;margin:0"><b>${esc(g.title)}</b><span>${eur(+g.saved||0)} / ${eur(+g.target||0)}</span></div><div class="lm-track" style="margin:4px 0 0;height:10px"><i style="width:${pc}%;background:#4FA58A"></i></div></div>`}).join(''):`<p class="lm-meta" style="margin:0">${tl('a_noGoals').replace(' 👆','')}</p>`}<button class="lm-btn sm" type="button" data-atab="ahorro" style="margin-top:8px">${tl('a_ahorro')} ➜</button></div>`;
+  const fixedBox=fx?`<div class="lm-box"><h4 class="lm-sub">🧾 ${tl('a_fixed')}</h4>${catBar(al('gfijo'),monthly)}</div>`:'';
+  return welcome+stats+`<div class="lm-two"><div style="display:flex;flex-direction:column;gap:14px;min-width:0">${rule}${split}${fixedBox}${bills}</div><div style="display:flex;flex-direction:column;gap:14px;min-width:0">${card}${goals}</div></div>`;
+}
+/* ---- pisos ---- */
+const SEARCH=[['Idealista','idealista.com'],['Fotocasa','fotocasa.es'],['Habitaclia','habitaclia.com'],['pisos.com','pisos.com']];
+function pisoCard(p){const im=imgOf(p);const tot=pisoTotal(p);const it=incT();const pc=it&&tot?Math.round(tot/it*100):null;const st=p.pstatus||'interesa';const ex=Math.min(2,+p.extra||0);const ent=(+p.rent||0)*(2+ex);
+  const feats=[p.rooms?`🛏️ ${p.rooms}`:'',p.baths?`🛁 ${p.baths}`:'',p.m2?`📐 ${p.m2} m²`:'',p.furn?'🛋️ '+tl('f_furn'):'',p.lift?'🛗 '+tl('f_lift'):'',p.terr?'🌿 '+tl('f_terr'):'',p.park?'🅿️ '+tl('f_park'):''].filter(Boolean);
+  const q=encodeURIComponent([p.title,p.zone,am().city].filter(Boolean).join(', '));
+  return `<article class="lm-card${st==='elegido'?' a-chosen':''}${st==='descartado'?' a-off':''}">${im?`<img class="ph" src="${esc(im)}" alt="" loading="lazy" data-zoom="${esc(im)}" referrerpolicy="no-referrer">`:''}
+   <div style="display:flex;gap:8px;align-items:center"><span class="lm-emo">${PST[st]}</span><h4>${esc(p.title)}</h4></div>
+   <div class="lm-meta">${p.zone?`<span>📍 ${esc(p.zone)}</span>`:''}<span class="lm-pill ${st==='elegido'?'ok':st==='descartado'?'st-bad':st==='visto'?'favorito':''}">${tl('ps_'+st)}</span></div>
+   ${p.rent?`<div class="lm-meta"><span class="lm-price">${eur(+p.rent)}${tl('a_perMonth')}</span>${p.comm?`<span>+ ${eur(+p.comm)}</span>`:''}${p.m2&&p.rent?`<span>· ${(tot/p.m2).toFixed(1)} ${tl('a_perM2')}</span>`:''}</div>`:''}
+   ${pc!=null?`<div class="lm-meta"><span class="lm-pill a-${pctTone(pc)}">${pc}% ${tl('a_ofIncome')}</span></div>`:''}
+   ${p.rent?`<div class="lm-meta"><span>💼 ${tl('a_entryEst')}: <b>${eur(ent)}</b></span></div>`:''}
+   ${feats.length?`<div class="lm-meta">${feats.map(f=>`<span>${esc(f)}</span>`).join('')}</div>`:''}
+   ${p.date?`<div class="lm-meta"><span>📅 ${fd(p.date)}${p.time?' '+esc(p.time):''}</span></div>`:''}
+   ${p.contact?`<div class="lm-meta"><span style="user-select:all">📞 ${esc(p.contact)}</span></div>`:''}
+   ${p.pros?`<p class="lm-notes" style="background:#E3F2E1;color:#2E5B33">👍 ${esc(p.pros)}</p>`:''}${p.cons?`<p class="lm-notes" style="background:#F7E0DC;color:#7A2E24">👎 ${esc(p.cons)}</p>`:''}${p.notes?`<p class="lm-notes">${esc(p.notes)}</p>`:''}
+   <div class="lm-meta">${p.link?lnk(p.link):''}<a class="lm-a" href="https://www.google.com/maps/search/?api=1&query=${q}" target="_blank" rel="noopener">${tl('a_map')} ↗</a></div>
+   ${acts('alquiler',p,(st!=='elegido'?`<button class="lm-ic" type="button" data-achoose="${p.id}">${tl('a_choose')}</button>`:'')+(p.date?(p.inCal?'<span class="lm-pill ok">📅</span>':`<button class="lm-ic" type="button" data-tocal="alquiler:${p.id}">📅</button>`):''))}</article>`}
+function aPisos(){
+  const ps=al('piso');const fs=filt.ap_s||'*';const m=am();
+  let h=aHead('pisos','piso');
+  h+=`<div class="lm-box a-search"><b>🔎 ${tl('a_search')}</b><input id="ncAlqQ" class="st-in" value="${esc(filt.alqQ??m.city??'')}" placeholder="${esc(tl('a_searchPh'))}"><div class="lm-chips" style="margin:0">${SEARCH.map(([n,d])=>`<button type="button" class="lm-chip" data-asrch="${d}">${n} ↗</button>`).join('')}</div></div>`;
+  if(!ps.length)return h+empty('piso',tl('a_noPisos'),`<button class="lm-btn sm" type="button" data-aadd="piso">${t('addFirst')}</button>`);
+  h+=chips('ap_s',Object.keys(PST).map(k=>[k,PST[k]+' '+tl('ps_'+k)]),fs);
+  const order=['elegido','visto','visita','interesa','descartado'];
+  const list=ps.filter(p=>fs==='*'||(p.pstatus||'interesa')===fs).sort((a,b)=>order.indexOf(a.pstatus||'interesa')-order.indexOf(b.pstatus||'interesa')||pisoTotal(a)-pisoTotal(b));
+  h+=list.length?`<div class="lm-grid">${list.map(pisoCard).join('')}</div>`:`<div class="lm-empty"><p>${t('noFilter')}</p></div>`;
+  const cmp=ps.filter(p=>p.pstatus!=='descartado'&&p.rent);
+  if(cmp.length>1){const it=incT();const best=Math.min(...cmp.map(pisoTotal));
+    const rows=[[tl('a_total'),p=>eur(pisoTotal(p)),p=>pisoTotal(p)===best],[tl('f_m2'),p=>p.m2?p.m2+' m²':'—'],[tl('a_perM2'),p=>p.m2?(pisoTotal(p)/p.m2).toFixed(1):'—'],[tl('f_rooms'),p=>p.rooms||'—'],[tl('f_baths'),p=>p.baths||'—'],['%',p=>it?Math.round(pisoTotal(p)/it*100)+'%':'—'],[tl('a_entryEst'),p=>eur((+p.rent||0)*(2+Math.min(2,+p.extra||0)))],['🛋️🛗🌿🅿️',p=>[p.furn?'🛋️':'',p.lift?'🛗':'',p.terr?'🌿':'',p.park?'🅿️':''].join('')||'—']];
+    h+=`<h4 class="lm-sub" style="margin-top:20px">⚖️ ${tl('a_compare')}</h4><div class="a-cmp"><table><thead><tr><th></th>${cmp.map(p=>`<th>${PST[p.pstatus||'interesa']} ${esc(p.title)}</th>`).join('')}</tr></thead><tbody>${rows.map(([l,f,hi])=>`<tr><th>${esc(l)}</th>${cmp.map(p=>`<td${hi&&hi(p)?' class="best"':''}>${esc(String(f(p)))}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`}
+  return h;
+}
+/* ---- entrada ---- */
+function aEntrada(){
+  const e=entry();const m=am();const r=ratio();
+  let h=aHead('entrada',null,`<button class="lm-btn ghost" type="button" data-adata="aentrada">${tl('a_editEntry')}</button>`);
+  h+=`<p class="lm-meta" style="margin:0 0 10px">${e.r?tl('a_based').replace('{r}',e.r.toLocaleString(LOC[L])):tl('a_noRent')}${chosen()?` · 🔑 ${esc(chosen().title)}`:''}</p>`;
+  h+=`<div class="lm-two"><div class="lm-box" style="padding:6px 14px">${e.rows.map(([k,l,v,note])=>`<div class="lm-ev"><span class="k">${k}</span><span class="x">${esc(l)}${note?`<br><small style="color:#3E7D4E">${esc(note)}</small>`:''}</span><b>${eur(v)}</b></div>`).join('')}
+    <div class="lm-ev a-total"><span class="k">💼</span><span class="x"><b>${tl('a_entryTotal')}</b></span><b>${eur(e.total)}</b></div></div>
+   <div style="display:flex;flex-direction:column;gap:14px;min-width:0"><div class="lm-box nightbox"><h4 class="lm-sub">💼 ${eur(e.total)}</h4>
+    <p style="margin:0 0 4px">💗 ${tl('a_each').replace('{n}',esc(an('n1'))).replace('{a}',eur(Math.round(e.total*r)))}</p><p style="margin:0 0 4px">💙 ${tl('a_each').replace('{n}',esc(an('n2'))).replace('{a}',eur(Math.round(e.total*(1-r))))}</p>
+    ${m.moveDate&&daysTo(m.moveDate)>0?`<p style="margin:8px 0 0;color:var(--star)">🐷 ${tl('a_saveFor').replace('{a}',eur(Math.ceil(e.total/monthsTo(m.moveDate)))).replace('{d}',fd(m.moveDate,{day:'numeric',month:'long',year:'numeric'}))}</p>`:''}
+    ${e.total?`<button type="button" class="lm-btn gold sm" data-aentgoal="1" style="margin-top:10px">${tl('a_toGoal')}</button>`:''}</div>
+    ${typeof cSums==='function'&&cSums().pend>0?`<button type="button" class="lm-btn ghost" data-ausecasa="1">🛋️ ${tl('a_useCasa').replace('{a}',eur(Math.round(cSums().pend)))}</button>`:''}
+    <div class="lm-box"><p class="lm-meta" style="margin:0">🔒 ${tl('a_backDeposit')}</p><p class="lm-meta" style="margin:6px 0 0">🏢 ${tl('a_agencyNote')}</p></div></div></div>`;
+  return h;
+}
+/* ---- gastos fijos ---- */
+function aGastos(){
+  const gs=al('gfijo');const fx=fixedM();
+  let h=aHead('gastos','gfijo');
+  const have=gs.map(x=>x.title);const qb=(tl('qbills')||[]).map((x,i)=>[...x,i]).filter(x=>!have.includes(x[0]));
+  if(qb.length)h+=`<div class="lm-chips" style="margin-bottom:12px"><span class="lm-meta" style="margin:0 4px 0 0">${tl('a_quickBills')}:</span>${qb.map(([n,c,f,i])=>`<button type="button" class="lm-chip" data-aqb="${i}">${GCATS[c]} ${esc(n)}</button>`).join('')}</div>`;
+  if(!gs.length)return h+empty('gfijo',t('empty'),`<button class="lm-btn sm" type="button" data-aadd="gfijo">${t('addFirst')}</button>`);
+  let own=[0,0];gs.forEach(i=>{const s=shareOf(monthly(i),i.who||'ambos');own[0]+=s[0];own[1]+=s[1]});
+  h+=`<div class="lm-stats"><div class="lm-stat"><b>${eur(Math.round(fx))}</b><span>🧾 ${tl('a_monthly')}</span></div><div class="lm-stat"><b>${eur(Math.round(fx*12))}</b><span>📆 ${tl('a_yearly')}</span></div><div class="lm-stat"><b>${eur(Math.round(own[0]))}</b><span>💗 ${esc(an('n1'))}</span></div><div class="lm-stat"><b>${eur(Math.round(own[1]))}</b><span>💙 ${esc(an('n2'))}</span></div>${incT()?`<div class="lm-stat"><b>${Math.round(fx/incT()*100)}%</b><span>💶 ${tl('a_ofIncome')}</span></div>`:''}</div>`;
+  h+=`<div class="lm-box" style="margin-bottom:14px">${catBar(gs,monthly)}</div>`;
+  const by={};gs.forEach(i=>{(by[i.cat||'otros']=by[i.cat||'otros']||[]).push(i)});
+  h+=Object.keys(GCATS).filter(c=>by[c]).map(c=>{const l=by[c].sort((a,b)=>monthly(b)-monthly(a));return `<div class="nc-cathead">${GCATS[c]} ${tl('gc_'+c)} <small>${eur(Math.round(l.reduce((a,i)=>a+monthly(i),0)))}${tl('a_perMonth')}</small></div><div class="lm-box" style="padding:4px 14px;margin-bottom:10px">${l.map(i=>{const f=+i.freq||1;return `<div class="lm-todo"><label style="flex:1;min-width:0"><b>${esc(i.title)}</b>${i.company?` <small>· ${esc(i.company)}</small>`:''}<br><small>${who(i.who)}${i.day?' · '+tl('a_day').replace('{d}',i.day):''}${f>1?' · '+eur(+i.amount||0)+' '+tl('fq_'+f).toLowerCase():''}${i.notes?' · '+esc(i.notes):''}</small></label><b style="white-space:nowrap">${eur(Math.round(monthly(i)*100)/100)}<small style="color:var(--soft);font-weight:600">${tl('a_perMonth')}</small></b>${i.link?lnk(i.link,'↗'):''}${acts('alquiler',i)}</div>`}).join('')}</div>`}).join('');
+  return h;
+}
+/* ---- este mes ---- */
+function aMes(){
+  const m=curM();const gs=al('gfijo');const vs=varOf(m).sort((a,b)=>(b.date||'').localeCompare(a.date||'')||(b.created||0)-(a.created||0));
+  let h=aHead('mes','gvar');
+  h+=`<div class="a-month"><button type="button" class="lm-ic" data-amon="-1" aria-label="prev">◀</button><b>${ymLabel(m)}</b><button type="button" class="lm-ic" data-amon="1" aria-label="next">▶</button>${m!==ymNow()?`<button type="button" class="lm-chip" data-amon="0">⟲ ${esc(ymLabel(ymNow()))}</button>`:''}</div>`;
+  const paidF=gs.filter(i=>(i.paidM||[]).includes(m));const fxPaid=paidF.reduce((a,i)=>a+(+i.amount||0),0);const fxAll=gs.filter(i=>(+i.freq||1)===1).reduce((a,i)=>a+(+i.amount||0),0);
+  const last=sumV(varOf(ymShift(m,-1)));
+  h+=`<div class="lm-stats"><div class="lm-stat"><b>${eur(Math.round(fxPaid))}</b><span>✅ ${tl('a_paidThis')}</span></div><div class="lm-stat"><b>${eur(Math.max(0,Math.round(fxAll-gs.filter(i=>(+i.freq||1)===1&&(i.paidM||[]).includes(m)).reduce((a,i)=>a+(+i.amount||0),0))))}</b><span>⏳ ${tl('a_toPayThis')}</span></div><div class="lm-stat"><b>${eur(Math.round(sumV(vs)))}</b><span>🛒 ${tl('a_varTitle')}</span></div>${incT()?`<div class="lm-stat"><b style="color:${incT()-fixedM()-sumV(vs)<0?'#B2453A':'#3E7D4E'}">${eur(Math.round(incT()-fixedM()-sumV(vs)))}</b><span>✨ ${tl('a_left')}</span></div>`:''}</div>`;
+  const bills=gs.sort((a,b)=>(+a.day||40)-(+b.day||40));
+  h+=`<div class="lm-two"><div style="display:flex;flex-direction:column;gap:14px;min-width:0"><div class="lm-box" style="padding:8px 14px"><h4 class="lm-sub">🧾 ${tl('a_gastos')}</h4>${bills.length?bills.map(i=>{const pd=(i.paidM||[]).includes(m);const f=+i.freq||1;return `<div class="lm-todo${pd?' done':''}"><input type="checkbox" class="nc-check" data-apay="${i.id}"${pd?' checked':''} aria-label="${esc(tl('a_markP'))}"><label style="flex:1;min-width:0">${GCATS[i.cat]||'✨'} ${esc(i.title)}<br><small>${i.day?tl('a_day').replace('{d}',i.day)+' · ':''}${who(i.who)}${f>1?' · '+tl('fq_'+f).toLowerCase():''}</small></label><b>${eur(+i.amount||0)}</b></div>`}).join(''):`<p class="lm-meta">${tl('a_noBills')}</p>`}</div></div>
+   <div style="display:flex;flex-direction:column;gap:14px;min-width:0">${balBox()}</div></div>`;
+  h+=`<div class="lm-head" style="margin-top:18px"><div><h3 style="font-size:20px">🛒 ${tl('a_varTitle')}</h3><p>${last?tl('a_vsLast').replace('{a}',eur(Math.round(last))):''}</p></div><button class="lm-btn" type="button" data-aadd="gvar">${tl('a_addVar')}</button></div>`;
+  if(vs.length)h+=`<div class="lm-box" style="margin-bottom:12px">${catBar(vs,x=>+x.amount||0)}</div>`;
+  const all=al('gvar').filter(x=>(x.date||'').startsWith(m)).sort((a,b)=>(b.date||'').localeCompare(a.date||'')||(b.created||0)-(a.created||0));
+  h+=all.length?`<div class="lm-box" style="padding:4px 14px">${all.map(x=>`<div class="lm-todo"><span class="lm-emo" style="font-size:20px">${x.settle?'🤝':GCATS[x.cat]||'✨'}</span><label style="flex:1;min-width:0"><b>${esc(x.title)}</b><br><small>${x.date?fd(x.date)+' · ':''}${tl('a_paidBy').replace('{n}',esc(an(x.payer==='n2'?'n2':'n1')))}${x.settle?' → '+esc(an(x.forWho)):(x.forWho&&x.forWho!=='ambos'?' · '+tl('a_forW').replace('{n}',esc(an(x.forWho))):'')}${x.notes?' · '+esc(x.notes):''}</small></label><b>${eur(+x.amount||0)}</b>${acts('alquiler',x)}</div>`).join('')}</div>`:empty('gvar',tl('a_noVar'),`<button class="lm-btn sm" type="button" data-aadd="gvar">${tl('a_addVar')}</button>`);
+  return h;
+}
+function balBox(){const net=balance();const d=net[0];const amt=Math.abs(d);
+  const txt=amt<0.5?tl('a_even'):d>0?tl('a_owes').replace('{a}',esc(an('n2'))).replace('{x}',eur(Math.round(amt*100)/100)).replace('{b}',esc(an('n1'))):tl('a_owes').replace('{a}',esc(an('n1'))).replace('{x}',eur(Math.round(amt*100)/100)).replace('{b}',esc(an('n2')));
+  return `<div class="lm-box nightbox"><h4 class="lm-sub">🤝 ${tl('a_balance')}</h4><p style="margin:0 0 8px;font-size:17px"><b>${txt}</b></p>${amt>=0.5?`<button type="button" class="lm-btn gold sm" data-asettle="1">${tl('a_settle')}</button>`:''}</div>`}
+/* ---- ahorro ---- */
+function goalSugg(){const out=[['colchon','🛟',Math.round(6*(fixedM()||0)/50)*50]];const e=entry();if(e.total)out.push(['entrada','🔑',Math.round(e.total)]);
+  if(typeof cSums==='function'){const p=cSums().pend;if(p>0)out.push(['muebles','🛋️',Math.round(p)])}
+  if(S.boda&&S.boda.meta&&+S.boda.meta.budget)out.push(['boda','💍',+S.boda.meta.budget]);
+  if(S.luna&&S.luna.trip&&+S.luna.trip.budget)out.push(['luna','✈️',+S.luna.trip.budget]);
+  return out.filter(x=>x[2]>0)}
+function aAhorro(){
+  const gs=al('ahorro').sort((a,b)=>(a.created||0)-(b.created||0));
+  let h=aHead('ahorro','ahorro');
+  const have=gs.map(g=>g.title);const sg=goalSugg().filter(([k,e])=>!have.includes(e+' '+tl('g_'+k)));
+  if(sg.length)h+=`<div class="lm-chips" style="margin-bottom:12px"><span class="lm-meta" style="margin:0 4px 0 0">${tl('a_quickGoals')}:</span>${sg.map(([k,e,v])=>`<button type="button" class="lm-chip" data-agoal="${k}">${e} ${tl('g_'+k)} · ${eur(v)}</button>`).join('')}</div>`;
+  if(!gs.length)return h+empty('ahorro',tl('a_noGoals'),`<button class="lm-btn sm" type="button" data-aadd="ahorro">${t('addFirst')}</button>`);
+  const tot=gs.reduce((a,g)=>a+(+g.target||0),0),sv=gs.reduce((a,g)=>a+(+g.saved||0),0);const perM=gs.filter(g=>g.date&&(+g.saved||0)<(+g.target||0)).reduce((a,g)=>a+((+g.target||0)-(+g.saved||0))/monthsTo(g.date),0);
+  h+=`<div class="lm-stats"><div class="lm-stat"><b>${eur(sv)}</b><span>🐷 ${tl('f_saved')}</span></div><div class="lm-stat"><b>${eur(tot)}</b><span>🎯 ${tl('f_target')}</span></div><div class="lm-stat"><b>${eur(Math.ceil(perM))}</b><span>📆 ${tl('a_goalMonth').replace('{a} ','')}</span></div>${incT()?`<div class="lm-stat"><b>${eur(Math.round(incT()-fixedM()-perM))}</b><span>✨ ${tl('a_left2')}</span></div>`:''}</div>`;
+  h+=`<div class="lm-grid">${gs.map(g=>{const tg=+g.target||0,s=+g.saved||0;const pc=tg?Math.min(100,s/tg*100):0;const left=Math.max(0,tg-s);
+    return `<article class="lm-card"><h4>${esc(g.title)}</h4><div class="a-pig"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.9" fill="none" stroke="var(--line)" stroke-width="4"/><circle cx="18" cy="18" r="15.9" fill="none" stroke="#4FA58A" stroke-width="4" stroke-dasharray="${pc.toFixed(1)} 100" stroke-linecap="round" transform="rotate(-90 18 18)"/><text x="18" y="21" text-anchor="middle" font-size="8" font-weight="800" fill="var(--ink)">${Math.round(pc)}%</text></svg><div><b class="lm-price">${eur(s)}</b><br><small>/ ${eur(tg)}</small></div></div>
+     <div class="lm-meta">${left>0?`<span>${tl('a_goalLeft').replace('{a}',eur(left))}</span>${g.date?`<span>· ${tl('a_goalMonth').replace('{a}',eur(Math.ceil(left/monthsTo(g.date))))}</span>`:''}`:`<span class="lm-pill ok">${tl('a_goalDone')}</span>`}</div>
+     ${g.date?`<div class="lm-meta"><span>📅 ${fd(g.date,{day:'numeric',month:'short',year:'numeric'})}</span></div>`:''}${g.notes?`<p class="lm-notes">${esc(g.notes)}</p>`:''}
+     ${acts('alquiler',g,left>0?`<button class="lm-ic" type="button" data-asave="${g.id}:50">${tl('a_add50')}</button><button class="lm-ic" type="button" data-asave="${g.id}:100">${tl('a_add100')}</button>`:'')}</article>`}).join('')}</div>`;
+  return h;
+}
+/* ---- contrato ---- */
+function aContrato(){
+  const m=am();const ce=contractEnd(),nd=noticeDate();
+  let h=aHead('contrato',null,`<button class="lm-btn ghost" type="button" data-adata="acontrato">${tl('a_editContract')}</button>`);
+  const has=m.addr||m.cstart||m.crent;
+  const data=has?`<div class="lm-box">${[['📍',tl('c_addr'),m.addr],['👤',tl('c_landlord'),m.landlord],['🗓️',tl('c_start'),m.cstart&&fd(m.cstart,{day:'numeric',month:'long',year:'numeric'})],['⏳',tl('c_years'),m.cyears],['🏁',tl('a_ends'),ce&&fd(ce,{day:'numeric',month:'long',year:'numeric'})],['⏰',tl('a_noticeShort'),nd&&fd(nd,{day:'numeric',month:'long',year:'numeric'})],['💶',tl('c_rent'),m.crent&&eur(+m.crent)],['📅',tl('c_day'),m.cday],['🔒',tl('c_deposit'),m.cdeposit&&eur(+m.cdeposit)],['📈',tl('c_update'),m.cupdate]].filter(x=>x[2]).map(([k,l,v])=>`<div class="lm-ev"><span class="k">${k}</span><span class="x">${esc(l)}</span><b style="user-select:all">${esc(String(v))}</b></div>`).join('')}${m.notes?`<p class="lm-notes">${esc(m.notes)}</p>`:''}
+   ${nd&&daysTo(nd)>=0?(m.calEnd?`<span class="lm-pill ok" style="margin-top:8px;display:inline-block">${tl('a_calDone')}</span>`:`<button type="button" class="lm-btn sm" data-acalend="1" style="margin-top:8px">${tl('a_calEnd')}</button>`):''}</div>`:`<div class="lm-box"><p class="lm-meta" style="margin:0 0 8px">${tl('a_noContract')}</p><button type="button" class="lm-btn gold sm" data-adata="acontrato">📄 ${tl('a_contractData')}</button></div>`;
+  const law=`<div class="lm-box nightbox"><h4 class="lm-sub">⚖️ ${tl('a_lawTitle')}</h4><ul style="margin:0;padding-inline-start:18px">${(tl('a_law')||[]).map(x=>`<li style="margin:4px 0">${esc(x)}</li>`).join('')}</ul><p style="margin:10px 0 4px;font-size:13px">${tl('a_lawNote')}</p><p style="margin:0;font-size:13px">${tl('a_sources')}: <a class="lm-a" style="color:var(--star)" href="https://www.lamoncloa.gob.es/serviciosdeprensa/notasprensa/transportes/Paginas/2023/040523-nueva-ley-vivienda-2023.aspx" target="_blank" rel="noopener">Ley de Vivienda ↗</a> · <a class="lm-a" style="color:var(--star)" href="https://www.elespanol.com/sociedad/20261010/vigor-propietario-vivienda-no-podra-exigir-meses-garantia-adicional-fianza/1003744413888_0.html" target="_blank" rel="noopener">El Español ↗</a></p></div>`;
+  // papeles
+  const ps=al('apapel').sort((a,b)=>(a.done-b.done)||(a.created||0)-(b.created||0));const done=ps.filter(x=>x.done).length;const miss=(tl('qpapers')||[]).filter(s=>!ps.some(x=>x.title===s));
+  const pap=`<div class="lm-head" style="margin-top:18px"><div><h3 style="font-size:20px">📋 ${t('apapel')}</h3><p>${t('intro_apapel')}</p></div><button class="lm-btn" type="button" data-aadd="apapel">+ ${t('add')} ${t('one_apapel')}</button></div>
+   ${ps.length?`<p class="lm-meta" style="margin:0 0 6px">${done}/${ps.length}</p><div class="lm-track"><i style="width:${done/ps.length*100}%;background:var(--night2)"></i></div><div class="lm-box" style="padding:4px 14px">${ps.map(i=>`<div class="lm-todo${i.done?' done':''}"><input type="checkbox" class="nc-check" data-tog="alquiler:${i.id}:done"${i.done?' checked':''} aria-label="${esc(i.title)}"><label style="flex:1;min-width:0">${esc(i.title)}${i.notes?`<br><small>${esc(i.notes)}</small>`:''}</label>${i.date?`<small>${fd(i.date)}</small>`:''}${acts('alquiler',i)}</div>`).join('')}</div>`:''}
+   ${miss.length?`<div class="lm-chips" style="margin-top:10px">${miss.map(s=>`<button type="button" class="lm-chip" data-apq="${esc(s)}">+ ${esc(s)}</button>`).join('')}${miss.length>1?`<button type="button" class="lm-chip" data-apqall="1" style="border-color:#C9A04A;color:#8E6A2B">${tl('b_addAll')}</button>`:''}</div>`:''}`;
+  return h+`<div class="lm-two"><div style="min-width:0">${data}</div><div style="min-width:0">${law}</div></div>`+pap;
+}
+const SCENE_ALQ=`<svg class="lm-scene" viewBox="0 0 150 170" aria-hidden="true"><circle cx="128" cy="20" r="11" fill="var(--moon)"/><circle cx="123" cy="16" r="11" fill="var(--night2)"/>
+<path d="M20 150V84l50-40 50 40v66z" fill="var(--paper)" stroke="var(--btn-shadow)" stroke-width="3" stroke-linejoin="round"/><path d="M12 90l58-48 58 48" fill="none" stroke="var(--pink-d)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="34" y="96" width="24" height="22" rx="4" fill="var(--butter)" stroke="var(--btn-shadow)" stroke-width="2.5"/><path d="M46 96v22M34 107h24" stroke="var(--btn-shadow)" stroke-width="2"/>
+<path d="M80 150v-36a11 11 0 0 1 22 0v36" fill="var(--pink)" stroke="var(--btn-shadow)" stroke-width="2.5"/><circle cx="97" cy="133" r="2" fill="var(--btn-shadow)"/>
+<g transform="rotate(-25 120 128)"><circle cx="112" cy="128" r="8" fill="none" stroke="var(--star)" stroke-width="4"/><path d="M120 128h22M134 128v6M140 128v5" stroke="var(--star)" stroke-width="4" stroke-linecap="round"/></g>
+<g fill="var(--star)" stroke="var(--btn-shadow)" stroke-width="1.5"><ellipse cx="22" cy="158" rx="10" ry="4"/><ellipse cx="22" cy="153" rx="10" ry="4"/><ellipse cx="22" cy="148" rx="10" ry="4"/></g>
+<path d="M60 22l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="var(--star)"/></svg>`;
+function renderAlquiler(){
+  const m=am();if(!ATABS.some(x=>x[0]===tabA))tabA='resumen';
+  const title=`${tl('a_title1')} <span>${tl('a_title2')}</span>`;
+  const dates=`${m.city?`<span>📍 ${esc(m.city)}</span>`:''}${m.maxRent?`<span>🏠 ≤ ${eur(+m.maxRent)}${tl('a_perMonth')}</span>`:''}<button type="button" class="lm-link" data-adata="adatos">${incT()?tl('a_editData'):tl('a_setData')}</button>`;
+  const c=aCount();
+  const cnt={pisos:al('piso').filter(p=>p.pstatus!=='descartado').length,gastos:al('gfijo').length,mes:varOf(ymNow()).length,ahorro:al('ahorro').length,contrato:al('apapel').filter(x=>!x.done).length,anota:al('anota').length};
+  let body;
+  if(tabA==='pisos')body=aPisos();else if(tabA==='entrada')body=aEntrada();else if(tabA==='gastos')body=aGastos();else if(tabA==='mes')body=aMes();else if(tabA==='ahorro')body=aAhorro();else if(tabA==='contrato')body=aContrato();else if(tabA==='anota')body=notesBoard('alquiler','anota');else body=aResumen();
+  alquiler.innerHTML=heroHtml(SCENE_ALQ,title,tl('a_hand'),dates,`<div class="lm-count a-cnt"><div><b>${esc(String(c.n))}</b><span>${esc(c.l)}</span></div></div>`,tw(28,18,.4)+tw(60,70,1.3,9)+tw(82,30,.8,12)+tw(40,85,2,10))+
+   `<div class="lm-tabs" role="tablist">${ATABS.map(([k,e])=>`<button type="button" role="tab" class="lm-tab" data-atab="${k}" aria-selected="${tabA===k}">${e} ${k==='anota'?t('anota'):tl('a_'+k)}${cnt[k]?`<span class="n">${cnt[k]}</span>`:''}</button>`).join('')}</div><div class="lm-panel">${body}</div>`;
+}
+const todayISO=()=>{const d=new Date();return `${ymOf(d)}-${String(d.getDate()).padStart(2,'0')}`};
+function alqClick(e){
+  const b=e.target.closest('button');if(!b)return false;const d=b.dataset;
+  if(d.atab){tabA=d.atab;try{localStorage.setItem('nc-atab',tabA)}catch(_){}render();return true}
+  if(d.adata){openForm(d.adata);return true}
+  if(d.aadd){const pre={};if(d.aadd==='gvar'){pre.date=curM()===ymNow()?todayISO():curM()+'-01';pre.payer='n1';pre.forWho='ambos';pre.cat='comida'}if(d.aadd==='gfijo'){pre.freq=1;pre.who='ambos';pre.cat='vivienda'}if(d.aadd==='piso'){pre.pstatus=filt.ap_s&&filt.ap_s!=='*'?filt.ap_s:'interesa';pre.zone=am().city||''}openForm(d.aadd,null,pre);return true}
+  if(d.aqb!=null){const q=(tl('qbills')||[])[+d.aqb];if(q){const pre={title:q[0],cat:q[1],freq:q[2],who:'ambos'};if(+d.aqb===0&&rentRef()){pre.amount=rentRef();if(am().cday)pre.day=am().cday}openForm('gfijo',null,pre)}return true}
+  if(d.amon!=null){filt.aMonth=+d.amon===0?ymNow():ymShift(curM(),+d.amon);render();return true}
+  if(d.asettle){const net=balance();const amt=Math.round(Math.abs(net[0])*100)/100;if(amt<0.5)return true;const debtor=net[0]>0?'n2':'n1',cred=debtor==='n1'?'n2':'n1';
+    put('alquiler',{id:rid(),kind:'gvar',settle:true,title:tl('a_settled'),amount:amt,payer:debtor,forWho:cred,cat:'otros',date:todayISO(),created:Date.now()});toast(tl('a_settleQ').replace('{a}',an(debtor)).replace('{x}',eur(amt)).replace('{b}',an(cred)));return true}
+  if(d.agoal){const s=goalSugg().find(x=>x[0]===d.agoal);if(s){const g={id:rid(),kind:'ahorro',title:s[1]+' '+tl('g_'+s[0]),target:s[2],saved:0,created:Date.now()};if(s[0]==='entrada'&&am().moveDate)g.date=am().moveDate;if(s[0]==='boda'&&S.boda.meta.date)g.date=S.boda.meta.date;if(s[0]==='luna'&&S.luna.trip.start)g.date=S.luna.trip.start;put('alquiler',g);toast(t('saved'))}return true}
+  if(d.asave){const[id,a]=d.asave.split(':');const g=S.alquiler.items[id];if(g)put('alquiler',{...g,saved:(+g.saved||0)+(+a)});return true}
+  if(d.aentgoal){const e=entry();const ttl='🔑 '+tl('g_entrada');const ex=al('ahorro').find(g=>g.title===ttl);put('alquiler',{...(ex||{id:rid(),kind:'ahorro',saved:0,created:Date.now()}),title:ttl,target:Math.round(e.total),date:am().moveDate||(ex&&ex.date)||null});tabA='ahorro';try{localStorage.setItem('nc-atab',tabA)}catch(_){}toast(t('saved'));return true}
+  if(d.ausecasa){putAlqMeta({...am(),eFurn:Math.round(cSums().pend)});toast(t('saved'));return true}
+  if(d.achoose){const p=S.alquiler.items[d.achoose];if(!p)return true;al('piso').filter(x=>x.pstatus==='elegido'&&x.id!==p.id).forEach(x=>put('alquiler',{...x,pstatus:'visto'}));put('alquiler',{...p,pstatus:'elegido'});
+    const m={...am()};if(!m.crent&&p.rent)m.crent=+p.rent;if(!m.addr)m.addr=[p.title,p.zone].filter(Boolean).join(', ');if((m.extraM==null||m.extraM==='')&&p.extra!=null)m.extraM=+p.extra||0;putAlqMeta(m);
+    const q=tl('qbills')||[];const gs=al('gfijo');let added=false;
+    if(p.rent&&!gs.some(g=>g.title===q[0][0])){put('alquiler',{id:rid(),kind:'gfijo',title:q[0][0],cat:'vivienda',amount:+p.rent,freq:1,who:'ambos',created:Date.now()});added=true}
+    if(p.comm&&!gs.some(g=>g.title===q[1][0])){put('alquiler',{id:rid(),kind:'gfijo',title:q[1][0],cat:'vivienda',amount:+p.comm,freq:1,who:'ambos',created:Date.now()+1});added=true}
+    toast(added?tl('a_rentAdded'):t('saved'));return true}
+  if(d.asrch){const q=(($('ncAlqQ')||{}).value||am().city||'').trim();window.open('https://www.google.com/search?q='+encodeURIComponent(`site:${d.asrch} alquiler ${q}`),'_blank','noopener');return true}
+  if(d.apq){put('alquiler',{id:rid(),kind:'apapel',title:d.apq,done:false,created:Date.now()});return true}
+  if(d.apqall){const have=al('apapel').map(x=>x.title);const base=Date.now();(tl('qpapers')||[]).filter(s=>!have.includes(s)).forEach((s,i)=>put('alquiler',{id:rid(),kind:'apapel',title:s,done:false,created:base+i}));toast(t('saved'));return true}
+  if(d.acalend){const nd=noticeDate(),ce=contractEnd();if(!nd)return true;(async()=>{try{await setDoc(doc(fdb,'espacios',sp,'citas',rid()),{titulo:('⏰ '+tl('a_noticeShort')+' — '+(am().addr||tl('nav7'))).slice(0,120),fecha:nd,hora:'',nota:tl('a_contractEnd').replace('{d}',fd(ce,{day:'numeric',month:'long',year:'numeric'})),cat:'casa',hecho:false,fotos:[],creado:Date.now()});putAlqMeta({...am(),calEnd:true});toast(t('addedCal'))}catch(_){toast(t('errSave'))}})();return true}
+  return false;
+}
+alquiler.addEventListener('click',e=>{if(e.target.dataset&&e.target.dataset.apay){return}if(!alqClick(e))onClick(e)});
+alquiler.addEventListener('change',e=>{const id=e.target.dataset&&e.target.dataset.apay;if(id){const i=S.alquiler.items[id];if(i){const m=curM();const pm=new Set(i.paidM||[]);e.target.checked?pm.add(m):pm.delete(m);put('alquiler',{...i,paidM:[...pm].sort().slice(-36)})}return}onChange(e)});
+alquiler.addEventListener('input',e=>{if(e.target.id==='ncAlqQ')filt.alqQ=e.target.value});
+alquiler.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='ncAlqQ'){e.preventDefault();const q=e.target.value.trim();window.open('https://www.google.com/search?q='+encodeURIComponent('site:idealista.com alquiler '+q),'_blank','noopener')}});
+
 /* ================= render ================= */
 const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
 function renderDash(){
@@ -2560,12 +2916,12 @@ function renderDash(){
   const td=today();const next=Object.values(S.citas).filter(c=>c.fecha&&c.fecha>=td&&!c.hecho).sort((a,b)=>(a.fecha+(a.hora||'')).localeCompare(b.fecha+(b.hora||'')))[0];
   const trip=S.luna.trip;let lun=t('setDate');if(trip.start){const n=Math.ceil((new Date(trip.start+'T00:00:00')-new Date().setHours(0,0,0,0))/864e5);lun=n>0?`${n} ${n===1?t('dayLeft'):t('daysLeft')}`:t('onTrip')}
   const s=cSums();const casaTxt=s.ps.length?t('progress',{a:s.ps.filter(p=>p.bought).length,b:s.ps.length}):t('noProg');
-  d.innerHTML=`<div class="nc-dc"><b>💕 ${t('nextDate')}</b><span>${next?esc(next.titulo||'')+' · '+fd(next.fecha,{weekday:'short',day:'numeric',month:'short'})+(next.hora?' '+esc(next.hora):''):t('noNext')}</span></div><button type="button" class="nc-dc" data-go="luna"><b>✈️ ${t('nav2')}</b><span>${esc(lun)}</span></button><button type="button" class="nc-dc" data-go="casa"><b>🏡 ${t('nav3')}</b><span>${esc(casaTxt)}</span></button><button type="button" class="nc-dc" data-go="stock"><b>📦 ${tl('nav4')}</b><span>${(()=>{const n=stItems().filter(i=>stLevel(i)!=='ok').length;return stItems().length?(n?tl('s_dash').replace('{n}',n):tl('s_dashOk')):tl('s_welcome').split('!')[0]+'!'})()}</span></button><button type="button" class="nc-dc" data-go="boda"><b>💍 ${tl('nav6')}</b><span>${(()=>{const n=bDays();return n==null?tl('b_dashNo'):n>0?tl('b_dash').replace('{n}',n):n===0?tl('b_today'):tl('b_married')})()}</span></button><button type="button" class="nc-dc" data-go="juegos"><b>🎲 ${tl('nav5')}</b><span>${(()=>{const[a,b]=scoreOf(null);return `${esc(nm(1))} ${a} – ${b} ${esc(nm(2))}`})()}</span></button>`;
+  d.innerHTML=`<div class="nc-dc"><b>💕 ${t('nextDate')}</b><span>${next?esc(next.titulo||'')+' · '+fd(next.fecha,{weekday:'short',day:'numeric',month:'short'})+(next.hora?' '+esc(next.hora):''):t('noNext')}</span></div><button type="button" class="nc-dc" data-go="luna"><b>✈️ ${t('nav2')}</b><span>${esc(lun)}</span></button><button type="button" class="nc-dc" data-go="casa"><b>🏡 ${t('nav3')}</b><span>${esc(casaTxt)}</span></button><button type="button" class="nc-dc" data-go="alquiler"><b>🔑 ${tl('nav7')}</b><span>${(()=>{const it=incT();return it?tl('a_dash').replace('{a}',eur(Math.round(it-fixedM()))):tl('a_dashNo')})()}</span></button><button type="button" class="nc-dc" data-go="stock"><b>📦 ${tl('nav4')}</b><span>${(()=>{const n=stItems().filter(i=>stLevel(i)!=='ok').length;return stItems().length?(n?tl('s_dash').replace('{n}',n):tl('s_dashOk')):tl('s_welcome').split('!')[0]+'!'})()}</span></button><button type="button" class="nc-dc" data-go="boda"><b>💍 ${tl('nav6')}</b><span>${(()=>{const n=bDays();return n==null?tl('b_dashNo'):n>0?tl('b_dash').replace('{n}',n):n===0?tl('b_today'):tl('b_married')})()}</span></button><button type="button" class="nc-dc" data-go="juegos"><b>🎲 ${tl('nav5')}</b><span>${(()=>{const[a,b]=scoreOf(null);return `${esc(nm(1))} ${a} – ${b} ${esc(nm(2))}`})()}</span></button>`;
 }
 function render(){
-  $('ncN1').textContent=t('nav1');$('ncN2').textContent=t('nav2');$('ncN3').textContent=t('nav3');$('ncN4').textContent=tl('nav4');$('ncN5').textContent=tl('nav5');$('ncN6').textContent=tl('nav6');
+  $('ncN1').textContent=t('nav1');$('ncN2').textContent=t('nav2');$('ncN3').textContent=t('nav3');$('ncN4').textContent=tl('nav4');$('ncN5').textContent=tl('nav5');$('ncN6').textContent=tl('nav6');$('ncN7').textContent=tl('nav7');
   const y=window.scrollY;const ae=document.activeElement;const keep=ae&&ae.id&&['ncStayQ','ncAmt'].includes(ae.id)?ae.id:null;
-  if(view==='luna')renderLuna();else if(view==='casa')renderCasa();else if(view==='stock')renderStock();else if(view==='boda')renderBoda();else if(view==='juegos'){if(!G.game)renderJuegos();else updStat()}
+  if(view==='luna')renderLuna();else if(view==='casa')renderCasa();else if(view==='stock')renderStock();else if(view==='boda')renderBoda();else if(view==='alquiler')renderAlquiler();else if(view==='juegos'){if(!G.game)renderJuegos();else updStat()}
   renderDash();
   window.scrollTo(0,y);if(keep&&$(keep))$(keep).focus();
 }
@@ -2614,7 +2970,7 @@ new MutationObserver(()=>{if(!app.hidden)connect();else{unsubs.forEach(u=>u());u
 if(T[document.documentElement.lang])L=document.documentElement.lang;
 readImport();
 addEventListener('hashchange',()=>{readImport();if(pendingImport)askImport()});
-if(!['cal','luna','casa','stock','juegos','boda'].includes(view))view='cal';
+if(!['cal','luna','casa','stock','juegos','boda','alquiler'].includes(view))view='cal';
 if(!LTABS.includes(tabL))tabL='resumen';if(!(['resumen','producto','tarea','cnota','presupuesto'].includes(tabC)||tabC.startsWith('r:')))tabC='resumen';
 if(!app.hidden)connect();
 applyView();
