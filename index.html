@@ -991,6 +991,19 @@ button.nc-dc{cursor:pointer}button.nc-dc:hover{background:rgba(255,255,255,.12)}
 @media (max-width:560px){.g-pref{grid-template-columns:1fr}.g-or{justify-self:center}.g-cmp2{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.g-wheel{transition:none}.g-cell.drop .g-tok,.g-timer.hurry{animation:none}}
 
+/* ===== Boda ===== */
+.b-rsvp{display:inline-flex;gap:3px}
+.b-rb{width:34px;height:34px;border-radius:10px;border:2px solid var(--line);background:var(--paper);cursor:pointer;font-size:15px;padding:0;opacity:.45;filter:grayscale(.6)}
+.b-rb.on{opacity:1;filter:none;border-color:var(--night2)}
+.b-rb.on.si{background:#D6E2C2}.b-rb.on.no{background:#F3CFC9}.b-rb.on.pendiente{background:#F6E6B4}
+.b-tsvg{width:150px;max-width:100%;display:block;margin:0 auto}
+.b-names{display:flex;flex-wrap:wrap;gap:4px;justify-content:center}
+.b-name{font-size:12px;font-weight:700;background:var(--paper);border:1.5px solid var(--line);border-radius:999px;padding:2px 8px;color:var(--ink)}
+.b-phase{margin-bottom:6px}
+.b-phase .nc-cathead{flex-wrap:wrap}
+#lock .langs button:not([aria-pressed="true"]){color:var(--soft)!important}
+#lock .langs{background:var(--paper2)!important;border-color:var(--line)!important}
+
 @keyframes ncTw{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
 @keyframes lmFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-6px) rotate(2deg)}}
 .lm-scene .float{animation:lmFloat 4s ease-in-out infinite;transform-origin:center}
@@ -1010,7 +1023,7 @@ button.nc-dc{cursor:pointer}button.nc-dc:hover{background:rgba(255,255,255,.12)}
 import { getApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot, getDoc, increment, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const SITE='https://ch7imat-lovelydatesplanner.netlify.app/';
+const SITE='https://marouagaridbch-gif.github.io/nuestras-citas/';
 /* ================= textos ================= */
 const T={
 es:{nav1:'Citas',nav2:'Luna de miel',nav3:'Nuestra casa',title1:'Nuestra',title2:'luna de miel',hand:'el viaje más bonito, planeado entre los dos',noDates:'Fechas sin decidir',editTrip:'Editar viaje',daysLeft:'días para irnos',dayLeft:'día para irnos',onTrip:'¡de viaje!',done:'viaje hecho',setDate:'pon la fecha',nights:'noches',
@@ -1361,6 +1374,69 @@ const MEMSETS=[['💖','🌹','💌','💍','🍫','🧸','💋','🥂'],['✈�
 const QE={conocer:'🌱',profundas:'🌊',locas:'🤪',amor:'💞',futuro:'🔮',recuerdos:'📸',ysi:'🌀'};
 const RCATS=[['amor','💋','#F2C9C0'],['risa','😂','#F6E6B4'],['baile','💃','#D6E2C2'],['canta','🎤','#E2D3EC'],['piropo','💬','#CFE0F2'],['foto','📸','#F2C9C0'],['imita','🎭','#F6E6B4'],['mimos','🍫','#D6E2C2']];
 
+/* ================= textos: boda ================= */
+const T5={
+es:{nav6:'Boda',b_title:'Nuestra boda',b_hand:'el día más bonito, planeado con mucho amor',b_noDate:'Fecha sin decidir',b_editData:'Datos de la boda',b_setData:'💍 Poner los datos de la boda',b_days:'días para el gran día',b_day1:'día para el gran día',b_today:'¡hoy es el día!',b_married:'¡casados!',b_welcome:'¡Enhorabuena! 💍 Empezad poniendo la fecha, el lugar y el presupuesto de vuestra boda.',
+ b_resumen:'Resumen',b_checklist:'Checklist',b_invitados:'Invitados',b_mesas:'Mesas',b_proveedores:'Proveedores',b_presupuesto:'Presupuesto',b_programa:'Programa del día',b_musica:'Música',b_inspiracion:'Inspiración',
+ bnota:'Notas y votos',intro_bnota:'Ideas, votos, discursos y cosas que no queremos olvidar.',one_bnota:'nota',
+ one_btarea:'tarea',one_invitado:'invitado',one_mesa:'mesa',one_proveedor:'proveedor',one_programa:'momento',one_cancion:'canción',
+ f_n1:'Nombre 1',f_n2:'Nombre 2',f_bdate:'Fecha de la boda',f_btime:'Hora',f_cer:'Lugar de la ceremonia',f_ban:'Lugar del banquete',f_style:'Estilo o temática',ph_style:'Ej.: boho, rústica, elegante…',f_bbudget:'Presupuesto total (€)',f_guestsGoal:'Invitados previstos',f_bcolors:'Colores de la boda',
+ f_phase:'Cuándo',f_done:'Hecho',f_gname:'Nombre',f_side:'Invitado de',f_group:'Grupo',f_rsvp:'¿Viene?',f_plus:'Acompañantes',f_kids:'Niños',f_menu:'Menú',f_mesa:'Mesa',f_invit:'Invitación enviada',f_contact:'Contacto (teléfono, email…)',f_gift:'Regalo',f_thanks:'Agradecido',f_seats:'Sillas',f_vstatus:'Estado',f_paid:'Pagado (€)',f_due:'Fecha del próximo pago',f_meet:'Fecha de cita o visita',f_ptitle:'Qué pasa',f_where:'Dónde',f_who:'Responsable',f_song:'Canción',f_artist:'Artista',f_moment:'Momento',
+ side_ambos:'Los dos',side_n1:'Novio/a 1',side_n2:'Novio/a 2',
+ bg_familia:'Familia',bg_amigos:'Amigos',bg_trabajo:'Trabajo',bg_otros:'Otros',
+ rsvp_pendiente:'Pendiente',rsvp_si:'Viene',rsvp_no:'No viene',
+ menu_normal:'Normal',menu_vegetariano:'Vegetariano',menu_vegano:'Vegano',menu_infantil:'Infantil',menu_sinGluten:'Sin gluten',menu_especial:'Dieta especial',
+ vc_lugar:'Lugar / finca',vc_ceremonia:'Ceremonia y oficiante',vc_catering:'Catering',vc_foto:'Fotografía',vc_video:'Vídeo',vc_musica:'Música / DJ',vc_flores:'Flores',vc_vestido:'Vestido',vc_traje:'Traje',vc_belleza:'Peluquería y maquillaje',vc_tarta:'Tarta',vc_invitaciones:'Invitaciones',vc_anillos:'Anillos',vc_transporte:'Transporte',vc_deco:'Decoración',vc_animacion:'Animación',vc_detalles:'Detalles invitados',vc_otros:'Otros',
+ vs_buscando:'Buscando',vs_presupuesto:'Presupuesto pedido',vs_reservado:'Reservado',vs_pagado:'Pagado',
+ mo_entrada1:'Entrada de la novia',mo_entrada2:'Entrada del novio',mo_ceremonia:'Ceremonia',mo_salida:'Salida de la ceremonia',mo_coctel:'Cóctel',mo_banquete:'Entrada al banquete',mo_tarta:'Tarta',mo_baile:'Primer baile',mo_fiesta:'Fiesta',mo_ultima:'Última canción',mo_prohibida:'¡Que no suene!',
+ ph_p12:'12 meses o más antes',ph_p9:'9 – 12 meses antes',ph_p6:'6 – 9 meses antes',ph_p4:'4 – 6 meses antes',ph_p2:'2 – 3 meses antes',ph_p1:'1 mes antes',ph_w1:'La última semana',ph_dia:'El gran día',ph_post:'Después de la boda',
+ ins_vestido:'Vestido',ins_traje:'Traje',ins_deco:'Decoración',ins_flores:'Flores',ins_tarta:'Tarta',ins_peinado:'Peinado y maquillaje',ins_invitaciones:'Invitaciones',ins_lugar:'Lugar',
+ b_tasksDone:'{a} de {b} tareas hechas',b_next:'Próximas tareas',b_pays:'Pagos pendientes',b_noPays:'No hay pagos pendientes 🎉',b_keyV:'Lo esencial',b_people:'personas',b_guests:'invitados',b_confirmed:'confirmados',b_pending:'pendientes',b_declined:'no vienen',b_sent:'invitaciones enviadas',b_menus:'Menús para el catering (confirmados)',b_copyG:'📋 Copiar lista',b_copied:'Lista copiada 📋',b_addAll:'+ Añadir todas',b_until:'hasta el {d}',b_noTables:'Aún no hay mesas. Creadlas con un toque:',b_mk:'+ {n} mesas de {s}',b_head:'+ Mesa presidencial',b_headName:'Mesa presidencial',b_tableN:'Mesa {n}',b_unseated:'Invitados sin mesa',b_allSeated:'¡Todos tienen mesa! 🎉',b_over:'¡{n} de más!',b_seatsOf:'{a} de {b} sillas',b_committed:'Comprometido',b_paidT:'Pagado',b_toPay:'Por pagar',b_left:'Quedan {a} del presupuesto',b_overB:'Os pasáis {a} del presupuesto',b_noBudget:'Poned un presupuesto en los datos de la boda',b_perGuest:'por invitado',b_quotes:'Presupuestos pedidos (aún sin reservar)',b_markPaid:'✓ Pagado',b_missingV:'Proveedores por buscar',b_remaining:'quedan',b_byCat:'Por categoría',b_noProg:'Montad el horario del día: peluquería, ceremonia, cóctel, banquete, baile…',b_progQ:'Momentos típicos',b_songQ:'Añadir canción para…',b_palette:'Colores de la boda',b_editColors:'🎨 Cambiar colores',b_noColors:'Aún no habéis elegido colores.',b_dash:'faltan {n} días',b_dashNo:'pon la fecha',b_saveB:'Boda',b_saveBD:'Proveedor de la boda',b_tasks:'tareas hechas',b_vendors:'proveedores reservados',b_budgetUsed:'comprometido',b_noTasks:'Añadid las tareas sugeridas de cada etapa o las vuestras.',b_unassigned:'Sin mesa',b_seatTo:'Sentar en…',b_meetOn:'Cita: {d}',b_payOn:'Pagar antes del {d}',b_allPhases:'Todas',b_search:'Buscar',b_sideOf:'De {n}',
+ b_intro_checklist:'Todo lo que hay que hacer, ordenado por tiempo. Añadid las sugerencias con un toque.',b_intro_invitados:'Quién viene, con cuántos acompañantes, qué menú y en qué mesa.',b_intro_mesas:'Cread las mesas y sentad a cada invitado.',b_intro_proveedores:'Lugar, catering, fotógrafo… con precios, pagos, citas y contactos.',b_intro_presupuesto:'Se suma solo con lo que ponéis en proveedores.',b_intro_programa:'El horario del gran día, de la mañana a la última canción.',b_intro_musica:'La canción de cada momento, y las que no queréis oír.',b_intro_inspiracion:'Fotos de ideas para cada cosa: vestido, flores, tarta…',
+ qprog:[['10:00','Peluquería y maquillaje'],['12:00','Fotos de los preparativos'],['13:00','Ceremonia'],['14:00','Fotos de pareja'],['14:30','Cóctel'],['16:00','Banquete'],['18:30','Tarta y discursos'],['19:00','Primer baile'],['19:15','¡Fiesta!'],['23:30','Recena'],['02:00','Fin de fiesta']],
+ qtasks:{p12:['Fijar la fecha','Calcular el presupuesto','Primera lista de invitados','Elegir el estilo de la boda','Buscar y reservar el lugar','Reservar la ceremonia','Buscar fotógrafo'],p9:['Reservar el catering','Reservar fotógrafo y vídeo','Reservar música o DJ','Empezar a mirar vestidos','Elegir padrinos y testigos','Abrir una cuenta de ahorro para la boda'],p6:['Enviar los «save the date»','Elegir y encargar el vestido','Reservar la floristería','Reservar peluquería y maquillaje','Reservar la luna de miel','Hacer la lista de bodas','Reservar el transporte'],p4:['Encargar las invitaciones','Elegir el traje','Comprar los anillos','Elegir la tarta','Prueba de menú','Reservar hotel para invitados de fuera'],p2:['Enviar las invitaciones','Pruebas del vestido','Prueba de peinado y maquillaje','Comprar zapatos y complementos','Preparar los papeles de la boda','Escribir los votos','Elegir las canciones de cada momento'],p1:['Confirmar asistencias','Hacer el plano de mesas','Dar el número final al catering','Confirmar horarios con los proveedores','Comprar los detalles para invitados','Última prueba del vestido'],w1:['Pagar lo pendiente a proveedores','Preparar sobres de pago','Hacer la maleta de la luna de miel','Ensayo de la ceremonia','Preparar la caja del día (anillos, papeles, kit de emergencia)','Dormir mucho 💤'],dia:['Desayunar bien','Llevar los anillos','Disfrutar cada momento 💕'],post:['Mensajes de agradecimiento','Llevar el vestido a limpiar','Recoger fotos y vídeo','Registrar el matrimonio']}},
+en:{nav6:'Wedding',b_title:'Our wedding',b_hand:'the most beautiful day, planned with lots of love',b_noDate:'Date not set',b_editData:'Wedding details',b_setData:'💍 Set the wedding details',b_days:'days to the big day',b_day1:'day to the big day',b_today:'today is the day!',b_married:'married!',b_welcome:'Congratulations! 💍 Start by setting the date, place and budget of your wedding.',
+ b_resumen:'Overview',b_checklist:'Checklist',b_invitados:'Guests',b_mesas:'Tables',b_proveedores:'Suppliers',b_presupuesto:'Budget',b_programa:'Day schedule',b_musica:'Music',b_inspiracion:'Inspiration',
+ bnota:'Notes & vows',intro_bnota:'Ideas, vows, speeches and things we don’t want to forget.',one_bnota:'note',
+ one_btarea:'task',one_invitado:'guest',one_mesa:'table',one_proveedor:'supplier',one_programa:'moment',one_cancion:'song',
+ f_n1:'Name 1',f_n2:'Name 2',f_bdate:'Wedding date',f_btime:'Time',f_cer:'Ceremony venue',f_ban:'Reception venue',f_style:'Style or theme',ph_style:'E.g. boho, rustic, elegant…',f_bbudget:'Total budget (€)',f_guestsGoal:'Expected guests',f_bcolors:'Wedding colours',
+ f_phase:'When',f_done:'Done',f_gname:'Name',f_side:'Guest of',f_group:'Group',f_rsvp:'Coming?',f_plus:'Plus-ones',f_kids:'Children',f_menu:'Menu',f_mesa:'Table',f_invit:'Invitation sent',f_contact:'Contact (phone, email…)',f_gift:'Gift',f_thanks:'Thanked',f_seats:'Seats',f_vstatus:'Status',f_paid:'Paid (€)',f_due:'Next payment date',f_meet:'Meeting or visit date',f_ptitle:'What happens',f_where:'Where',f_who:'In charge',f_song:'Song',f_artist:'Artist',f_moment:'Moment',
+ side_ambos:'Both',side_n1:'Partner 1',side_n2:'Partner 2',
+ bg_familia:'Family',bg_amigos:'Friends',bg_trabajo:'Work',bg_otros:'Other',
+ rsvp_pendiente:'Pending',rsvp_si:'Coming',rsvp_no:'Not coming',
+ menu_normal:'Standard',menu_vegetariano:'Vegetarian',menu_vegano:'Vegan',menu_infantil:'Kids',menu_sinGluten:'Gluten-free',menu_especial:'Special diet',
+ vc_lugar:'Venue',vc_ceremonia:'Ceremony & officiant',vc_catering:'Catering',vc_foto:'Photography',vc_video:'Video',vc_musica:'Music / DJ',vc_flores:'Flowers',vc_vestido:'Dress',vc_traje:'Suit',vc_belleza:'Hair & make-up',vc_tarta:'Cake',vc_invitaciones:'Invitations',vc_anillos:'Rings',vc_transporte:'Transport',vc_deco:'Decoration',vc_animacion:'Entertainment',vc_detalles:'Guest favours',vc_otros:'Other',
+ vs_buscando:'Searching',vs_presupuesto:'Quote requested',vs_reservado:'Booked',vs_pagado:'Paid',
+ mo_entrada1:'Bride’s entrance',mo_entrada2:'Groom’s entrance',mo_ceremonia:'Ceremony',mo_salida:'Recessional',mo_coctel:'Cocktail',mo_banquete:'Reception entrance',mo_tarta:'Cake',mo_baile:'First dance',mo_fiesta:'Party',mo_ultima:'Last song',mo_prohibida:'Don’t play this!',
+ ph_p12:'12+ months before',ph_p9:'9 – 12 months before',ph_p6:'6 – 9 months before',ph_p4:'4 – 6 months before',ph_p2:'2 – 3 months before',ph_p1:'1 month before',ph_w1:'The last week',ph_dia:'The big day',ph_post:'After the wedding',
+ ins_vestido:'Dress',ins_traje:'Suit',ins_deco:'Decoration',ins_flores:'Flowers',ins_tarta:'Cake',ins_peinado:'Hair & make-up',ins_invitaciones:'Invitations',ins_lugar:'Venue',
+ b_tasksDone:'{a} of {b} tasks done',b_next:'Next tasks',b_pays:'Pending payments',b_noPays:'No pending payments 🎉',b_keyV:'The essentials',b_people:'people',b_guests:'guests',b_confirmed:'confirmed',b_pending:'pending',b_declined:'not coming',b_sent:'invitations sent',b_menus:'Menus for the caterer (confirmed)',b_copyG:'📋 Copy list',b_copied:'List copied 📋',b_addAll:'+ Add all',b_until:'by {d}',b_noTables:'No tables yet. Create them in one tap:',b_mk:'+ {n} tables of {s}',b_head:'+ Top table',b_headName:'Top table',b_tableN:'Table {n}',b_unseated:'Guests without a table',b_allSeated:'Everyone has a seat! 🎉',b_over:'{n} too many!',b_seatsOf:'{a} of {b} seats',b_committed:'Committed',b_paidT:'Paid',b_toPay:'To pay',b_left:'{a} of the budget left',b_overB:'{a} over budget',b_noBudget:'Set a budget in the wedding details',b_perGuest:'per guest',b_quotes:'Quotes requested (not booked yet)',b_markPaid:'✓ Paid',b_missingV:'Suppliers to find',b_remaining:'left',b_byCat:'By category',b_noProg:'Build the day’s schedule: hair, ceremony, cocktail, dinner, dance…',b_progQ:'Typical moments',b_songQ:'Add a song for…',b_palette:'Wedding colours',b_editColors:'🎨 Change colours',b_noColors:'No colours chosen yet.',b_dash:'{n} days to go',b_dashNo:'set the date',b_saveB:'Wedding',b_saveBD:'Wedding supplier',b_tasks:'tasks done',b_vendors:'suppliers booked',b_budgetUsed:'committed',b_noTasks:'Add the suggested tasks for each stage or your own.',b_unassigned:'No table',b_seatTo:'Seat at…',b_meetOn:'Meeting: {d}',b_payOn:'Pay by {d}',b_allPhases:'All',b_search:'Search',b_sideOf:'{n}’s',
+ b_intro_checklist:'Everything to do, in time order. Add the suggestions in one tap.',b_intro_invitados:'Who is coming, with how many plus-ones, which menu and which table.',b_intro_mesas:'Create the tables and seat every guest.',b_intro_proveedores:'Venue, catering, photographer… with prices, payments, meetings and contacts.',b_intro_presupuesto:'Adds up automatically from your suppliers.',b_intro_programa:'The schedule of the big day, from morning to the last song.',b_intro_musica:'A song for every moment, and the ones you never want to hear.',b_intro_inspiracion:'Idea photos for everything: dress, flowers, cake…',
+ qprog:[['10:00','Hair & make-up'],['12:00','Getting-ready photos'],['13:00','Ceremony'],['14:00','Couple photos'],['14:30','Cocktail'],['16:00','Dinner'],['18:30','Cake & speeches'],['19:00','First dance'],['19:15','Party!'],['23:30','Late-night snack'],['02:00','End of party']],
+ qtasks:{p12:['Set the date','Work out the budget','First guest list','Choose the wedding style','Find and book the venue','Book the ceremony','Look for a photographer'],p9:['Book the caterer','Book photo and video','Book music or DJ','Start looking at dresses','Choose best man, maid of honour and witnesses','Open a wedding savings account'],p6:['Send save-the-dates','Choose and order the dress','Book the florist','Book hair and make-up','Book the honeymoon','Make the gift registry','Book transport'],p4:['Order the invitations','Choose the suit','Buy the rings','Choose the cake','Menu tasting','Book hotels for out-of-town guests'],p2:['Send the invitations','Dress fittings','Hair and make-up trial','Buy shoes and accessories','Prepare the wedding paperwork','Write the vows','Choose songs for every moment'],p1:['Confirm attendance','Make the seating plan','Give final numbers to the caterer','Confirm times with suppliers','Buy guest favours','Final dress fitting'],w1:['Pay suppliers what’s left','Prepare payment envelopes','Pack for the honeymoon','Ceremony rehearsal','Prepare the day box (rings, papers, emergency kit)','Sleep a lot 💤'],dia:['Have a good breakfast','Bring the rings','Enjoy every moment 💕'],post:['Thank-you messages','Take the dress to be cleaned','Collect photos and video','Register the marriage']}},
+it:{nav6:'Matrimonio',b_title:'Il nostro matrimonio',b_hand:'il giorno più bello, organizzato con tanto amore',b_noDate:'Data da decidere',b_editData:'Dati del matrimonio',b_setData:'💍 Inserisci i dati del matrimonio',b_days:'giorni al grande giorno',b_day1:'giorno al grande giorno',b_today:'oggi è il giorno!',b_married:'sposati!',b_welcome:'Congratulazioni! 💍 Iniziate inserendo data, luogo e budget del matrimonio.',
+ b_resumen:'Riepilogo',b_checklist:'Checklist',b_invitados:'Invitati',b_mesas:'Tavoli',b_proveedores:'Fornitori',b_presupuesto:'Budget',b_programa:'Programma del giorno',b_musica:'Musica',b_inspiracion:'Ispirazione',
+ bnota:'Note e promesse',intro_bnota:'Idee, promesse, discorsi e cose da non dimenticare.',one_bnota:'nota',
+ one_btarea:'attività',one_invitado:'invitato',one_mesa:'tavolo',one_proveedor:'fornitore',one_programa:'momento',one_cancion:'canzone',
+ f_n1:'Nome 1',f_n2:'Nome 2',f_bdate:'Data del matrimonio',f_btime:'Ora',f_cer:'Luogo della cerimonia',f_ban:'Luogo del ricevimento',f_style:'Stile o tema',ph_style:'Es.: boho, rustico, elegante…',f_bbudget:'Budget totale (€)',f_guestsGoal:'Invitati previsti',f_bcolors:'Colori del matrimonio',
+ f_phase:'Quando',f_done:'Fatto',f_gname:'Nome',f_side:'Invitato di',f_group:'Gruppo',f_rsvp:'Viene?',f_plus:'Accompagnatori',f_kids:'Bambini',f_menu:'Menù',f_mesa:'Tavolo',f_invit:'Invito inviato',f_contact:'Contatto (telefono, email…)',f_gift:'Regalo',f_thanks:'Ringraziato',f_seats:'Posti',f_vstatus:'Stato',f_paid:'Pagato (€)',f_due:'Data prossimo pagamento',f_meet:'Data appuntamento o visita',f_ptitle:'Cosa succede',f_where:'Dove',f_who:'Responsabile',f_song:'Canzone',f_artist:'Artista',f_moment:'Momento',
+ side_ambos:'Entrambi',side_n1:'Sposo/a 1',side_n2:'Sposo/a 2',
+ bg_familia:'Famiglia',bg_amigos:'Amici',bg_trabajo:'Lavoro',bg_otros:'Altri',
+ rsvp_pendiente:'In attesa',rsvp_si:'Viene',rsvp_no:'Non viene',
+ menu_normal:'Normale',menu_vegetariano:'Vegetariano',menu_vegano:'Vegano',menu_infantil:'Bambini',menu_sinGluten:'Senza glutine',menu_especial:'Dieta speciale',
+ vc_lugar:'Location',vc_ceremonia:'Cerimonia e officiante',vc_catering:'Catering',vc_foto:'Fotografo',vc_video:'Video',vc_musica:'Musica / DJ',vc_flores:'Fiori',vc_vestido:'Abito',vc_traje:'Completo',vc_belleza:'Trucco e parrucco',vc_tarta:'Torta',vc_invitaciones:'Inviti',vc_anillos:'Fedi',vc_transporte:'Trasporto',vc_deco:'Decorazioni',vc_animacion:'Animazione',vc_detalles:'Bomboniere',vc_otros:'Altro',
+ vs_buscando:'Cerco',vs_presupuesto:'Preventivo chiesto',vs_reservado:'Prenotato',vs_pagado:'Pagato',
+ mo_entrada1:'Ingresso della sposa',mo_entrada2:'Ingresso dello sposo',mo_ceremonia:'Cerimonia',mo_salida:'Uscita',mo_coctel:'Aperitivo',mo_banquete:'Ingresso al ricevimento',mo_tarta:'Torta',mo_baile:'Primo ballo',mo_fiesta:'Festa',mo_ultima:'Ultima canzone',mo_prohibida:'Da non suonare!',
+ ph_p12:'12 mesi o più prima',ph_p9:'9 – 12 mesi prima',ph_p6:'6 – 9 mesi prima',ph_p4:'4 – 6 mesi prima',ph_p2:'2 – 3 mesi prima',ph_p1:'1 mese prima',ph_w1:'L’ultima settimana',ph_dia:'Il grande giorno',ph_post:'Dopo il matrimonio',
+ ins_vestido:'Abito',ins_traje:'Completo',ins_deco:'Decorazioni',ins_flores:'Fiori',ins_tarta:'Torta',ins_peinado:'Trucco e parrucco',ins_invitaciones:'Inviti',ins_lugar:'Location',
+ b_tasksDone:'{a} di {b} attività fatte',b_next:'Prossime attività',b_pays:'Pagamenti in sospeso',b_noPays:'Nessun pagamento in sospeso 🎉',b_keyV:'L’essenziale',b_people:'persone',b_guests:'invitati',b_confirmed:'confermati',b_pending:'in attesa',b_declined:'non vengono',b_sent:'inviti inviati',b_menus:'Menù per il catering (confermati)',b_copyG:'📋 Copia lista',b_copied:'Lista copiata 📋',b_addAll:'+ Aggiungi tutte',b_until:'entro il {d}',b_noTables:'Ancora nessun tavolo. Createli con un tocco:',b_mk:'+ {n} tavoli da {s}',b_head:'+ Tavolo degli sposi',b_headName:'Tavolo degli sposi',b_tableN:'Tavolo {n}',b_unseated:'Invitati senza tavolo',b_allSeated:'Tutti hanno un posto! 🎉',b_over:'{n} di troppo!',b_seatsOf:'{a} di {b} posti',b_committed:'Impegnato',b_paidT:'Pagato',b_toPay:'Da pagare',b_left:'Restano {a} del budget',b_overB:'Sforate di {a} il budget',b_noBudget:'Inserite un budget nei dati del matrimonio',b_perGuest:'a invitato',b_quotes:'Preventivi chiesti (non ancora prenotati)',b_markPaid:'✓ Pagato',b_missingV:'Fornitori da cercare',b_remaining:'restano',b_byCat:'Per categoria',b_noProg:'Preparate il programma: trucco, cerimonia, aperitivo, cena, ballo…',b_progQ:'Momenti tipici',b_songQ:'Aggiungi una canzone per…',b_palette:'Colori del matrimonio',b_editColors:'🎨 Cambia colori',b_noColors:'Nessun colore scelto.',b_dash:'mancano {n} giorni',b_dashNo:'metti la data',b_saveB:'Matrimonio',b_saveBD:'Fornitore del matrimonio',b_tasks:'attività fatte',b_vendors:'fornitori prenotati',b_budgetUsed:'impegnato',b_noTasks:'Aggiungete le attività suggerite o le vostre.',b_unassigned:'Senza tavolo',b_seatTo:'Siedi a…',b_meetOn:'Appuntamento: {d}',b_payOn:'Pagare entro il {d}',b_allPhases:'Tutte',b_search:'Cerca',b_sideOf:'Di {n}',
+ b_intro_checklist:'Tutto da fare, in ordine di tempo. Aggiungete i suggerimenti con un tocco.',b_intro_invitados:'Chi viene, con quanti accompagnatori, che menù e a quale tavolo.',b_intro_mesas:'Create i tavoli e fate sedere ogni invitato.',b_intro_proveedores:'Location, catering, fotografo… con prezzi, pagamenti, appuntamenti e contatti.',b_intro_presupuesto:'Si somma da solo con i fornitori.',b_intro_programa:'Il programma del grande giorno, dal mattino all’ultima canzone.',b_intro_musica:'Una canzone per ogni momento, e quelle da non sentire.',b_intro_inspiracion:'Foto di idee per tutto: abito, fiori, torta…',
+ qprog:[['10:00','Trucco e parrucco'],['12:00','Foto dei preparativi'],['13:00','Cerimonia'],['14:00','Foto di coppia'],['14:30','Aperitivo'],['16:00','Pranzo'],['18:30','Torta e discorsi'],['19:00','Primo ballo'],['19:15','Festa!'],['23:30','Spuntino notturno'],['02:00','Fine festa']],
+ qtasks:{p12:['Fissare la data','Calcolare il budget','Prima lista invitati','Scegliere lo stile','Cercare e prenotare la location','Prenotare la cerimonia','Cercare il fotografo'],p9:['Prenotare il catering','Prenotare foto e video','Prenotare musica o DJ','Iniziare a guardare abiti','Scegliere i testimoni','Aprire un conto risparmio per il matrimonio'],p6:['Inviare i save the date','Scegliere e ordinare l’abito','Prenotare il fiorista','Prenotare trucco e parrucco','Prenotare la luna di miele','Fare la lista nozze','Prenotare il trasporto'],p4:['Ordinare gli inviti','Scegliere il completo','Comprare le fedi','Scegliere la torta','Prova menù','Prenotare hotel per gli invitati'],p2:['Inviare gli inviti','Prove dell’abito','Prova trucco e parrucco','Comprare scarpe e accessori','Preparare i documenti','Scrivere le promesse','Scegliere le canzoni'],p1:['Confermare le presenze','Fare il tableau dei tavoli','Dare il numero finale al catering','Confermare orari con i fornitori','Comprare le bomboniere','Ultima prova dell’abito'],w1:['Pagare i fornitori','Preparare le buste','Fare la valigia della luna di miele','Prova della cerimonia','Preparare la scatola del giorno (fedi, documenti, kit d’emergenza)','Dormire tanto 💤'],dia:['Fare una buona colazione','Portare le fedi','Godersi ogni momento 💕'],post:['Messaggi di ringraziamento','Portare l’abito in lavanderia','Ritirare foto e video','Registrare il matrimonio']}},
+ar:{nav6:'الزفاف',b_title:'زفافنا',b_hand:'أجمل يوم، مخطط بكل حب',b_resumen:'الملخص',b_checklist:'المهام',b_invitados:'الضيوف',b_mesas:'الطاولات',b_proveedores:'المزودون',b_presupuesto:'الميزانية',b_programa:'برنامج اليوم',b_musica:'الموسيقى',b_inspiracion:'الإلهام',bnota:'ملاحظات ووعود',b_days:'يوماً على اليوم الكبير',b_editData:'بيانات الزفاف'}
+};
+for(const l in T5)Object.assign(T[l],T5[l]);
+
 const LOC={es:'es-ES',en:'en-GB',it:'it-IT',ar:'ar'};
 let L='es';
 const t=(k,v)=>{let s=(T[L]&&T[L][k])??T.es[k]??k;if(v)for(const x in v)s=String(s).replace('{'+x+'}',v[x]);return s};
@@ -1384,20 +1460,22 @@ const imgOf=i=>i.photo||safeUrl(i.img)||'';
 /* ================= estado y datos ================= */
 let fdb=null;try{fdb=getFirestore(getApp())}catch(e){}
 let sp=null,unsubs=[];
-const S={luna:{items:{},trip:{}},casa:{items:{}},stock:{items:{}},juegos:{},gal:{},citas:{}};let seeded=false,mapOpen={},wx={},rates=null,conv={a:100,c:''};
+const S={luna:{items:{},trip:{}},casa:{items:{}},stock:{items:{}},juegos:{},boda:{items:{},meta:{}},gal:{},citas:{}};let seeded=false,mapOpen={},wx={},rates=null,conv={a:100,c:''};
 let view='cal',tabL='resumen',tabC='resumen',filt={},editing=null,pendingPhoto,showMagic=false,pendingImport=null;
 try{view=localStorage.getItem('nc-view')||'cal';tabL=localStorage.getItem('nc-lmtab')||'resumen';tabC=localStorage.getItem('nc-casatab')||'resumen'}catch(e){}
 
 function connect(){
   let s=null;try{s=localStorage.getItem('nc-space')}catch(e){}
   if(s===sp)return;
-  unsubs.forEach(u=>u());unsubs=[];sp=s;S.luna={items:{},trip:{}};S.casa={items:{}};S.gal={};S.citas={};S.stock={items:{}};S.juegos={};seeded=false;
+  unsubs.forEach(u=>u());unsubs=[];sp=s;S.luna={items:{},trip:{}};S.casa={items:{}};S.gal={};S.citas={};S.stock={items:{}};S.juegos={};S.boda={items:{},meta:{}};seeded=false;
   if(!s||!fdb){render();return}
   const sub=(path,fn)=>unsubs.push(onSnapshot(collection(fdb,'espacios',s,path),snap=>{const m={};snap.forEach(d=>{m[d.id]={...d.data(),id:d.id}});fn(m);render()},()=>toast(t('errSave'))));
   sub('luna',m=>S.luna.items=m);
   unsubs.push(onSnapshot(collection(fdb,'espacios',s,'casa'),snap=>{const m={};snap.forEach(d=>{m[d.id]={...d.data(),id:d.id}});S.casa.items=m;render();if(!snap.metadata.fromCache)maybeSeed()},()=>toast(t('errSave'))));
   sub('galeria',m=>S.gal=m);
   sub('stock',m=>S.stock.items=m);
+  sub('boda',m=>S.boda.items=m);
+  unsubs.push(onSnapshot(doc(fdb,'espacios',s,'bodameta','datos'),d=>{S.boda.meta=d.exists()?d.data():{};render()},()=>{}));
   unsubs.push(onSnapshot(collection(fdb,'espacios',s,'juegos'),snap=>{const m={};snap.forEach(d=>{m[d.id]={...d.data(),id:d.id}});S.juegos=m;onJuegosSnap()},()=>{}));
   unsubs.push(onSnapshot(collection(fdb,'espacios',s,'citas'),snap=>{const m={};snap.forEach(d=>{const x=d.data();m[d.id]={titulo:x.titulo,fecha:x.fecha,hora:x.hora,hecho:x.hecho}});S.citas=m;renderDash()},()=>{}));
   unsubs.push(onSnapshot(doc(fdb,'espacios',s,'lunaviaje','viaje'),d=>{S.luna.trip=d.exists()?d.data():{};render()},()=>{}));
@@ -1473,7 +1551,7 @@ const FIELDS={
  tarea:()=>[F('title','f_title_pendiente','text',{req:1,full:1}),F('date','f_deadline','date'),F('time','f_time','time'),F('notes','f_notes','textarea')],
  producto:()=>[F('link','f_link','url',{full:1,ph:'ph_link'}),F('title','f_title_producto','text',{req:1,full:1}),F('room','f_room','room'),F('cat','f_cat','sel',{opts:CCATS,pre:'cat_'}),F('prio','f_prio','prio'),F('qty','f_qty','number',{min:1}),F('price','f_price','number',{min:0,step:'0.01'}),F('bought','f_bought','check'),F('img','f_img','url',{full:1}),F('photo','f_photo','photo',{full:1}),F('notes','f_notes','textarea')]
 };
-const STORE_OF=k=>k==='stock'?'stock':['rincon','producto','cnota','tarea'].includes(k)?'casa':'luna';
+const STORE_OF=k=>['btarea','invitado','mesa','proveedor','programa','cancion','bnota'].includes(k)?'boda':k==='stock'?'stock':['rincon','producto','cnota','tarea'].includes(k)?'casa':'luna';
 
 /* ================= dibujos ================= */
 const tw=(x,y,d,s)=>`<span class="tw" style="inset-inline-start:${x}%;top:${y}%;animation-delay:${d}s;font-size:${s||12}px">✦</span>`;
@@ -1512,6 +1590,7 @@ const ICON_CAL=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
 const ICON_PLANE=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M2 13l8-2 5-7c1-1.4 3-.6 2.6 1L16 11l5 1c1 .3 1 1.7 0 2l-5 1 1.6 6c.4 1.6-1.6 2.4-2.6 1l-5-7-8-2z"/></svg>`;
 const ICON_BOX=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg>`;
 const ICON_GAME=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M6 8h12a4 4 0 0 1 4 4v2a3 3 0 0 1-5.4 1.8L15 14H9l-1.6 1.8A3 3 0 0 1 2 14v-2a4 4 0 0 1 4-4z"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="16" cy="11.5" r=".6" fill="currentColor"/><circle cx="18" cy="13" r=".6" fill="currentColor"/></svg>`;
+const ICON_RING=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><circle cx="12" cy="15" r="6"/><path d="M9 5l1.5-2h3L15 5l-3 4z"/></svg>`;
 const ICON_HOME=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M12 17.2c-1.5-1.1-2.8-2-2.8-3.1a1.4 1.4 0 0 1 2.8-.4 1.4 1.4 0 0 1 2.8.4c0 1.1-1.3 2-2.8 3.1z" fill="currentColor" stroke="none"/></svg>`;
 
 /* ================= cielo estrellado ================= */
@@ -1546,7 +1625,7 @@ function setDeco(){
 const app=$('app');
 const topbar=app.querySelector('.topbar');
 const sw=document.createElement('div');sw.className='lm-switch';
-sw.innerHTML=`<button type="button" data-view="cal">${ICON_CAL}<span id="ncN1"></span></button><button type="button" data-view="luna">${ICON_PLANE}<span id="ncN2"></span></button><button type="button" data-view="casa">${ICON_HOME}<span id="ncN3"></span></button><button type="button" data-view="stock">${ICON_BOX}<span id="ncN4"></span></button><button type="button" data-view="juegos">${ICON_GAME}<span id="ncN5"></span></button>`;
+sw.innerHTML=`<button type="button" data-view="cal">${ICON_CAL}<span id="ncN1"></span></button><button type="button" data-view="luna">${ICON_PLANE}<span id="ncN2"></span></button><button type="button" data-view="casa">${ICON_HOME}<span id="ncN3"></span></button><button type="button" data-view="stock">${ICON_BOX}<span id="ncN4"></span></button><button type="button" data-view="boda">${ICON_RING}<span id="ncN6"></span></button><button type="button" data-view="juegos">${ICON_GAME}<span id="ncN5"></span></button>`;
 topbar.after(sw);
 const footer=app.querySelector('footer');
 const luna=document.createElement('section');luna.id='luna';luna.className='ncv';luna.hidden=true;footer.before(luna);
@@ -1557,11 +1636,11 @@ document.body.append(dlg);
 ['lmPlaces','lmLists'].forEach(id=>{const d=document.createElement('datalist');d.id=id;document.body.append(d)});
 
 function applyView(){
-  const own=[topbar,sw,footer,luna,casa,stock,juegos,$('ncDash')];
+  const own=[topbar,sw,footer,luna,casa,stock,juegos,boda,$('ncDash')];
   [...app.children].forEach(c=>{if(own.includes(c))return;
     if(c.id==='banner'){if(view!=='cal'){if(c.dataset.lmh==null)c.dataset.lmh=c.hidden?'1':'0';c.hidden=true}else if(c.dataset.lmh!=null){c.hidden=c.dataset.lmh==='1';delete c.dataset.lmh}return}
     c.style.display=view==='cal'?'':'none'});
-  luna.hidden=view!=='luna';casa.hidden=view!=='casa';stock.hidden=view!=='stock';juegos.hidden=view!=='juegos';if(view!=='juegos')stopTimer();
+  luna.hidden=view!=='luna';casa.hidden=view!=='casa';stock.hidden=view!=='stock';juegos.hidden=view!=='juegos';boda.hidden=view!=='boda';if(view!=='juegos')stopTimer();
   sw.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));
   setDeco();render();
 }
@@ -1573,6 +1652,7 @@ function fieldHtml(f,v){
   else if(f.ty==='prio')inp=`<select id="${id}" name="${f.k}">${PRIO.map(s=>`<option value="${s}"${s===(val||'necesario')?' selected':''}>${t('pr_'+s)}</option>`).join('')}</select>`;
   else if(f.ty==='sel')inp=`<select id="${id}" name="${f.k}">${Object.entries(f.opts).map(([a,e])=>`<option value="${a}"${a===val?' selected':''}>${e} ${t(f.pre+a)}</option>`).join('')}</select>`;
   else if(f.ty==='room'){const rooms=Object.values(S.casa.items).filter(i=>i.kind==='rincon').sort((a,b)=>(a.created||0)-(b.created||0));inp=`<select id="${id}" name="${f.k}"><option value="">— ${t('noRoom')} —</option>${rooms.map(r=>`<option value="${r.id}"${r.id===val?' selected':''}>${r.emoji||'🏠'} ${esc(r.title)}</option>`).join('')}</select>`}
+  else if(f.ty==='opts')inp=`<select id="${id}" name="${f.k}">${f.opts().map(([a,l])=>`<option value="${esc(a)}"${a===val?' selected':''}>${esc(l)}</option>`).join('')}</select>`;
   else if(f.ty==='emoji')inp=`<select id="${id}" name="${f.k}">${ROOM_EMO.map(e=>`<option${e===(val||'🛋️')?' selected':''}>${e}</option>`).join('')}</select>`;
   else if(f.ty==='check')inp=`<label style="display:flex;gap:8px;align-items:center;font-weight:700;color:var(--ink);font-size:14px"><input type="checkbox" id="${id}" name="${f.k}" class="nc-check"${val?' checked':''}> ✓</label>`;
   else if(f.ty==='palette'){const cols=Array.isArray(val)?val:[];inp=`<div id="ncPal">${cols.map(palRow).join('')}</div><button type="button" class="lm-ic" id="ncAddCol">${t('addColor')}</button>`}
@@ -1585,9 +1665,9 @@ const palRow=c=>`<div class="nc-palrow"><input type="color" value="${esc(c&&c.he
 function openForm(kind,it,preset){
   editing={kind,id:it?it.id:null};pendingPhoto=it?it.photo:undefined;
   const one=kind==='trip'?'':(KEMO[kind]||'')+' '+t('one_'+kind);
-  $('lmDT').textContent=kind==='trip'?t('editTrip'):(it?t('edit'):t('add'))+' '+one;
+  $('lmDT').textContent=kind==='trip'?t('editTrip'):kind==='bdatos'?'💍 '+tl('b_editData'):(it?t('edit'):t('add'))+' '+one;
   $('lmDX').textContent=t('close');$('lmDC').textContent=t('cancel');$('lmDS').textContent=t('save');$('lmDF').hidden=false;
-  const v=kind==='trip'?S.luna.trip:(it||{status:'idea',prio:'necesario',qty:1,...(preset||{})});
+  const v=kind==='trip'?S.luna.trip:kind==='bdatos'?{...S.boda.meta}:(it||{status:'idea',prio:'necesario',qty:1,...(preset||{})});
   if(!it&&filt[kind]&&filt[kind]!=='*'){if(kind==='guardado')v.list=v.list||filt[kind];else if(kind==='producto')v.room=v.room||filt[kind];else v.place=v.place||filt[kind]}
   if(!it&&kind==='producto'&&filt.producto_c&&filt.producto_c!=='*')v.cat=v.cat||filt.producto_c;
   $('lmDB').innerHTML=FIELDS[kind]().map(f=>fieldHtml(f,v)).join('');
@@ -1607,10 +1687,11 @@ $('lmForm').addEventListener('submit',e=>{
   e.preventDefault();if(!editing)return;
   const req=[...$('lmDB').querySelectorAll('[required]')].find(i=>!i.value.trim());if(req){req.focus();return}
   const data={};new FormData($('lmForm')).forEach((v,k)=>{if(typeof v==='string')data[k]=v.trim()});
-  ['price','nights','budget','qty','min'].forEach(k=>{if(k in data)data[k]=data[k]===''?null:Number(data[k])});
-  if($('lmf_bought'))data.bought=$('lmf_bought').checked;
+  ['price','nights','budget','qty','min','paid','seats','kids','plus','guestsGoal'].forEach(k=>{if(k in data)data[k]=data[k]===''?null:Number(data[k])});
+  $('lmDB').querySelectorAll('input[type=checkbox][name]').forEach(c=>{data[c.name]=c.checked});
   if($('ncPal'))data.colors=[...$('ncPal').querySelectorAll('.nc-palrow')].map(r=>{const [c,n]=r.querySelectorAll('input');return{hex:c.value,name:n.value.trim()}});
   if(editing.kind==='trip')putTrip({...S.luna.trip,...data});
+  else if(editing.kind==='bdatos')putBodaMeta({...S.boda.meta,...data});
   else{const store=STORE_OF(editing.kind);const old=editing.id?S[store].items[editing.id]:null;
     const it={...(old||{}),...data,id:editing.id||rid(),kind:editing.kind,created:old?.created||Date.now()};
     if('price' in data)Object.assign(it,priceTrack(old,data.price));
@@ -1636,7 +1717,7 @@ function askImport(){
   $('lmDT').textContent=t('whereSave');$('lmDX').textContent=t('close');$('lmDF').hidden=true;
   $('lmDB').innerHTML=`<div class="lm-f full">${safeUrl(d.i)?`<img class="prev" src="${esc(d.i)}" alt="">`:''}<b style="margin-top:6px">${esc(d.t)}</b><span class="lm-meta">${esc(prettyHost(d.u))}</span></div>
    ${(d.v||0)<6?`<div class="lm-f full" style="background:var(--butter);border-radius:12px;padding:10px;font-weight:700;font-size:13px;color:var(--ink)">⚠️ ${esc(t('oldBtn'))}</div>`:''}
-   <div class="lm-choice"><button type="button" data-imp="luna"${stay?' style="border-color:var(--star)"':''}><b>✈️</b>${t('saveLuna')}<small>${t('saveLunaD')}</small></button><button type="button" data-imp="casa"${!stay?' style="border-color:var(--star)"':''}><b>🏡</b>${t('saveCasa')}<small>${t('saveCasaD')}</small></button><button type="button" data-imp="stock"><b>📦</b>${tl('s_saveStock')}<small>${tl('s_saveStockD')}</small></button></div>`;
+   <div class="lm-choice"><button type="button" data-imp="luna"${stay?' style="border-color:var(--star)"':''}><b>✈️</b>${t('saveLuna')}<small>${t('saveLunaD')}</small></button><button type="button" data-imp="casa"${!stay?' style="border-color:var(--star)"':''}><b>🏡</b>${t('saveCasa')}<small>${t('saveCasaD')}</small></button><button type="button" data-imp="boda"><b>💍</b>${tl('b_saveB')}<small>${tl('b_saveBD')}</small></button><button type="button" data-imp="stock"><b>📦</b>${tl('s_saveStock')}<small>${tl('s_saveStockD')}</small></button></div>`;
   if(!dlg.open)dlg.showModal();
 }
 $('lmDB').addEventListener('click',e=>{const b=e.target.closest('[data-imp]');if(!b||!pendingImport)return;const d=pendingImport;
@@ -1644,6 +1725,7 @@ $('lmDB').addEventListener('click',e=>{const b=e.target.closest('[data-imp]');if
   const preset={link:safeUrl(d.u),title:(d.t||'').split(' · ')[0].slice(0,120),img:safeUrl(d.i)};const pz=parsePrice(d.p);if(pz!=null)preset.price=pz;
   let abNote='';if(d.ab&&d.ab.a){const amt=parsePrice(d.ab.a);if(amt!=null){if(/noche|night|notte|nuit/.test(d.ab.u))preset.price=amt;else if(d.n>0){preset.price=Math.round(amt/d.n*100)/100;abNote=t('abTotal',{a:eur(amt),n:d.n})}else abNote=t('abTotal0',{a:eur(amt)})}}
   if(b.dataset.imp==='luna'){view='luna';tabL='guardado';try{localStorage.setItem('nc-view',view);localStorage.setItem('nc-lmtab',tabL)}catch(_){}applyView();openForm('guardado',null,{...preset,notes:[abNote,(d.t||'').includes(' · ')?d.t:''].filter(Boolean).join('\n')})}
+  else if(b.dataset.imp==='boda'){view='boda';tabB='proveedores';try{localStorage.setItem('nc-view',view);localStorage.setItem('nc-btab',tabB)}catch(_){}applyView();openForm('proveedor',null,{title:preset.title,link:preset.link,img:preset.img,price:preset.price,vstatus:'presupuesto'})}
   else if(b.dataset.imp==='stock'){view='stock';tabS='todo';try{localStorage.setItem('nc-view',view);localStorage.setItem('nc-sttab',tabS)}catch(_){}applyView();openForm('stock',null,{title:preset.title,link:preset.link,img:preset.img,price:preset.price,qty:1,min:1})}
   else{view='casa';tabC='producto';try{localStorage.setItem('nc-view',view);localStorage.setItem('nc-casatab',tabC)}catch(_){}applyView();openForm('producto',null,preset)}
   pendingImport=null});
@@ -2266,6 +2348,211 @@ const SCENE_GAMES=`<svg class="lm-scene" viewBox="0 0 150 170" aria-hidden="true
 <svg x="50" y="128" width="26" height="26" viewBox="0 0 120 120"><use href="#hamster"/></svg><svg x="74" y="128" width="26" height="26" viewBox="0 0 120 120"><use href="#panda"/></svg>
 <text x="18" y="94" font-size="14" fill="var(--star)">✦</text><text x="128" y="96" font-size="10" fill="var(--star)">✧</text></svg>`;
 
+/* ================= BODA ================= */
+const boda=document.createElement('section');boda.id='boda';boda.className='ncv';boda.hidden=true;footer.before(boda);
+const BPH=['p12','p9','p6','p4','p2','p1','w1','dia','post'];
+const BPH_E={p12:'🗓️',p9:'📝',p6:'👗',p4:'💍',p2:'💌',p1:'🪑',w1:'🧳',dia:'💒',post:'💕'};
+const BPH_OFF={p12:[-12,0],p9:[-9,0],p6:[-6,0],p4:[-4,0],p2:[-2,0],p1:[-1,0],w1:[0,-3],dia:[0,0],post:[1,0]};
+const VCATS={lugar:'🏰',ceremonia:'⛪',catering:'🍽️',foto:'📸',video:'🎥',musica:'🎶',flores:'💐',vestido:'👗',traje:'🤵',belleza:'💄',tarta:'🎂',invitaciones:'💌',anillos:'💍',transporte:'🚗',deco:'🕯️',animacion:'🎉',detalles:'🎁',otros:'✨'};
+const VKEY=['lugar','catering','foto','musica','vestido','traje','anillos','flores'];
+const VST={buscando:'🔎',presupuesto:'📝',reservado:'✅',pagado:'💶'};
+const RSVP={pendiente:'⏳',si:'✅',no:'❌'};
+const BGROUPS={familia:'👨‍👩‍👧',amigos:'🥂',trabajo:'💼',otros:'✨'};
+const MENUS={normal:'🍽️',vegetariano:'🥗',vegano:'🌱',infantil:'🧸',sinGluten:'🌾',especial:'⚠️'};
+const MOMENTS={entrada1:'👰',entrada2:'🤵',ceremonia:'💍',salida:'🎊',coctel:'🥂',banquete:'🍽️',tarta:'🎂',baile:'💃',fiesta:'🪩',ultima:'🌙',prohibida:'🚫'};
+const INSP={vestido:'👗',traje:'🤵',lugar:'🏰',deco:'🕯️',flores:'💐',tarta:'🎂',peinado:'💇',invitaciones:'💌'};
+Object.assign(KEMO,{btarea:'✅',invitado:'👤',mesa:'🪑',proveedor:'🤝',programa:'⏰',cancion:'🎵',bnota:'📝'});
+Object.assign(EMPTY_FOR,{btarea:'bag',invitado:'house',mesa:'house',proveedor:'cart',programa:'plane',cancion:'plane',bnota:'plane',boda:'house'});
+const bm=()=>S.boda.meta||{};
+const bn=k=>(bm()[k]||'').trim()||tl('side_'+k);
+const bl=k=>Object.values(S.boda.items).filter(i=>i.kind===k);
+const pers=g=>1+(+g.plus||0)+(+g.kids||0);
+const sideOpts=()=>[['ambos','💞 '+tl('side_ambos')],['n1','💗 '+bn('n1')],['n2','💙 '+bn('n2')]];
+const mesaOpts=()=>[['','— '+tl('b_unassigned')+' —'],...bl('mesa').sort((a,b)=>(a.created||0)-(b.created||0)).map(m=>[m.id,'🪑 '+m.title])];
+const phaseOpts=()=>BPH.map(p=>[p,BPH_E[p]+' '+tl('ph_'+p)]);
+FIELDS.bdatos=()=>[F('n1','f_n1','text'),F('n2','f_n2','text'),F('date','f_bdate','date'),F('time','f_btime','time'),F('cer','f_cer','text',{full:1}),F('ban','f_ban','text',{full:1}),F('style','f_style','text',{ph:'ph_style'}),F('budget','f_bbudget','number',{min:0}),F('guestsGoal','f_guestsGoal','number',{min:0}),F('colors','f_bcolors','palette',{full:1}),F('notes','f_notes','textarea')];
+FIELDS.btarea=()=>[F('title','f_title_pendiente','text',{req:1,full:1}),F('phase','f_phase','opts',{opts:phaseOpts}),F('date','f_deadline','date'),F('done','f_done','check'),F('notes','f_notes','textarea')];
+FIELDS.invitado=()=>[F('title','f_gname','text',{req:1,full:1}),F('side','f_side','opts',{opts:sideOpts}),F('group','f_group','sel',{opts:BGROUPS,pre:'bg_'}),F('rsvp','f_rsvp','sel',{opts:RSVP,pre:'rsvp_'}),F('menu','f_menu','sel',{opts:MENUS,pre:'menu_'}),F('plus','f_plus','number',{min:0}),F('kids','f_kids','number',{min:0}),F('mesa','f_mesa','opts',{opts:mesaOpts}),F('invit','f_invit','check'),F('contact','f_contact','text',{full:1}),F('gift','f_gift','text'),F('thanks','f_thanks','check'),F('notes','f_notes','textarea')];
+FIELDS.mesa=()=>[F('title','f_title_rincon','text',{req:1}),F('seats','f_seats','number',{min:1}),F('notes','f_notes','textarea')];
+FIELDS.proveedor=()=>[F('title','f_title_guardado','text',{req:1,full:1}),F('cat','f_cat','sel',{opts:VCATS,pre:'vc_'}),F('vstatus','f_vstatus','sel',{opts:VST,pre:'vs_'}),F('price','f_price','number',{min:0,step:'0.01'}),F('paid','f_paid','number',{min:0,step:'0.01'}),F('due','f_due','date'),F('date','f_meet','date'),F('time','f_time','time'),F('contact','f_contact','text',{full:1}),F('link','f_link','url',{full:1}),F('img','f_img','url',{full:1}),F('photo','f_photo','photo',{full:1}),F('notes','f_notes','textarea')];
+FIELDS.programa=()=>[F('time','f_time','time'),F('title','f_ptitle','text',{req:1}),F('place','f_where','text'),F('who','f_who','text'),F('notes','f_notes','textarea')];
+FIELDS.cancion=()=>[F('title','f_song','text',{req:1}),F('artist','f_artist','text'),F('moment','f_moment','sel',{opts:MOMENTS,pre:'mo_'}),F('link','f_link','url',{full:1}),F('notes','f_notes','textarea')];
+FIELDS.bnota=FIELDS.cnota;
+let tabB='resumen';try{tabB=localStorage.getItem('nc-btab')||'resumen'}catch(e){}
+const BTABS=[['resumen','💍'],['checklist','✅'],['invitados','👥'],['mesas','🪑'],['proveedores','🤝'],['presupuesto','💶'],['programa','⏰'],['musica','🎶'],['inspiracion','🌸'],['bnota','📝']];
+async function putBodaMeta(x){S.boda.meta=x;render();if(!fdb||!sp)return;try{await setDoc(doc(fdb,'espacios',sp,'bodameta','datos'),clean(x))}catch(e){toast(t('errSave'))}}
+function addMonths(d,m,dd){const x=new Date(d+'T12:00:00');x.setMonth(x.getMonth()+m);x.setDate(x.getDate()+(dd||0));return x.toISOString().slice(0,10)}
+const phDate=p=>bm().date?addMonths(bm().date,BPH_OFF[p][0],BPH_OFF[p][1]):'';
+function bDays(){const d=bm().date;return d?daysTo(d):null}
+function gStats(){const g=bl('invitado');const go=g.filter(x=>x.rsvp!=='no');return{g,inv:g.length,people:go.reduce((a,x)=>a+pers(x),0),conf:g.filter(x=>x.rsvp==='si').reduce((a,x)=>a+pers(x),0),pend:g.filter(x=>(x.rsvp||'pendiente')==='pendiente').reduce((a,x)=>a+pers(x),0),no:g.filter(x=>x.rsvp==='no').reduce((a,x)=>a+pers(x),0),sent:g.filter(x=>x.invit).length}}
+function vStats(){const v=bl('proveedor');const booked=v.filter(x=>['reservado','pagado'].includes(x.vstatus));const committed=booked.reduce((a,x)=>a+(+x.price||0),0);const paid=v.reduce((a,x)=>a+(+x.paid||0),0);return{v,booked,committed,paid,toPay:Math.max(0,committed-booked.reduce((a,x)=>a+(+x.paid||0),0))}}
+const pendPays=()=>bl('proveedor').filter(x=>['reservado','pagado'].includes(x.vstatus)&&(+x.price||0)>(+x.paid||0)).sort((a,b)=>(a.due||'9999').localeCompare(b.due||'9999'));
+function bHead(k,addKind,extra=''){return `<div class="lm-head"><div><h3>${BTABS.find(x=>x[0]===k)[1]} ${k==='bnota'?t('bnota'):tl('b_'+k)}</h3><p>${k==='bnota'?t('intro_bnota'):tl('b_intro_'+k)}</p></div>${addKind?`<div class="lm-acts">${extra}<button class="lm-btn" type="button" data-badd="${addKind}">+ ${t('add')} ${t('one_'+addKind)}</button></div>`:''}</div>`}
+const bChk=(i,field='done')=>`<input type="checkbox" class="nc-check" data-tog="boda:${i.id}:${field}"${i[field]?' checked':''} aria-label="${esc(i.title)}">`;
+function taskRow(i){return `<div class="lm-todo${i.done?' done':''}">${bChk(i)}<label style="flex:1;min-width:0">${esc(i.title)}${i.notes?`<br><small>${esc(i.notes)}</small>`:''}</label>${i.date?`<small>${fd(i.date)}</small>`:''}${acts('boda',i,i.date&&!i.done?(i.inCal?'<span class="lm-pill ok">📅</span>':`<button class="lm-ic" type="button" data-tocal="boda:${i.id}">📅</button>`):'')}</div>`}
+/* ---- resumen ---- */
+function bResumen(){
+  const m=bm();const d=bDays();const tasks=bl('btarea');const done=tasks.filter(x=>x.done).length;const gs=gStats();const vs=vStats();
+  const welcome=!m.date?`<div class="lm-box" style="margin-bottom:16px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:space-between"><b>${tl('b_welcome')}</b><button class="lm-btn gold sm" type="button" data-bdatos="1">${tl('b_setData')}</button></div>`:'';
+  const stats=`<div class="lm-stats"><button type="button" class="lm-stat" data-btab="checklist"><b>${done}/${tasks.length}</b><span>✅ ${tl('b_tasks')}</span></button><button type="button" class="lm-stat" data-btab="invitados"><b>${gs.conf}/${gs.people}</b><span>👥 ${tl('b_confirmed')}</span></button><button type="button" class="lm-stat" data-btab="proveedores"><b>${vs.booked.length}/${vs.v.length}</b><span>🤝 ${tl('b_vendors')}</span></button><button type="button" class="lm-stat" data-btab="presupuesto"><b>${eur(vs.committed)}</b><span>💶 ${m.budget?`/ ${eur(m.budget)}`:tl('b_budgetUsed')}</span></button></div>`;
+  const next=tasks.filter(x=>!x.done).sort((a,b)=>(a.date||'9999').localeCompare(b.date||'9999')||BPH.indexOf(a.phase)-BPH.indexOf(b.phase)).slice(0,7);
+  const pays=pendPays().slice(0,4);
+  const cols=(m.colors||[]).filter(c=>c.hex);
+  const card=`<div class="lm-box nightbox"><h4 class="lm-sub">💍 ${esc(bn('n1'))} & ${esc(bn('n2'))}</h4>
+   ${m.date?`<p style="margin:0 0 4px">📅 ${fd(m.date,{weekday:'long',day:'numeric',month:'long',year:'numeric'})}${m.time?' · '+esc(m.time):''}</p>`:''}
+   ${m.cer?`<p style="margin:0 0 4px">⛪ ${esc(m.cer)}</p>`:''}${m.ban?`<p style="margin:0 0 4px">🥂 ${esc(m.ban)}</p>`:''}${m.style?`<p style="margin:0 0 4px">✨ ${esc(m.style)}</p>`:''}
+   ${cols.length?`<div class="nc-pal" style="height:22px;margin:8px 0;border-color:rgba(255,255,255,.2)">${cols.map(c=>`<i style="background:${esc(c.hex)}"></i>`).join('')}</div>`:''}
+   <button type="button" class="lm-btn gold sm" data-bdatos="1" style="margin-top:6px">✏️ ${tl('b_editData')}</button></div>`;
+  const key=`<div class="lm-box"><h4 class="lm-sub">⭐ ${tl('b_keyV')}</h4>${VKEY.map(c=>{const v=bl('proveedor').filter(x=>x.cat===c);const best=v.find(x=>x.vstatus==='pagado')||v.find(x=>x.vstatus==='reservado')||v[0];const st=best?best.vstatus||'buscando':null;return `<div class="lm-ev"><span class="k">${VCATS[c]}</span><span class="x">${tl('vc_'+c)} ${best?`<small>· ${esc(best.title)}</small>`:''}</span><span>${st?VST[st]:`<button type="button" class="lm-ic" data-badd="proveedor" data-bcat="${c}">+</button>`}</span></div>`}).join('')}</div>`;
+  return welcome+stats+`<div class="lm-two"><div style="display:flex;flex-direction:column;gap:14px;min-width:0"><div class="lm-box"><h4 class="lm-sub">✅ ${tl('b_next')}</h4>${next.length?next.map(taskRow).join(''):`<p class="lm-meta">${tl('b_noTasks')}</p><button class="lm-btn sm" type="button" data-btab="checklist">${tl('b_checklist')} ➜</button>`}</div>
+   <div class="lm-box"><h4 class="lm-sub">💶 ${tl('b_pays')}</h4>${pays.length?pays.map(payRow).join(''):`<p class="lm-meta" style="margin:0">${tl('b_noPays')}</p>`}</div></div><div style="display:flex;flex-direction:column;gap:14px;min-width:0">${card}${key}</div></div>`;
+}
+function payRow(v){const left=(+v.price||0)-(+v.paid||0);const late=v.due&&daysTo(v.due)<0;return `<div class="lm-ev" style="align-items:center"><span class="k">${VCATS[v.cat]||'✨'}</span><span class="x"><b>${esc(v.title)}</b> <small>· ${eur(left)} ${tl('b_remaining')}${v.due?` · <span style="color:${late?'#B2453A':'inherit'}">${tl('b_payOn').replace('{d}',fd(v.due))}</span>`:''}</small></span><button type="button" class="lm-ic" data-bpaid="${v.id}">${tl('b_markPaid')}</button></div>`}
+/* ---- checklist ---- */
+function bChecklist(){
+  const tasks=bl('btarea');const done=tasks.filter(x=>x.done).length;const qt=tl('qtasks')||{};
+  let h=bHead('checklist','btarea');
+  if(tasks.length)h+=`<p class="lm-meta" style="margin:0 0 6px">${tl('b_tasksDone').replace('{a}',done).replace('{b}',tasks.length)}</p><div class="lm-track"><i style="width:${done/tasks.length*100}%;background:var(--night2)"></i></div>`;
+  h+=BPH.map(p=>{const list=tasks.filter(x=>(x.phase||'p12')===p).sort((a,b)=>(a.done-b.done)||(a.created||0)-(b.created||0));const miss=(qt[p]||[]).filter(s=>!tasks.some(x=>x.title===s));const pd=phDate(p);const pdone=list.filter(x=>x.done).length;
+    return `<div class="b-phase"><div class="nc-cathead">${BPH_E[p]} ${tl('ph_'+p)} <small>${list.length?pdone+'/'+list.length:''}${pd&&!['dia','post'].includes(p)?' · '+tl('b_until').replace('{d}',fd(pd,{day:'numeric',month:'short',year:'numeric'})):''}</small><button type="button" class="lm-ic" data-badd="btarea" data-bph="${p}" style="margin-inline-start:auto">+</button></div>
+     ${list.length?`<div class="lm-box" style="padding:4px 14px">${list.map(taskRow).join('')}</div>`:''}
+     ${miss.length?`<div class="lm-chips" style="margin-top:8px">${miss.map(s=>`<button type="button" class="lm-chip" data-bqt="${p}" data-v="${esc(s)}">+ ${esc(s)}</button>`).join('')}${miss.length>1?`<button type="button" class="lm-chip" data-bqall="${p}" style="border-color:#C9A04A;color:#8E6A2B">${tl('b_addAll')}</button>`:''}</div>`:''}</div>`}).join('');
+  return h;
+}
+/* ---- invitados ---- */
+function bInvitados(){
+  const gs=gStats();const fr=filt.bi_r||'*',fs=filt.bi_s||'*',fg=filt.bi_g||'*';
+  let h=bHead('invitados','invitado',gs.inv?`<button class="lm-btn ghost" type="button" data-bcopy="1">${tl('b_copyG')}</button>`:'');
+  h+=`<div class="lm-stats"><div class="lm-stat"><b>${gs.people}</b><span>👥 ${tl('b_people')} (${gs.inv} ${tl('b_guests')})</span></div><div class="lm-stat"><b style="color:#3E7D4E">${gs.conf}</b><span>✅ ${tl('b_confirmed')}</span></div><div class="lm-stat"><b>${gs.pend}</b><span>⏳ ${tl('b_pending')}</span></div><div class="lm-stat"><b>${gs.no}</b><span>❌ ${tl('b_declined')}</span></div><div class="lm-stat"><b>${gs.sent}/${gs.inv}</b><span>💌 ${tl('b_sent')}</span></div></div>`;
+  if(!gs.inv)return h+empty('invitado',t('empty'),`<button class="lm-btn sm" type="button" data-badd="invitado">${t('addFirst')}</button>`);
+  h+=chips('bi_r',Object.keys(RSVP).map(k=>[k,RSVP[k]+' '+tl('rsvp_'+k)]),fr)+chips('bi_s',sideOpts(),fs)+chips('bi_g',Object.keys(BGROUPS).map(k=>[k,BGROUPS[k]+' '+tl('bg_'+k)]),fg);
+  const list=gs.g.filter(x=>(fr==='*'||(x.rsvp||'pendiente')===fr)&&(fs==='*'||(x.side||'ambos')===fs)&&(fg==='*'||(x.group||'familia')===fg)).sort((a,b)=>a.title.localeCompare(b.title));
+  const mesas=Object.fromEntries(bl('mesa').map(m=>[m.id,m.title]));
+  h+=list.length?`<div class="lm-box" style="padding:4px 12px">${list.map(g=>`<div class="lm-todo b-guest" style="flex-wrap:wrap">
+    <label style="flex:1;min-width:150px"><b>${esc(g.title)}</b>${pers(g)>1?` <span class="lm-pill list">+${pers(g)-1}</span>`:''}<br><small>${(sideOpts().find(o=>o[0]===(g.side||'ambos'))||['',''])[1]} · ${BGROUPS[g.group||'familia']} ${tl('bg_'+(g.group||'familia'))} · ${MENUS[g.menu||'normal']} ${tl('menu_'+(g.menu||'normal'))}${g.mesa&&mesas[g.mesa]?' · 🪑 '+esc(mesas[g.mesa]):''}${g.notes?' · '+esc(g.notes):''}</small></label>
+    <span class="b-rsvp">${Object.keys(RSVP).map(k=>`<button type="button" class="b-rb${(g.rsvp||'pendiente')===k?' on '+k:''}" data-brsvp="${g.id}:${k}" title="${esc(tl('rsvp_'+k))}">${RSVP[k]}</button>`).join('')}</span>
+    <button type="button" class="b-rb${g.invit?' on si':''}" data-binv="${g.id}" title="${esc(tl('f_invit'))}">💌</button>${acts('boda',g)}</div>`).join('')}</div>`:`<div class="lm-empty"><p>${t('noFilter')}</p></div>`;
+  const menus=Object.keys(MENUS).map(k=>[k,gs.g.filter(x=>x.rsvp==='si'&&(x.menu||'normal')===k).reduce((a,x)=>a+1+(+x.plus||0),0)+(k==='infantil'?gs.g.filter(x=>x.rsvp==='si').reduce((a,x)=>a+(+x.kids||0),0):0)]).filter(x=>x[1]);
+  if(menus.length)h+=`<div class="lm-box" style="margin-top:14px"><h4 class="lm-sub" style="font-size:17px">🍽️ ${tl('b_menus')}</h4><div class="lm-chips">${menus.map(([k,n])=>`<span class="lm-chip" style="cursor:default">${MENUS[k]} ${tl('menu_'+k)}: <b>${n}</b></span>`).join('')}</div></div>`;
+  return h;
+}
+/* ---- mesas ---- */
+function tableSvg(seats,used){const n=Math.max(1,Math.min(+seats||8,24));let s='';for(let i=0;i<n;i++){const a=-Math.PI/2+i*2*Math.PI/n;s+=`<circle cx="${(60+Math.cos(a)*46).toFixed(1)}" cy="${(60+Math.sin(a)*46).toFixed(1)}" r="8" fill="${i<used?'var(--pink-d)':'var(--paper)'}" stroke="var(--btn-shadow)" stroke-width="2"/>`}
+  return `<svg viewBox="0 0 120 120" class="b-tsvg" aria-hidden="true"><circle cx="60" cy="60" r="30" fill="var(--butter)" stroke="var(--btn-shadow)" stroke-width="2.5"/>${s}<text x="60" y="64" text-anchor="middle" font-size="14" font-weight="800" fill="var(--ink)">${used}/${n}</text></svg>`}
+function bMesas(){
+  const ms=bl('mesa').sort((a,b)=>(a.created||0)-(b.created||0));const gs=bl('invitado').filter(x=>x.rsvp!=='no');
+  let h=bHead('mesas','mesa');
+  if(!ms.length)h+=`<div class="lm-box" style="margin-bottom:14px"><p class="lm-meta" style="margin:0 0 8px">${tl('b_noTables')}</p><div class="lm-chips"><button type="button" class="lm-chip" data-bmk="head">${tl('b_head')}</button>${[[5,10],[10,10],[8,8]].map(([n,s])=>`<button type="button" class="lm-chip" data-bmk="${n}:${s}">${tl('b_mk').replace('{n}',n).replace('{s}',s)}</button>`).join('')}</div></div>`;
+  h+=`<div class="lm-grid">${ms.map(m=>{const at=gs.filter(g=>g.mesa===m.id);const used=at.reduce((a,g)=>a+pers(g),0);const over=used-(+m.seats||0);
+    return `<article class="lm-card" style="align-items:center;text-align:center"><h4>🪑 ${esc(m.title)}</h4>${tableSvg(m.seats,used)}<div class="lm-meta" style="justify-content:center"><span>${tl('b_seatsOf').replace('{a}',used).replace('{b}',m.seats||0)}</span>${over>0?`<span class="lm-pill st-bad">${tl('b_over').replace('{n}',over)}</span>`:''}</div>
+     <div class="b-names">${at.map(g=>`<span class="b-name">${esc(g.title)}${pers(g)>1?' +'+(pers(g)-1):''}</span>`).join('')}</div>${acts('boda',m)}</article>`}).join('')}</div>`;
+  const un=gs.filter(g=>!g.mesa||!ms.some(m=>m.id===g.mesa)).sort((a,b)=>a.title.localeCompare(b.title));
+  h+=`<h4 class="lm-sub" style="margin-top:18px">👥 ${tl('b_unseated')} <small style="font-size:14px;color:var(--soft)">${un.reduce((a,g)=>a+pers(g),0)}</small></h4>`;
+  h+=un.length?`<div class="lm-box" style="padding:4px 12px">${un.map(g=>`<div class="lm-todo"><label style="flex:1;min-width:0"><b>${esc(g.title)}</b>${pers(g)>1?` <small>+${pers(g)-1}</small>`:''} <small>${RSVP[g.rsvp||'pendiente']}</small></label><select class="st-in" style="width:auto" data-bmesa="${g.id}" aria-label="${esc(tl('b_seatTo'))}"><option value="">${tl('b_seatTo')}</option>${ms.map(m=>`<option value="${m.id}">${esc(m.title)}</option>`).join('')}</select></div>`).join('')}</div>`:`<p class="lm-meta">${gs.length?tl('b_allSeated'):''}</p>`;
+  return h;
+}
+/* ---- proveedores ---- */
+function vCard(v){const im=imgOf(v);const left=(+v.price||0)-(+v.paid||0);
+  return `<article class="lm-card">${im?`<img class="ph" src="${esc(im)}" alt="" loading="lazy" data-zoom="${esc(im)}" referrerpolicy="no-referrer">`:''}
+   <div style="display:flex;gap:8px;align-items:center"><span class="lm-emo">${VCATS[v.cat]||'✨'}</span><h4>${esc(v.title)}</h4></div>
+   <div class="lm-meta"><span>${tl('vc_'+(v.cat||'otros'))}</span><span class="lm-pill ${v.vstatus==='pagado'||v.vstatus==='reservado'?'ok':v.vstatus==='presupuesto'?'favorito':''}">${VST[v.vstatus||'buscando']} ${tl('vs_'+(v.vstatus||'buscando'))}</span></div>
+   ${v.price!=null?`<div class="lm-meta"><span class="lm-price">${eur(v.price)}</span>${v.paid?`<span>· ${tl('b_paidT')} ${eur(v.paid)}</span>`:''}${left>0&&['reservado','pagado'].includes(v.vstatus)?`<span style="color:#B2453A">· ${eur(left)} ${tl('b_remaining')}</span>`:''}</div>`:''}
+   ${v.price>0?`<div class="lm-track" style="margin:0"><i style="width:${Math.min(100,(+v.paid||0)/v.price*100)}%;background:#5E9E6B"></i></div>`:''}
+   ${v.due&&left>0?`<div class="lm-meta"><span>💶 ${tl('b_payOn').replace('{d}',fd(v.due))}</span></div>`:''}
+   ${v.date?`<div class="lm-meta"><span>📅 ${tl('b_meetOn').replace('{d}',fd(v.date)+(v.time?' '+esc(v.time):''))}</span></div>`:''}
+   ${v.contact?`<div class="lm-meta"><span style="user-select:all">📞 ${esc(v.contact)}</span></div>`:''}
+   ${v.notes?`<p class="lm-notes">${esc(v.notes)}</p>`:''}${v.link?lnk(v.link):''}
+   ${acts('boda',v,(left>0&&['reservado','pagado'].includes(v.vstatus)?`<button class="lm-ic" type="button" data-bpaid="${v.id}">${tl('b_markPaid')}</button>`:'')+(v.date?(v.inCal?'<span class="lm-pill ok">📅</span>':`<button class="lm-ic" type="button" data-tocal="boda:${v.id}">📅</button>`):''))}</article>`}
+function bProveedores(){
+  const vs=bl('proveedor');const fc=filt.bv_c||'*',fst=filt.bv_s||'*';
+  let h=bHead('proveedores','proveedor')+magicPanel();
+  if(vs.length)h+=chips('bv_c',Object.keys(VCATS).filter(c=>vs.some(v=>v.cat===c)).map(c=>[c,VCATS[c]+' '+tl('vc_'+c)]),fc)+chips('bv_s',Object.keys(VST).map(k=>[k,VST[k]+' '+tl('vs_'+k)]),fst);
+  const list=vs.filter(v=>(fc==='*'||v.cat===fc)&&(fst==='*'||(v.vstatus||'buscando')===fst));
+  if(!vs.length)h+=empty('proveedor',t('empty'));
+  else if(!list.length)h+=`<div class="lm-empty"><p>${t('noFilter')}</p></div>`;
+  else{const g={};list.forEach(v=>(g[v.cat||'otros']=g[v.cat||'otros']||[]).push(v));h+=Object.keys(VCATS).filter(c=>g[c]).map(c=>`<div class="nc-cathead">${VCATS[c]} ${tl('vc_'+c)} <small>${g[c].length}</small><button type="button" class="lm-ic" data-badd="proveedor" data-bcat="${c}" style="margin-inline-start:auto">+</button></div><div class="lm-grid">${g[c].map(vCard).join('')}</div>`).join('')}
+  const miss=Object.keys(VCATS).filter(c=>!vs.some(v=>v.cat===c));
+  if(miss.length)h+=`<h4 class="lm-sub" style="margin-top:18px">🔎 ${tl('b_missingV')}</h4><div class="lm-chips">${miss.map(c=>`<button type="button" class="lm-chip" data-badd="proveedor" data-bcat="${c}">+ ${VCATS[c]} ${tl('vc_'+c)}</button>`).join('')}</div>`;
+  return h;
+}
+/* ---- presupuesto ---- */
+function bPresupuesto(){
+  const m=bm();const vs=vStats();const gs=gStats();const budget=+m.budget||0;const left=budget-vs.committed;
+  let h=bHead('presupuesto',null)+`<div class="lm-two"><div class="lm-box nightbox"><div style="font-weight:700;color:var(--sky-soft)">${tl('b_committed')}</div><div class="lm-big" style="color:var(--star)">${eur(vs.committed)}</div>
+   <p style="margin:6px 0;font-weight:600">${budget?(left>=0?tl('b_left').replace('{a}',eur(left)):tl('b_overB').replace('{a}',eur(-left))):tl('b_noBudget')}</p>
+   <div class="lm-track" style="background:rgba(255,255,255,.15)"><i style="width:${budget?Math.min(100,vs.paid/budget*100):0}%;background:var(--moon)"></i><i style="width:${budget?Math.max(0,Math.min(100-vs.paid/budget*100,(vs.committed-vs.paid)/budget*100)):0}%;background:var(--pink)"></i></div>
+   <div class="lm-leg" style="color:var(--sky-soft)"><span style="--c:var(--moon)">${tl('b_paidT')}: ${eur(vs.paid)}</span><span style="--c:var(--pink)">${tl('b_toPay')}: ${eur(vs.toPay)}</span></div>
+   ${gs.people?`<p style="margin:8px 0 0">👤 ${eur(vs.committed/gs.people)} ${tl('b_perGuest')}</p>`:''}${!budget?`<button type="button" class="lm-btn gold sm" data-bdatos="1" style="margin-top:8px">${t('setBudget')}</button>`:''}</div>
+   <div class="lm-box"><h4 class="lm-sub" style="font-size:17px">💶 ${tl('b_pays')}</h4>${pendPays().length?pendPays().map(payRow).join(''):`<p class="lm-meta" style="margin:0">${tl('b_noPays')}</p>`}</div></div>`;
+  const rows=Object.keys(VCATS).map(c=>{const b=vs.booked.filter(v=>v.cat===c);return[c,b.reduce((a,v)=>a+(+v.price||0),0),b.reduce((a,v)=>a+(+v.paid||0),0)]}).filter(r=>r[1]);
+  if(rows.length){const mx=Math.max(...rows.map(r=>r[1]));h+=`<div class="lm-box" style="margin-top:14px"><h4 class="lm-sub" style="font-size:17px">${tl('b_byCat')}</h4>${rows.sort((a,b)=>b[1]-a[1]).map(([c,tot,pd])=>`<div style="margin-bottom:9px"><div class="lm-row" style="padding:0"><b style="font-size:14px">${VCATS[c]} ${tl('vc_'+c)}</b><span class="lm-price">${eur(tot)}</span></div><div class="lm-track" style="width:${tot/mx*100}%"><i style="width:${pd/tot*100}%;background:var(--night2)"></i><i style="width:${(tot-pd)/tot*100}%;background:var(--pink)"></i></div></div>`).join('')}</div>`}
+  const quotes=bl('proveedor').filter(v=>v.vstatus==='presupuesto'&&v.price);
+  if(quotes.length)h+=`<div class="lm-box" style="margin-top:14px"><h4 class="lm-sub" style="font-size:17px">📝 ${tl('b_quotes')}</h4><div class="lm-tw"><table><tbody>${quotes.sort((a,b)=>(a.cat||'').localeCompare(b.cat||'')||a.price-b.price).map(v=>`<tr><td>${VCATS[v.cat]||'✨'} ${esc(v.title)}</td><td>${tl('vc_'+(v.cat||'otros'))}</td><td class="r">${eur(v.price)}</td></tr>`).join('')}</tbody></table></div></div>`;
+  return h;
+}
+/* ---- programa ---- */
+function bPrograma(){
+  const ps=bl('programa').sort((a,b)=>{const k=x=>{const tt=x.time||'99:99';return tt<'05:00'?'3'+tt:'1'+tt};return k(a).localeCompare(k(b))});const m=bm();
+  let h=bHead('programa','programa');
+  if(m.date)h+=`<p class="lm-meta" style="margin:-6px 0 10px">💒 ${fd(m.date,{weekday:'long',day:'numeric',month:'long',year:'numeric'})}</p>`;
+  h+=ps.length?`<div class="lm-tl">${ps.map(p=>`<div class="lm-day"><div class="dl">${esc(p.time||'--:--')}</div><div class="lm-ev"><span class="x"><b>${esc(p.title)}</b>${p.place?` <small>· 📍 ${esc(p.place)}</small>`:''}${p.who?` <small>· 🙋 ${esc(p.who)}</small>`:''}${p.notes?`<br><small>${esc(p.notes)}</small>`:''}</span>${acts('boda',p)}</div></div>`).join('')}</div>`:empty('programa',tl('b_noProg'));
+  const have=ps.map(p=>p.title);const q=(tl('qprog')||[]).filter(([,x])=>!have.includes(x));
+  if(q.length)h+=`<h4 class="lm-sub" style="margin-top:16px">⚡ ${tl('b_progQ')}</h4><div class="lm-chips">${q.map(([tm,x])=>`<button type="button" class="lm-chip" data-bqp="${tm}" data-v="${esc(x)}">+ ${tm} ${esc(x)}</button>`).join('')}${q.length>1?`<button type="button" class="lm-chip" data-bqpall="1" style="border-color:#C9A04A;color:#8E6A2B">${tl('b_addAll')}</button>`:''}</div>`;
+  return h;
+}
+/* ---- música ---- */
+function bMusica(){
+  const ss=bl('cancion');let h=bHead('musica','cancion');
+  h+=Object.keys(MOMENTS).map(mo=>{const l=ss.filter(s=>(s.moment||'fiesta')===mo);
+    return `<div class="nc-cathead">${MOMENTS[mo]} ${tl('mo_'+mo)} <small>${l.length||''}</small><button type="button" class="lm-ic" data-badd="cancion" data-bmo="${mo}" style="margin-inline-start:auto">+</button></div>${l.length?`<div class="lm-box" style="padding:4px 14px;${mo==='prohibida'?'border-color:#F3CFC9':''}">${l.map(s=>{const q=(s.title+' '+(s.artist||'')).trim();return `<div class="lm-todo"><span class="lm-emo">🎵</span><label style="flex:1;min-width:0"><b>${esc(s.title)}</b>${s.artist?` <small>· ${esc(s.artist)}</small>`:''}${s.notes?`<br><small>${esc(s.notes)}</small>`:''}</label><span class="nc-shop">${s.link?lnk(s.link,'▶︎'):`<a class="lm-chip" href="https://open.spotify.com/search/${encodeURIComponent(q)}" target="_blank" rel="noopener">Spotify</a><a class="lm-chip" href="https://www.youtube.com/results?search_query=${encodeURIComponent(q)}" target="_blank" rel="noopener">YouTube</a>`}</span>${acts('boda',s)}</div>`}).join('')}</div>`:''}`}).join('');
+  return h;
+}
+/* ---- inspiración ---- */
+function bInspiracion(){const cols=(bm().colors||[]).filter(c=>c.hex);
+  return bHead('inspiracion',null)+`<div class="lm-box" style="margin-bottom:6px"><div class="lm-row" style="padding:0;margin-bottom:8px"><h4 class="lm-sub" style="margin:0">🎨 ${tl('b_palette')}</h4><button type="button" class="lm-btn gold sm" data-bdatos="1">${tl('b_editColors')}</button></div>${cols.length?`<div class="nc-pal" style="height:48px">${cols.map(c=>`<i style="background:${esc(c.hex)}" title="${esc(c.name||c.hex)}"></i>`).join('')}</div><div class="nc-sw" style="margin-top:8px">${cols.map(c=>`<span><i style="background:${esc(c.hex)}"></i>${esc(c.name||c.hex)}</span>`).join('')}</div>`:`<p class="lm-meta" style="margin:0">${tl('b_noColors')}</p>`}</div>`+
+   Object.keys(INSP).map(k=>gallery('boda:'+k,INSP[k]+' '+tl('ins_'+k))).join('');
+}
+/* ---- pintar ---- */
+const SCENE_BODA=`<svg class="lm-scene" viewBox="0 0 150 170" aria-hidden="true"><circle cx="130" cy="18" r="11" fill="var(--moon)"/><circle cx="125" cy="14" r="11" fill="var(--night2)"/>
+<path d="M22 162V78a53 53 0 0 1 106 0v84" fill="none" stroke="var(--moon)" stroke-width="5" stroke-linecap="round"/>
+${[[22,120],[24,96],[32,72],[46,52],[66,40],[86,40],[104,52],[118,72],[126,96],[128,120],[22,146],[128,146]].map(([x,y],i)=>`<circle cx="${x}" cy="${y}" r="${i%3?6:8}" fill="${['var(--pink)','#fff','var(--butter)'][i%3]}" stroke="var(--pink-d)" stroke-width="1.5"/>`).join('')}
+<path d="M64 62c-5-6-14-3-12 4 2 5 12 10 12 10s10-5 12-10c2-7-7-10-12-4z" transform="translate(11 -2)" fill="var(--pink-d)"/>
+<path d="M50 104h18l12 40H38z" fill="#fff" opacity=".75" stroke="#fff" stroke-width="1"/>
+<svg x="36" y="100" width="44" height="44" viewBox="0 0 120 120"><use href="#hamster"/></svg><svg x="72" y="100" width="44" height="44" viewBox="0 0 120 120"><use href="#panda"/></svg>
+<circle cx="50" cy="106" r="3.2" fill="var(--pink)"/><circle cx="58" cy="103.5" r="3.6" fill="#fff" stroke="var(--pink-d)" stroke-width="1"/><circle cx="66" cy="106" r="3.2" fill="var(--pink)"/>
+<path d="M88 140l6-4 6 4-6 4z" fill="var(--night2)"/><path d="M94 140l-6-4v8zM94 140l6-4v8z" fill="var(--night2)"/>
+<rect x="30" y="152" width="90" height="10" rx="5" fill="var(--paper2)" stroke="var(--moon)" stroke-width="2"/></svg>`;
+function renderBoda(){
+  const m=bm();const d=bDays();
+  if(!BTABS.some(x=>x[0]===tabB))tabB='resumen';
+  let cd={n:'💍',l:tl('b_dashNo')};if(d!=null)cd=d>1?{n:d,l:tl('b_days')}:d===1?{n:1,l:tl('b_day1')}:d===0?{n:'💒',l:tl('b_today')}:{n:'💞',l:tl('b_married')};
+  const title=(m.n1||m.n2)?`${esc(bn('n1'))} <span>&amp;</span> ${esc(bn('n2'))}`:`${tl('b_title').split(' ').slice(0,-1).join(' ')} <span>${tl('b_title').split(' ').slice(-1)}</span>`;
+  const dates=m.date?`<span>💒 ${fd(m.date,{day:'numeric',month:'long',year:'numeric'})}${m.cer?' · '+esc(m.cer):''}</span><button type="button" class="lm-link" data-bdatos="1">${tl('b_editData')}</button>`:`<span>${tl('b_noDate')}</span><button type="button" class="lm-link" data-bdatos="1">${tl('b_setData')}</button>`;
+  const cnt={checklist:bl('btarea').filter(x=>!x.done).length,invitados:bl('invitado').length,mesas:bl('mesa').length,proveedores:bl('proveedor').length,musica:bl('cancion').length,bnota:bl('bnota').length,programa:bl('programa').length};
+  let body;
+  if(tabB==='checklist')body=bChecklist();else if(tabB==='invitados')body=bInvitados();else if(tabB==='mesas')body=bMesas();else if(tabB==='proveedores')body=bProveedores();else if(tabB==='presupuesto')body=bPresupuesto();else if(tabB==='programa')body=bPrograma();else if(tabB==='musica')body=bMusica();else if(tabB==='inspiracion')body=bInspiracion();else if(tabB==='bnota')body=notesBoard('boda','bnota');else body=bResumen();
+  boda.innerHTML=heroHtml(SCENE_BODA,title,tl('b_hand'),dates,`<div class="lm-count"><div><b>${cd.n}</b><span>${esc(cd.l)}</span></div></div>`,tw(30,15,.3)+tw(62,75,1.5,9)+tw(80,22,.9,13)+tw(45,80,2.1,10))+
+   `<div class="lm-tabs" role="tablist">${BTABS.map(([k,e])=>`<button type="button" role="tab" class="lm-tab" data-btab="${k}" aria-selected="${tabB===k}">${e} ${k==='bnota'?t('bnota'):tl('b_'+k)}${cnt[k]?`<span class="n">${cnt[k]}</span>`:''}</button>`).join('')}</div><div class="lm-panel">${body}</div>`;
+}
+function bodaClick(e){
+  const b=e.target.closest('button');if(!b)return false;const d=b.dataset;
+  if(d.btab){tabB=d.btab;try{localStorage.setItem('nc-btab',tabB)}catch(_){}render();return true}
+  if(d.bdatos){openForm('bdatos');return true}
+  if(d.badd){const pre={};if(d.bph){pre.phase=d.bph;const pd=phDate(d.bph);if(pd)pre.date=pd}if(d.bcat)pre.cat=d.bcat;if(d.bmo)pre.moment=d.bmo;if(d.badd==='proveedor'&&filt.bv_c&&filt.bv_c!=='*'&&!pre.cat)pre.cat=filt.bv_c;if(d.badd==='invitado'){pre.rsvp='pendiente';if(filt.bi_s&&filt.bi_s!=='*')pre.side=filt.bi_s;if(filt.bi_g&&filt.bi_g!=='*')pre.group=filt.bi_g}openForm(d.badd,null,pre);return true}
+  if(d.bqt){put('boda',{id:rid(),kind:'btarea',title:d.v,phase:d.bqt,date:phDate(d.bqt)||null,done:false,created:Date.now()});return true}
+  if(d.bqall){const p=d.bqall;const have=bl('btarea').map(x=>x.title);const base=Date.now();(tl('qtasks')[p]||[]).filter(s=>!have.includes(s)).forEach((s,i)=>put('boda',{id:rid(),kind:'btarea',title:s,phase:p,date:phDate(p)||null,done:false,created:base+i}));toast(t('saved'));return true}
+  if(d.bqp){put('boda',{id:rid(),kind:'programa',time:d.bqp,title:d.v,created:Date.now()});return true}
+  if(d.bqpall){const have=bl('programa').map(x=>x.title);const base=Date.now();(tl('qprog')||[]).filter(([,x])=>!have.includes(x)).forEach(([tm,x],i)=>put('boda',{id:rid(),kind:'programa',time:tm,title:x,created:base+i}));toast(t('saved'));return true}
+  if(d.brsvp){const[id,k]=d.brsvp.split(':');const g=S.boda.items[id];if(g)put('boda',{...g,rsvp:k});return true}
+  if(d.binv){const g=S.boda.items[d.binv];if(g)put('boda',{...g,invit:!g.invit});return true}
+  if(d.bpaid){const v=S.boda.items[d.bpaid];if(v){put('boda',{...v,paid:+v.price||0,vstatus:'pagado'});toast(t('saved'))}return true}
+  if(d.bmk){const base=Date.now();const n0=bl('mesa').filter(m=>m.title!==tl('b_headName')).length;if(d.bmk==='head')put('boda',{id:rid(),kind:'mesa',title:tl('b_headName'),seats:10,created:base-1});else{const[n,s]=d.bmk.split(':').map(Number);for(let i=1;i<=n;i++)put('boda',{id:rid(),kind:'mesa',title:tl('b_tableN').replace('{n}',n0+i),seats:s,created:base+i})}return true}
+  if(d.bcopy){const g=bl('invitado').sort((a,b)=>a.title.localeCompare(b.title));const txt='💍 '+tl('b_invitados')+'\n'+g.map(x=>`${RSVP[x.rsvp||'pendiente']} ${x.title}${pers(x)>1?' (+'+(pers(x)-1)+')':''}`).join('\n');copyText(txt);return true}
+  return false;
+}
+boda.addEventListener('click',e=>{if(!bodaClick(e))onClick(e)});
+boda.addEventListener('change',e=>{const id=e.target.dataset&&e.target.dataset.bmesa;if(id){const g=S.boda.items[id];if(g&&e.target.value)put('boda',{...g,mesa:e.target.value});return}onChange(e)});
+
 /* ================= render ================= */
 const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
 function renderDash(){
@@ -2273,12 +2560,12 @@ function renderDash(){
   const td=today();const next=Object.values(S.citas).filter(c=>c.fecha&&c.fecha>=td&&!c.hecho).sort((a,b)=>(a.fecha+(a.hora||'')).localeCompare(b.fecha+(b.hora||'')))[0];
   const trip=S.luna.trip;let lun=t('setDate');if(trip.start){const n=Math.ceil((new Date(trip.start+'T00:00:00')-new Date().setHours(0,0,0,0))/864e5);lun=n>0?`${n} ${n===1?t('dayLeft'):t('daysLeft')}`:t('onTrip')}
   const s=cSums();const casaTxt=s.ps.length?t('progress',{a:s.ps.filter(p=>p.bought).length,b:s.ps.length}):t('noProg');
-  d.innerHTML=`<div class="nc-dc"><b>💕 ${t('nextDate')}</b><span>${next?esc(next.titulo||'')+' · '+fd(next.fecha,{weekday:'short',day:'numeric',month:'short'})+(next.hora?' '+esc(next.hora):''):t('noNext')}</span></div><button type="button" class="nc-dc" data-go="luna"><b>✈️ ${t('nav2')}</b><span>${esc(lun)}</span></button><button type="button" class="nc-dc" data-go="casa"><b>🏡 ${t('nav3')}</b><span>${esc(casaTxt)}</span></button><button type="button" class="nc-dc" data-go="stock"><b>📦 ${tl('nav4')}</b><span>${(()=>{const n=stItems().filter(i=>stLevel(i)!=='ok').length;return stItems().length?(n?tl('s_dash').replace('{n}',n):tl('s_dashOk')):tl('s_welcome').split('!')[0]+'!'})()}</span></button><button type="button" class="nc-dc" data-go="juegos"><b>🎲 ${tl('nav5')}</b><span>${(()=>{const[a,b]=scoreOf(null);return `${esc(nm(1))} ${a} – ${b} ${esc(nm(2))}`})()}</span></button>`;
+  d.innerHTML=`<div class="nc-dc"><b>💕 ${t('nextDate')}</b><span>${next?esc(next.titulo||'')+' · '+fd(next.fecha,{weekday:'short',day:'numeric',month:'short'})+(next.hora?' '+esc(next.hora):''):t('noNext')}</span></div><button type="button" class="nc-dc" data-go="luna"><b>✈️ ${t('nav2')}</b><span>${esc(lun)}</span></button><button type="button" class="nc-dc" data-go="casa"><b>🏡 ${t('nav3')}</b><span>${esc(casaTxt)}</span></button><button type="button" class="nc-dc" data-go="stock"><b>📦 ${tl('nav4')}</b><span>${(()=>{const n=stItems().filter(i=>stLevel(i)!=='ok').length;return stItems().length?(n?tl('s_dash').replace('{n}',n):tl('s_dashOk')):tl('s_welcome').split('!')[0]+'!'})()}</span></button><button type="button" class="nc-dc" data-go="boda"><b>💍 ${tl('nav6')}</b><span>${(()=>{const n=bDays();return n==null?tl('b_dashNo'):n>0?tl('b_dash').replace('{n}',n):n===0?tl('b_today'):tl('b_married')})()}</span></button><button type="button" class="nc-dc" data-go="juegos"><b>🎲 ${tl('nav5')}</b><span>${(()=>{const[a,b]=scoreOf(null);return `${esc(nm(1))} ${a} – ${b} ${esc(nm(2))}`})()}</span></button>`;
 }
 function render(){
-  $('ncN1').textContent=t('nav1');$('ncN2').textContent=t('nav2');$('ncN3').textContent=t('nav3');$('ncN4').textContent=tl('nav4');$('ncN5').textContent=tl('nav5');
+  $('ncN1').textContent=t('nav1');$('ncN2').textContent=t('nav2');$('ncN3').textContent=t('nav3');$('ncN4').textContent=tl('nav4');$('ncN5').textContent=tl('nav5');$('ncN6').textContent=tl('nav6');
   const y=window.scrollY;const ae=document.activeElement;const keep=ae&&ae.id&&['ncStayQ','ncAmt'].includes(ae.id)?ae.id:null;
-  if(view==='luna')renderLuna();else if(view==='casa')renderCasa();else if(view==='stock')renderStock();else if(view==='juegos'){if(!G.game)renderJuegos();else updStat()}
+  if(view==='luna')renderLuna();else if(view==='casa')renderCasa();else if(view==='stock')renderStock();else if(view==='boda')renderBoda();else if(view==='juegos'){if(!G.game)renderJuegos();else updStat()}
   renderDash();
   window.scrollTo(0,y);if(keep&&$(keep))$(keep).focus();
 }
@@ -2327,7 +2614,7 @@ new MutationObserver(()=>{if(!app.hidden)connect();else{unsubs.forEach(u=>u());u
 if(T[document.documentElement.lang])L=document.documentElement.lang;
 readImport();
 addEventListener('hashchange',()=>{readImport();if(pendingImport)askImport()});
-if(!['cal','luna','casa','stock','juegos'].includes(view))view='cal';
+if(!['cal','luna','casa','stock','juegos','boda'].includes(view))view='cal';
 if(!LTABS.includes(tabL))tabL='resumen';if(!(['resumen','producto','tarea','cnota','presupuesto'].includes(tabC)||tabC.startsWith('r:')))tabC='resumen';
 if(!app.hidden)connect();
 applyView();
