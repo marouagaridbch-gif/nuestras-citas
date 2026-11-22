@@ -1032,6 +1032,25 @@ button.nc-dc{cursor:pointer}button.nc-dc:hover{background:rgba(255,255,255,.12)}
 .a-pig{display:flex;align-items:center;gap:12px}
 .a-pig svg{width:70px;height:70px;flex:none}
 
+.n-rules{display:flex;flex-direction:column;gap:10px}
+.n-rule{display:flex;gap:12px;align-items:flex-start;background:var(--paper2);border:2px solid var(--line);border-radius:18px;padding:12px 14px}
+.n-rule.star{border-color:#C9A04A;box-shadow:0 0 0 3px rgba(244,213,141,.35)}
+.n-num{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--night2);color:var(--star);font-family:var(--f-display);font-size:17px}
+.n-txt{margin:2px 0 4px;font-size:16px;font-weight:700;color:var(--ink);white-space:pre-wrap}
+.n-big{font-family:var(--f-display);font-size:20px;line-height:1.35;margin:0 0 12px;color:var(--sky-ink)!important}
+.n-motto{font-family:var(--f-hand,var(--f-display));font-size:18px;color:var(--pink-d);margin:6px 0}
+.n-custom{border-inline-start:6px solid var(--pink-d)}
+.n-date{align-items:flex-start}
+.n-date.soon{border-color:#C9A04A}
+.n-cd{display:flex;align-items:baseline;gap:6px}
+.n-cd b{font-family:var(--f-display);font-size:34px;color:var(--night2);line-height:1}
+.n-cd span{color:var(--soft);font-weight:700;font-size:13px}
+.n-done h4{text-decoration:line-through;opacity:.7}
+.n-tl{position:relative;padding-inline-start:30px;display:flex;flex-direction:column;gap:14px;max-width:640px}
+.n-tl:before{content:"";position:absolute;inset-inline-start:13px;top:6px;bottom:6px;width:3px;border-radius:3px;background:var(--line)}
+.n-tl-item{position:relative}
+.n-dot{position:absolute;inset-inline-start:-32px;top:8px;width:30px;height:30px;border-radius:50%;background:var(--paper);border:2px solid var(--line);display:grid;place-items:center;font-size:15px}
+
 @keyframes ncTw{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
 @keyframes lmFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-6px) rotate(2deg)}}
 .lm-scene .float{animation:lmFloat 4s ease-in-out infinite;transform-origin:center}
@@ -1554,14 +1573,14 @@ const imgOf=i=>i.photo||safeUrl(i.img)||'';
 /* ================= estado y datos ================= */
 let fdb=null;try{fdb=getFirestore(getApp())}catch(e){}
 let sp=null,unsubs=[];
-const S={luna:{items:{},trip:{}},casa:{items:{}},stock:{items:{}},juegos:{},boda:{items:{},meta:{}},alquiler:{items:{},meta:{}},gal:{},citas:{}};let seeded=false,mapOpen={},wx={},rates=null,conv={a:100,c:''};
+const S={luna:{items:{},trip:{}},casa:{items:{}},stock:{items:{}},juegos:{},boda:{items:{},meta:{}},alquiler:{items:{},meta:{}},nosotros:{items:{},meta:{}},gal:{},citas:{}};let seeded=false,mapOpen={},wx={},rates=null,conv={a:100,c:''};
 let view='cal',tabL='resumen',tabC='resumen',filt={},editing=null,pendingPhoto,showMagic=false,pendingImport=null;
 try{view=localStorage.getItem('nc-view')||'cal';tabL=localStorage.getItem('nc-lmtab')||'resumen';tabC=localStorage.getItem('nc-casatab')||'resumen'}catch(e){}
 
 function connect(){
   let s=null;try{s=localStorage.getItem('nc-space')}catch(e){}
   if(s===sp)return;
-  unsubs.forEach(u=>u());unsubs=[];sp=s;S.luna={items:{},trip:{}};S.casa={items:{}};S.gal={};S.citas={};S.stock={items:{}};S.juegos={};S.boda={items:{},meta:{}};S.alquiler={items:{},meta:{}};seeded=false;
+  unsubs.forEach(u=>u());unsubs=[];sp=s;S.luna={items:{},trip:{}};S.casa={items:{}};S.gal={};S.citas={};S.stock={items:{}};S.juegos={};S.boda={items:{},meta:{}};S.alquiler={items:{},meta:{}};S.nosotros={items:{},meta:{}};seeded=false;
   if(!s||!fdb){render();return}
   const sub=(path,fn)=>unsubs.push(onSnapshot(collection(fdb,'espacios',s,path),snap=>{const m={};snap.forEach(d=>{m[d.id]={...d.data(),id:d.id}});fn(m);render()},()=>toast(t('errSave'))));
   sub('luna',m=>S.luna.items=m);
@@ -1570,6 +1589,8 @@ function connect(){
   sub('stock',m=>S.stock.items=m);
   sub('boda',m=>S.boda.items=m);
   sub('alquiler',m=>S.alquiler.items=m);
+  sub('nosotros',m=>S.nosotros.items=m);
+  unsubs.push(onSnapshot(doc(fdb,'espacios',s,'nosmeta','datos'),d=>{S.nosotros.meta=d.exists()?d.data():{};render()},()=>{}));
   unsubs.push(onSnapshot(doc(fdb,'espacios',s,'alqmeta','datos'),d=>{S.alquiler.meta=d.exists()?d.data():{};render()},()=>{}));
   unsubs.push(onSnapshot(doc(fdb,'espacios',s,'bodameta','datos'),d=>{S.boda.meta=d.exists()?d.data():{};render()},()=>{}));
   unsubs.push(onSnapshot(collection(fdb,'espacios',s,'juegos'),snap=>{const m={};snap.forEach(d=>{m[d.id]={...d.data(),id:d.id}});S.juegos=m;onJuegosSnap()},()=>{}));
@@ -1647,7 +1668,7 @@ const FIELDS={
  tarea:()=>[F('title','f_title_pendiente','text',{req:1,full:1}),F('date','f_deadline','date'),F('time','f_time','time'),F('notes','f_notes','textarea')],
  producto:()=>[F('link','f_link','url',{full:1,ph:'ph_link'}),F('title','f_title_producto','text',{req:1,full:1}),F('room','f_room','room'),F('cat','f_cat','sel',{opts:CCATS,pre:'cat_'}),F('prio','f_prio','prio'),F('qty','f_qty','number',{min:1}),F('price','f_price','number',{min:0,step:'0.01'}),F('bought','f_bought','check'),F('img','f_img','url',{full:1}),F('photo','f_photo','photo',{full:1}),F('notes','f_notes','textarea')]
 };
-const STORE_OF=k=>['piso','gfijo','gvar','ahorro','apapel','anota'].includes(k)?'alquiler':['btarea','invitado','mesa','proveedor','programa','cancion','bnota'].includes(k)?'boda':k==='stock'?'stock':['rincon','producto','cnota','tarea'].includes(k)?'casa':'luna';
+const STORE_OF=k=>['acuerdo','costumbre','fecha','sueno','momento'].includes(k)?'nosotros':['piso','gfijo','gvar','ahorro','apapel','anota'].includes(k)?'alquiler':['btarea','invitado','mesa','proveedor','programa','cancion','bnota'].includes(k)?'boda':k==='stock'?'stock':['rincon','producto','cnota','tarea'].includes(k)?'casa':'luna';
 
 /* ================= dibujos ================= */
 const tw=(x,y,d,s)=>`<span class="tw" style="inset-inline-start:${x}%;top:${y}%;animation-delay:${d}s;font-size:${s||12}px">✦</span>`;
@@ -1688,6 +1709,7 @@ const ICON_BOX=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
 const ICON_GAME=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M6 8h12a4 4 0 0 1 4 4v2a3 3 0 0 1-5.4 1.8L15 14H9l-1.6 1.8A3 3 0 0 1 2 14v-2a4 4 0 0 1 4-4z"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="16" cy="11.5" r=".6" fill="currentColor"/><circle cx="18" cy="13" r=".6" fill="currentColor"/></svg>`;
 const ICON_RING=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><circle cx="12" cy="15" r="6"/><path d="M9 5l1.5-2h3L15 5l-3 4z"/></svg>`;
 const ICON_KEY=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M14 9l2 2"/></svg>`;
+const ICON_HEART=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>`;
 const ICON_HOME=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M12 17.2c-1.5-1.1-2.8-2-2.8-3.1a1.4 1.4 0 0 1 2.8-.4 1.4 1.4 0 0 1 2.8.4c0 1.1-1.3 2-2.8 3.1z" fill="currentColor" stroke="none"/></svg>`;
 
 /* ================= cielo estrellado ================= */
@@ -1722,7 +1744,7 @@ function setDeco(){
 const app=$('app');
 const topbar=app.querySelector('.topbar');
 const sw=document.createElement('div');sw.className='lm-switch';
-sw.innerHTML=`<button type="button" data-view="cal">${ICON_CAL}<span id="ncN1"></span></button><button type="button" data-view="luna">${ICON_PLANE}<span id="ncN2"></span></button><button type="button" data-view="casa">${ICON_HOME}<span id="ncN3"></span></button><button type="button" data-view="alquiler">${ICON_KEY}<span id="ncN7"></span></button><button type="button" data-view="stock">${ICON_BOX}<span id="ncN4"></span></button><button type="button" data-view="boda">${ICON_RING}<span id="ncN6"></span></button><button type="button" data-view="juegos">${ICON_GAME}<span id="ncN5"></span></button>`;
+sw.innerHTML=`<button type="button" data-view="cal">${ICON_CAL}<span id="ncN1"></span></button><button type="button" data-view="nosotros">${ICON_HEART}<span id="ncN8"></span></button><button type="button" data-view="luna">${ICON_PLANE}<span id="ncN2"></span></button><button type="button" data-view="casa">${ICON_HOME}<span id="ncN3"></span></button><button type="button" data-view="alquiler">${ICON_KEY}<span id="ncN7"></span></button><button type="button" data-view="stock">${ICON_BOX}<span id="ncN4"></span></button><button type="button" data-view="boda">${ICON_RING}<span id="ncN6"></span></button><button type="button" data-view="juegos">${ICON_GAME}<span id="ncN5"></span></button>`;
 topbar.after(sw);
 const footer=app.querySelector('footer');
 const luna=document.createElement('section');luna.id='luna';luna.className='ncv';luna.hidden=true;footer.before(luna);
@@ -1733,11 +1755,11 @@ document.body.append(dlg);
 ['lmPlaces','lmLists'].forEach(id=>{const d=document.createElement('datalist');d.id=id;document.body.append(d)});
 
 function applyView(){
-  const own=[topbar,sw,footer,luna,casa,stock,juegos,boda,alquiler,$('ncDash')];
+  const own=[topbar,sw,footer,luna,casa,stock,juegos,boda,alquiler,nosotros,$('ncDash')];
   [...app.children].forEach(c=>{if(own.includes(c))return;
     if(c.id==='banner'){if(view!=='cal'){if(c.dataset.lmh==null)c.dataset.lmh=c.hidden?'1':'0';c.hidden=true}else if(c.dataset.lmh!=null){c.hidden=c.dataset.lmh==='1';delete c.dataset.lmh}return}
     c.style.display=view==='cal'?'':'none'});
-  luna.hidden=view!=='luna';casa.hidden=view!=='casa';stock.hidden=view!=='stock';juegos.hidden=view!=='juegos';boda.hidden=view!=='boda';alquiler.hidden=view!=='alquiler';if(view!=='juegos')stopTimer();
+  luna.hidden=view!=='luna';casa.hidden=view!=='casa';stock.hidden=view!=='stock';juegos.hidden=view!=='juegos';boda.hidden=view!=='boda';alquiler.hidden=view!=='alquiler';nosotros.hidden=view!=='nosotros';if(view!=='juegos')stopTimer();
   sw.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));
   setDeco();render();
 }
@@ -1763,9 +1785,9 @@ const AMETA=['adatos','acontrato','aentrada'];
 function openForm(kind,it,preset){
   editing={kind,id:it?it.id:null};pendingPhoto=it?it.photo:undefined;
   const one=kind==='trip'?'':(KEMO[kind]||'')+' '+t('one_'+kind);
-  $('lmDT').textContent=kind==='trip'?t('editTrip'):kind==='bdatos'?'💍 '+tl('b_editData'):AMETA.includes(kind)?tl('a_form_'+kind):(it?t('edit'):t('add'))+' '+one;
+  $('lmDT').textContent=kind==='trip'?t('editTrip'):kind==='bdatos'?'💍 '+tl('b_editData'):kind==='ndatos'?tl('n_form'):AMETA.includes(kind)?tl('a_form_'+kind):(it?t('edit'):t('add'))+' '+one;
   $('lmDX').textContent=t('close');$('lmDC').textContent=t('cancel');$('lmDS').textContent=t('save');$('lmDF').hidden=false;
-  const v=kind==='trip'?S.luna.trip:kind==='bdatos'?{...S.boda.meta}:AMETA.includes(kind)?{n1:(S.boda.meta.n1||''),n2:(S.boda.meta.n2||''),split:'igual',...S.alquiler.meta}:(it||{status:'idea',prio:'necesario',qty:1,...(preset||{})});
+  const v=kind==='trip'?S.luna.trip:kind==='bdatos'?{...S.boda.meta}:kind==='ndatos'?{n1:(S.alquiler.meta.n1||S.boda.meta.n1||''),n2:(S.alquiler.meta.n2||S.boda.meta.n2||''),...S.nosotros.meta}:AMETA.includes(kind)?{n1:(S.boda.meta.n1||''),n2:(S.boda.meta.n2||''),split:'igual',...S.alquiler.meta}:(it||{status:'idea',prio:'necesario',qty:1,...(preset||{})});
   if(!it&&filt[kind]&&filt[kind]!=='*'){if(kind==='guardado')v.list=v.list||filt[kind];else if(kind==='producto')v.room=v.room||filt[kind];else v.place=v.place||filt[kind]}
   if(!it&&kind==='producto'&&filt.producto_c&&filt.producto_c!=='*')v.cat=v.cat||filt.producto_c;
   $('lmDB').innerHTML=FIELDS[kind]().map(f=>fieldHtml(f,v)).join('');
@@ -1790,6 +1812,7 @@ $('lmForm').addEventListener('submit',e=>{
   if($('ncPal'))data.colors=[...$('ncPal').querySelectorAll('.nc-palrow')].map(r=>{const [c,n]=r.querySelectorAll('input');return{hex:c.value,name:n.value.trim()}});
   if(editing.kind==='trip')putTrip({...S.luna.trip,...data});
   else if(editing.kind==='bdatos')putBodaMeta({...S.boda.meta,...data});
+  else if(editing.kind==='ndatos')putNosMeta({...S.nosotros.meta,...data});
   else if(AMETA.includes(editing.kind))putAlqMeta({...S.alquiler.meta,...data});
   else{const store=STORE_OF(editing.kind);const old=editing.id?S[store].items[editing.id]:null;
     const it={...(old||{}),...data,id:editing.id||rid(),kind:editing.kind,created:old?.created||Date.now()};
@@ -2667,7 +2690,7 @@ const ATABS=[['resumen','🔑'],['pisos','🏠'],['entrada','💼'],['gastos','�
 Object.assign(KEMO,{piso:'🏠',gfijo:'🧾',gvar:'🛒',ahorro:'🐷',apapel:'📋',anota:'📝'});
 Object.assign(EMPTY_FOR,{piso:'house',gfijo:'cart',gvar:'cart',ahorro:'bag',apapel:'bag',anota:'plane'});
 const am=()=>S.alquiler.meta||{};
-const an=k=>(am()[k]||'').trim()||((S.boda&&S.boda.meta&&S.boda.meta[k])||'').trim()||tl('a_'+k);
+const an=k=>(am()[k]||'').trim()||((S.nosotros&&S.nosotros.meta&&S.nosotros.meta[k])||'').trim()||((S.boda&&S.boda.meta&&S.boda.meta[k])||'').trim()||tl('a_'+k);
 const al=k=>Object.values(S.alquiler.items).filter(i=>i.kind===k);
 const incs=()=>[+am().inc1||0,+am().inc2||0];
 const incT=()=>incs()[0]+incs()[1];
@@ -2909,6 +2932,197 @@ alquiler.addEventListener('change',e=>{const id=e.target.dataset&&e.target.datas
 alquiler.addEventListener('input',e=>{if(e.target.id==='ncAlqQ')filt.alqQ=e.target.value});
 alquiler.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='ncAlqQ'){e.preventDefault();const q=e.target.value.trim();window.open('https://www.google.com/search?q='+encodeURIComponent('site:idealista.com alquiler '+q),'_blank','noopener')}});
 
+/* ================= NOSOTROS ================= */
+const T8={
+es:{nav8:'Nosotros',n_title1:'Nosotros',n_title2:'dos',n_hand:'nuestras reglas, costumbres, fechas y sueños',
+ n_resumen:'Resumen',n_acuerdos:'Acuerdos',n_costumbres:'Costumbres',n_fechas:'Fechas especiales',n_suenos:'Sueños',n_historia:'Nuestra historia',
+ n_intro_acuerdos:'Las reglas que hemos decidido juntos. Lo que pone aquí, vale para los dos 🤝',n_intro_costumbres:'Lo que hacemos siempre: nuestras tradiciones y rituales.',n_intro_fechas:'Aniversarios y días importantes, con cuenta atrás.',n_intro_suenos:'Cosas que queremos hacer juntos algún día.',n_intro_historia:'Cómo empezó todo y los momentos que no queremos olvidar.',
+ one_acuerdo:'acuerdo',one_costumbre:'costumbre',one_fecha:'fecha',one_sueno:'sueño',one_momento:'momento',
+ f_title:'Título',f_rule:'El acuerdo',f_ncat:'Tema',f_since:'Desde cuándo',f_star:'⭐ Muy importante',f_goto:'Página relacionada',f_custom:'La costumbre',f_when:'Cuándo',f_yearly:'Se repite cada año',f_dream:'El sueño',f_ndone:'¡Cumplido!',f_moment:'Qué pasó',f_story:'Cuéntalo',
+ f_nsince:'Fecha en que empezamos',f_met:'Cómo nos conocimos',f_firstPlace:'Nuestra primera cita fue en…',f_song:'Nuestra canción',f_motto:'Nuestra frase',f_nick1:'Apodo de {n}',f_nick2:'Apodo de {n}',
+ nc_viajes:'Viajes',nc_dinero:'Dinero',nc_familia:'Familia',nc_casa:'Casa',nc_celebraciones:'Celebraciones',nc_comunicacion:'Comunicación',nc_peleas:'Cuando discutimos',nc_tiempo:'Tiempo juntos',nc_religion:'Fe y valores',nc_otros:'Otros',
+ nw_diaria:'Cada día',nw_semanal:'Cada semana',nw_mensual:'Cada mes',nw_anual:'Cada año',nw_ramadan:'En Ramadán',nw_eid:'En el Eid',nw_viaje:'Cuando viajamos',nw_especial:'En días especiales',
+ ng_none:'— Ninguna —',
+ n_welcome:'¡Bienvenidos a vuestro rincón! Poned la fecha en que empezasteis y cómo os conocisteis.',n_setData:'💞 Poner nuestra historia',n_editData:'✏️ Editar nuestra historia',n_form:'💞 Nuestra historia',
+ n_daysTog:'días juntos',n_daysTogL:'{n} días juntos',n_years:'{y} años y {m} meses',n_nextDate:'Próxima fecha especial',n_noDates:'Añadid vuestro aniversario y otros días importantes.',n_ruleDay:'Acuerdo del día',n_anotherRule:'🔀 Otro',n_noRules:'Aún no hay acuerdos. ¡Escribid el primero!',
+ n_today:'¡Es hoy! 🎉',n_in:'en {n} días',n_tomorrow:'¡mañana!',n_ago:'hace {n} días',n_turns:'cumple {n}',n_goTo:'Ir a {p} ➜',n_ideas:'Ideas',n_dreamsDone:'{a} de {b} cumplidos',n_copyRules:'📋 Copiar los acuerdos',n_rulesTitle:'Nuestros acuerdos',n_since:'desde {d}',n_auto:'automático',n_ourSong:'Nuestra canción',n_firstDate:'Primera cita',
+ n_ann:'💞 Aniversario',n_wedding:'💍 Nuestra boda',
+ qrules:[['Cada vez que vamos a Argelia, antes pasamos 2 o 3 días en otro país con vuelo directo a Argel u Orán ✈️','viajes','luna'],['Nunca nos vamos a dormir enfadados','peleas',''],['Las decisiones grandes de dinero las tomamos juntos','dinero','alquiler'],['Un día a la semana es solo para nosotros, sin móviles','tiempo','cal'],['Si algo nos molesta, lo decimos con calma y en el momento','comunicacion',''],['Las tareas de casa se reparten entre los dos','casa','casa'],['Visitamos a la familia de los dos por igual','familia',''],['Cada mes ahorramos una parte para nuestros sueños','dinero','alquiler']],
+ qcustoms:[['Desayuno especial juntos','semanal'],['Cita sorpresa','mensual'],['Iftar juntos y preparar la mesa','ramadan'],['Ropa nueva y visitar a la familia','eid'],['Escribirnos una carta en el aniversario','anual'],['Foto en el mismo sitio en cada viaje','viaje'],['Noche de peli con palomitas','semanal'],['Decirnos tres cosas bonitas antes de dormir','diaria']],
+ qdreams:['Visitar Japón','Ver una aurora boreal','Tener nuestra propia casa','Hacer el Umrah juntos','Aprender a cocinar el plato favorito del otro','Viajar en tren nocturno','Montar en globo','Un viaje solo con la familia']},
+en:{nav8:'Us',n_title1:'Just',n_title2:'us two',n_hand:'our rules, customs, dates and dreams',
+ n_resumen:'Overview',n_acuerdos:'Agreements',n_costumbres:'Customs',n_fechas:'Special dates',n_suenos:'Dreams',n_historia:'Our story',
+ n_intro_acuerdos:'The rules we’ve decided together. What’s here counts for both of us 🤝',n_intro_costumbres:'The things we always do: our traditions and rituals.',n_intro_fechas:'Anniversaries and important days, with a countdown.',n_intro_suenos:'Things we want to do together one day.',n_intro_historia:'How it all began and the moments we don’t want to forget.',
+ one_acuerdo:'agreement',one_costumbre:'custom',one_fecha:'date',one_sueno:'dream',one_momento:'moment',
+ f_title:'Title',f_rule:'The agreement',f_ncat:'Topic',f_since:'Since when',f_star:'⭐ Very important',f_goto:'Related page',f_custom:'The custom',f_when:'When',f_yearly:'Repeats every year',f_dream:'The dream',f_ndone:'Done!',f_moment:'What happened',f_story:'Tell the story',
+ f_nsince:'The day we got together',f_met:'How we met',f_firstPlace:'Our first date was at…',f_song:'Our song',f_motto:'Our phrase',f_nick1:'{n}’s nickname',f_nick2:'{n}’s nickname',
+ nc_viajes:'Travel',nc_dinero:'Money',nc_familia:'Family',nc_casa:'Home',nc_celebraciones:'Celebrations',nc_comunicacion:'Communication',nc_peleas:'When we argue',nc_tiempo:'Time together',nc_religion:'Faith & values',nc_otros:'Other',
+ nw_diaria:'Every day',nw_semanal:'Every week',nw_mensual:'Every month',nw_anual:'Every year',nw_ramadan:'In Ramadan',nw_eid:'At Eid',nw_viaje:'When we travel',nw_especial:'On special days',
+ ng_none:'— None —',
+ n_welcome:'Welcome to your corner! Add the day you got together and how you met.',n_setData:'💞 Add our story',n_editData:'✏️ Edit our story',n_form:'💞 Our story',
+ n_daysTog:'days together',n_daysTogL:'{n} days together',n_years:'{y} years and {m} months',n_nextDate:'Next special date',n_noDates:'Add your anniversary and other important days.',n_ruleDay:'Agreement of the day',n_anotherRule:'🔀 Another',n_noRules:'No agreements yet. Write the first one!',
+ n_today:'It’s today! 🎉',n_in:'in {n} days',n_tomorrow:'tomorrow!',n_ago:'{n} days ago',n_turns:'turns {n}',n_goTo:'Go to {p} ➜',n_ideas:'Ideas',n_dreamsDone:'{a} of {b} done',n_copyRules:'📋 Copy the agreements',n_rulesTitle:'Our agreements',n_since:'since {d}',n_auto:'automatic',n_ourSong:'Our song',n_firstDate:'First date',
+ n_ann:'💞 Anniversary',n_wedding:'💍 Our wedding',
+ qrules:[['Every time we go to Algeria, we first spend 2 or 3 days in another country with a direct flight to Algiers or Oran ✈️','viajes','luna'],['We never go to sleep angry','peleas',''],['Big money decisions are made together','dinero','alquiler'],['One day a week is just for us, no phones','tiempo','cal'],['If something bothers us, we say it calmly and right away','comunicacion',''],['Housework is shared between us','casa','casa'],['We visit both families equally','familia',''],['Every month we save something for our dreams','dinero','alquiler']],
+ qcustoms:[['Special breakfast together','semanal'],['Surprise date','mensual'],['Iftar together and setting the table','ramadan'],['New clothes and visiting family','eid'],['Writing each other a letter on our anniversary','anual'],['A photo in the same pose on every trip','viaje'],['Movie night with popcorn','semanal'],['Telling each other three nice things before sleep','diaria']],
+ qdreams:['Visit Japan','See the northern lights','Have our own house','Do Umrah together','Learn to cook each other’s favourite dish','Take a night train','Ride a hot-air balloon','A trip with the whole family']},
+it:{nav8:'Noi',n_title1:'Noi',n_title2:'due',n_hand:'le nostre regole, abitudini, date e sogni',
+ n_resumen:'Riepilogo',n_acuerdos:'Accordi',n_costumbres:'Abitudini',n_fechas:'Date speciali',n_suenos:'Sogni',n_historia:'La nostra storia',
+ n_intro_acuerdos:'Le regole decise insieme. Quello che c’è qui vale per tutti e due 🤝',n_intro_costumbres:'Quello che facciamo sempre: le nostre tradizioni.',n_intro_fechas:'Anniversari e giorni importanti, con il conto alla rovescia.',n_intro_suenos:'Cose che vogliamo fare insieme un giorno.',n_intro_historia:'Come è iniziato tutto e i momenti da non dimenticare.',
+ one_acuerdo:'accordo',one_costumbre:'abitudine',one_fecha:'data',one_sueno:'sogno',one_momento:'momento',
+ f_title:'Titolo',f_rule:'L’accordo',f_ncat:'Tema',f_since:'Da quando',f_star:'⭐ Molto importante',f_goto:'Pagina collegata',f_custom:'L’abitudine',f_when:'Quando',f_yearly:'Si ripete ogni anno',f_dream:'Il sogno',f_ndone:'Fatto!',f_moment:'Cosa è successo',f_story:'Raccontalo',
+ f_nsince:'Il giorno in cui ci siamo messi insieme',f_met:'Come ci siamo conosciuti',f_firstPlace:'Il nostro primo appuntamento è stato a…',f_song:'La nostra canzone',f_motto:'La nostra frase',f_nick1:'Soprannome di {n}',f_nick2:'Soprannome di {n}',
+ nc_viajes:'Viaggi',nc_dinero:'Soldi',nc_familia:'Famiglia',nc_casa:'Casa',nc_celebraciones:'Feste',nc_comunicacion:'Comunicazione',nc_peleas:'Quando litighiamo',nc_tiempo:'Tempo insieme',nc_religion:'Fede e valori',nc_otros:'Altro',
+ nw_diaria:'Ogni giorno',nw_semanal:'Ogni settimana',nw_mensual:'Ogni mese',nw_anual:'Ogni anno',nw_ramadan:'Nel Ramadan',nw_eid:'All’Eid',nw_viaje:'Quando viaggiamo',nw_especial:'Nei giorni speciali',
+ ng_none:'— Nessuna —',
+ n_welcome:'Benvenuti nel vostro angolo! Inserite il giorno in cui vi siete messi insieme e come vi siete conosciuti.',n_setData:'💞 Scrivi la nostra storia',n_editData:'✏️ Modifica la nostra storia',n_form:'💞 La nostra storia',
+ n_daysTog:'giorni insieme',n_daysTogL:'{n} giorni insieme',n_years:'{y} anni e {m} mesi',n_nextDate:'Prossima data speciale',n_noDates:'Aggiungete l’anniversario e altri giorni importanti.',n_ruleDay:'Accordo del giorno',n_anotherRule:'🔀 Un altro',n_noRules:'Ancora nessun accordo. Scrivete il primo!',
+ n_today:'È oggi! 🎉',n_in:'tra {n} giorni',n_tomorrow:'domani!',n_ago:'{n} giorni fa',n_turns:'compie {n}',n_goTo:'Vai a {p} ➜',n_ideas:'Idee',n_dreamsDone:'{a} su {b} realizzati',n_copyRules:'📋 Copia gli accordi',n_rulesTitle:'I nostri accordi',n_since:'dal {d}',n_auto:'automatico',n_ourSong:'La nostra canzone',n_firstDate:'Primo appuntamento',
+ n_ann:'💞 Anniversario',n_wedding:'💍 Il nostro matrimonio',
+ qrules:[['Ogni volta che andiamo in Algeria, prima passiamo 2 o 3 giorni in un altro paese con volo diretto per Algeri o Orano ✈️','viajes','luna'],['Non andiamo mai a dormire arrabbiati','peleas',''],['Le grandi decisioni sui soldi le prendiamo insieme','dinero','alquiler'],['Un giorno alla settimana è solo per noi, senza telefoni','tiempo','cal'],['Se qualcosa ci dà fastidio, lo diciamo con calma e subito','comunicacion',''],['Le faccende di casa si dividono','casa','casa'],['Visitiamo le famiglie di tutti e due allo stesso modo','familia',''],['Ogni mese risparmiamo qualcosa per i nostri sogni','dinero','alquiler']],
+ qcustoms:[['Colazione speciale insieme','semanal'],['Appuntamento a sorpresa','mensual'],['Iftar insieme e apparecchiare','ramadan'],['Vestiti nuovi e visita alla famiglia','eid'],['Scriverci una lettera all’anniversario','anual'],['Una foto nella stessa posa in ogni viaggio','viaje'],['Serata film con popcorn','semanal'],['Dirci tre cose belle prima di dormire','diaria']],
+ qdreams:['Visitare il Giappone','Vedere l’aurora boreale','Avere una casa nostra','Fare la Umrah insieme','Imparare a cucinare il piatto preferito dell’altro','Viaggiare in treno notturno','Salire su una mongolfiera','Un viaggio con tutta la famiglia']},
+ar:{nav8:'نحن',n_resumen:'الملخص',n_acuerdos:'اتفاقاتنا',n_costumbres:'عاداتنا',n_fechas:'تواريخ مميزة',n_suenos:'أحلامنا',n_historia:'قصتنا'}};
+for(const l in T8)Object.assign(T[l],T8[l]);
+const nosotros=document.createElement('section');nosotros.id='nosotros';nosotros.className='ncv';nosotros.hidden=true;footer.before(nosotros);
+const NCATS={viajes:'✈️',dinero:'💶',familia:'👨‍👩‍👧',casa:'🏠',celebraciones:'🎉',comunicacion:'💬',peleas:'🕊️',tiempo:'⏳',religion:'🌙',otros:'✨'};
+const NWHEN={diaria:'☀️',semanal:'📅',mensual:'🗓️',anual:'🎂',ramadan:'🌙',eid:'🐑',viaje:'🧳',especial:'💫'};
+const PAGES={cal:['📅','nav1'],luna:['✈️','nav2'],casa:['🏡','nav3'],alquiler:['🔑','nav7'],boda:['💍','nav6'],stock:['📦','nav4'],juegos:['🎲','nav5']};
+const pageName=k=>PAGES[k]?PAGES[k][0]+' '+(['nav1','nav2','nav3'].includes(PAGES[k][1])?t(PAGES[k][1]):tl(PAGES[k][1])):'';
+const NTABS=[['resumen','💞'],['acuerdos','🤝'],['costumbres','🌙'],['fechas','🎉'],['suenos','✨'],['historia','📖']];
+Object.assign(KEMO,{acuerdo:'🤝',costumbre:'🌙',fecha:'🎉',sueno:'✨',momento:'📸'});
+Object.assign(EMPTY_FOR,{acuerdo:'house',costumbre:'plane',fecha:'plane',sueno:'map',momento:'plane'});
+const nm8=()=>S.nosotros.meta||{};
+const nl=k=>Object.values(S.nosotros.items).filter(i=>i.kind===k);
+const gotoOpts=()=>[['',tl('ng_none')],...Object.keys(PAGES).map(k=>[k,pageName(k)])];
+FIELDS.ndatos=()=>[F('n1','f_an1','text'),F('n2','f_an2','text'),F('since','f_nsince','date'),F('firstPlace','f_firstPlace','text'),F('nick1','f_nick1','text',{lv:{n:an('n1')}}),F('nick2','f_nick2','text',{lv:{n:an('n2')}}),F('song','f_song','text'),F('songLink','f_link','url'),F('motto','f_motto','text',{full:1}),F('met','f_met','textarea')];
+FIELDS.acuerdo=()=>[F('title','f_rule','textarea',{req:1}),F('cat','f_ncat','sel',{opts:NCATS,pre:'nc_'}),F('date','f_since','date'),F('goto','f_goto','opts',{opts:gotoOpts}),F('star','f_star','check'),F('notes','f_notes','textarea')];
+FIELDS.costumbre=()=>[F('title','f_custom','text',{req:1,full:1}),F('when','f_when','sel',{opts:NWHEN,pre:'nw_'}),F('cat','f_ncat','sel',{opts:NCATS,pre:'nc_'}),F('notes','f_notes','textarea')];
+FIELDS.fecha=()=>[F('title','f_title','text',{req:1,full:1}),F('date','f_date','date',{req:1}),F('yearly','f_yearly','check'),F('notes','f_notes','textarea')];
+FIELDS.sueno=()=>[F('title','f_dream','text',{req:1,full:1}),F('cat','f_ncat','sel',{opts:NCATS,pre:'nc_'}),F('goto','f_goto','opts',{opts:gotoOpts}),F('done','f_ndone','check'),F('link','f_link','url',{full:1}),F('img','f_img','url',{full:1}),F('photo','f_photo','photo',{full:1}),F('notes','f_notes','textarea')];
+FIELDS.momento=()=>[F('title','f_moment','text',{req:1,full:1}),F('date','f_date','date'),F('place','f_where','text'),F('photo','f_photo','photo',{full:1}),F('img','f_img','url',{full:1}),F('notes','f_story','textarea')];
+let tabN='resumen';try{tabN=localStorage.getItem('nc-ntab')||'resumen'}catch(e){}
+let ruleIdx=-1;
+async function putNosMeta(x){S.nosotros.meta=x;render();if(!fdb||!sp)return;try{await setDoc(doc(fdb,'espacios',sp,'nosmeta','datos'),clean(x))}catch(e){toast(t('errSave'))}}
+function nHead(k,addKind,extra=''){return `<div class="lm-head"><div><h3>${NTABS.find(x=>x[0]===k)[1]} ${tl('n_'+k)}</h3><p>${tl('n_intro_'+k)}</p></div>${addKind||extra?`<div class="lm-acts">${extra}${addKind?`<button class="lm-btn" type="button" data-nadd="${addKind}">+ ${t('add')} ${t('one_'+addKind)}</button>`:''}</div>`:''}</div>`}
+function togDays(){const s=nm8().since;return s?-daysTo(s):null}
+function togYM(){const s=nm8().since;if(!s)return null;const a=new Date(s+'T12:00:00'),b=new Date();let m=(b.getFullYear()-a.getFullYear())*12+b.getMonth()-a.getMonth();if(b.getDate()<a.getDate())m--;return{y:Math.floor(m/12),m:m%12}}
+function nextOcc(d,yearly){if(!d)return null;if(!yearly)return{date:d,n:daysTo(d),years:null};const x=new Date(d+'T12:00:00');const now=new Date();let y=now.getFullYear();let c=new Date(y,x.getMonth(),x.getDate(),12);if(daysTo(c.toISOString().slice(0,10))<0)c=new Date(++y,x.getMonth(),x.getDate(),12);const iso=`${c.getFullYear()}-${String(c.getMonth()+1).padStart(2,'0')}-${String(c.getDate()).padStart(2,'0')}`;return{date:iso,n:daysTo(iso),years:y-x.getFullYear()}}
+function allDates(){const out=nl('fecha').map(f=>({it:f,title:f.title,...nextOcc(f.date,f.yearly)}));const m=nm8();
+  if(m.since&&!nl('fecha').some(f=>f.date===m.since))out.push({auto:1,title:tl('n_ann'),...nextOcc(m.since,true)});
+  const bd=S.boda&&S.boda.meta&&S.boda.meta.date;if(bd&&!nl('fecha').some(f=>f.date===bd))out.push({auto:1,title:tl('n_wedding'),...nextOcc(bd,daysTo(bd)<0)});
+  return out.filter(x=>x.date).sort((a,b)=>(a.n<0)-(b.n<0)||a.n-b.n)}
+const inTxt=n=>n===0?tl('n_today'):n===1?tl('n_tomorrow'):n>0?tl('n_in').replace('{n}',n):tl('n_ago').replace('{n}',-n);
+const gotoBtn=k=>k&&PAGES[k]?`<button type="button" class="lm-ic" data-ngo="${k}">${tl('n_goTo').replace('{p}',pageName(k))}</button>`:'';
+function ruleCard(r,i){return `<article class="n-rule${r.star?' star':''}"><span class="n-num">${i+1}</span><div style="flex:1;min-width:0"><p class="n-txt">${esc(r.title)}</p><div class="lm-meta"><span>${NCATS[r.cat||'otros']} ${tl('nc_'+(r.cat||'otros'))}</span>${r.date?`<span>· ${tl('n_since').replace('{d}',fd(r.date,{day:'numeric',month:'short',year:'numeric'}))}</span>`:''}${r.star?'<span>⭐</span>':''}</div>${r.notes?`<p class="lm-notes">${esc(r.notes)}</p>`:''}${acts('nosotros',r,gotoBtn(r.goto))}</div></article>`}
+const sortedRules=()=>nl('acuerdo').sort((a,b)=>(b.star?1:0)-(a.star?1:0)||(a.created||0)-(b.created||0));
+/* ---- resumen ---- */
+function nResumen(){
+  const m=nm8();const rs=sortedRules();const ds=allDates();const dr=nl('sueno');
+  const welcome=!m.since?`<div class="lm-box" style="margin-bottom:16px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:space-between"><b style="flex:1;min-width:200px">${tl('n_welcome')}</b><button class="lm-btn gold sm" type="button" data-ndatos="1">${tl('n_setData')}</button></div>`:'';
+  const stats=`<div class="lm-stats"><button type="button" class="lm-stat" data-ntab="acuerdos"><b>${rs.length}</b><span>🤝 ${tl('n_acuerdos')}</span></button><button type="button" class="lm-stat" data-ntab="costumbres"><b>${nl('costumbre').length}</b><span>🌙 ${tl('n_costumbres')}</span></button><button type="button" class="lm-stat" data-ntab="suenos"><b>${dr.filter(x=>x.done).length}/${dr.length}</b><span>✨ ${tl('n_suenos')}</span></button><button type="button" class="lm-stat" data-ntab="historia"><b>${nl('momento').length}</b><span>📸 ${tl('n_historia')}</span></button></div>`;
+  if(ruleIdx<0||ruleIdx>=rs.length)ruleIdx=rs.length?Math.floor(new Date().getDate()%rs.length):0;
+  const r=rs[ruleIdx];
+  const rule=`<div class="lm-box nightbox"><h4 class="lm-sub">🤝 ${tl('n_ruleDay')}</h4>${r?`<p class="n-big">“${esc(r.title)}”</p><div style="display:flex;gap:8px;flex-wrap:wrap">${rs.length>1?`<button type="button" class="lm-btn gold sm" data-nrule="1">${tl('n_anotherRule')}</button>`:''}${r.goto&&PAGES[r.goto]?`<button type="button" class="lm-btn sm" data-ngo="${r.goto}">${tl('n_goTo').replace('{p}',pageName(r.goto))}</button>`:''}</div>`:`<p>${tl('n_noRules')}</p><button type="button" class="lm-btn gold sm" data-ntab="acuerdos">${tl('n_acuerdos')} ➜</button>`}</div>`;
+  const nd=ds.filter(x=>x.n>=0).slice(0,4);
+  const dates=`<div class="lm-box"><h4 class="lm-sub">🎉 ${tl('n_nextDate')}</h4>${nd.length?nd.map(x=>`<div class="lm-ev"><span class="k">${x.n===0?'🎉':'📅'}</span><span class="x"><b>${esc(x.title)}</b> <small>· ${fd(x.date,{day:'numeric',month:'long'})}${x.years>0?' · '+tl('n_turns').replace('{n}',x.years):''}</small></span><span class="lm-pill ${x.n<=7?'favorito':''}">${inTxt(x.n)}</span></div>`).join(''):`<p class="lm-meta" style="margin:0">${tl('n_noDates')}</p>`}<button class="lm-btn sm" type="button" data-ntab="fechas" style="margin-top:8px">${tl('n_fechas')} ➜</button></div>`;
+  const ym=togYM();
+  const story=`<div class="lm-box"><h4 class="lm-sub">📖 ${esc(an('n1'))}${m.nick1?` <small>(${esc(m.nick1)})</small>`:''} & ${esc(an('n2'))}${m.nick2?` <small>(${esc(m.nick2)})</small>`:''}</h4>
+   ${m.since?`<p style="margin:0 0 4px">💞 ${fd(m.since,{day:'numeric',month:'long',year:'numeric'})}${ym?` · ${tl('n_years').replace('{y}',ym.y).replace('{m}',ym.m)}`:''}</p>`:''}
+   ${m.firstPlace?`<p style="margin:0 0 4px">📍 ${tl('n_firstDate')}: ${esc(m.firstPlace)}</p>`:''}${m.song?`<p style="margin:0 0 4px">🎵 ${esc(m.song)} ${m.songLink?lnk(m.songLink,'▶'):''}</p>`:''}
+   ${m.motto?`<p class="n-motto">“${esc(m.motto)}”</p>`:''}${m.met?`<p class="lm-notes">${esc(m.met)}</p>`:''}
+   <button type="button" class="lm-btn sm" data-ndatos="1" style="margin-top:6px">${m.since?tl('n_editData'):tl('n_setData')}</button></div>`;
+  return welcome+stats+`<div class="lm-two"><div style="display:flex;flex-direction:column;gap:14px;min-width:0">${rule}${dates}</div><div style="display:flex;flex-direction:column;gap:14px;min-width:0">${story}</div></div>`;
+}
+/* ---- acuerdos ---- */
+function nAcuerdos(){
+  const rs=sortedRules();const fc=filt.na_c||'*';
+  let h=nHead('acuerdos','acuerdo',rs.length?`<button class="lm-btn ghost" type="button" data-ncopy="1">${tl('n_copyRules')}</button>`:'');
+  const miss=(tl('qrules')||[]).map((x,i)=>[...x,i]).filter(x=>!rs.some(r=>r.title===x[0]));
+  if(miss.length)h+=`<div class="lm-box" style="margin-bottom:14px"><h4 class="lm-sub" style="font-size:16px">💡 ${tl('n_ideas')}</h4><div class="lm-chips" style="margin:0">${miss.map(([s,c,g,i])=>`<button type="button" class="lm-chip" data-nqr="${i}">${NCATS[c]} ${esc(s)}</button>`).join('')}</div></div>`;
+  if(!rs.length)return h+empty('acuerdo',tl('n_noRules'),`<button class="lm-btn sm" type="button" data-nadd="acuerdo">${t('addFirst')}</button>`);
+  const cats=Object.keys(NCATS).filter(c=>rs.some(r=>(r.cat||'otros')===c));
+  if(cats.length>1)h+=chips('na_c',cats.map(k=>[k,NCATS[k]+' '+tl('nc_'+k)]),fc);
+  const list=rs.filter(r=>fc==='*'||(r.cat||'otros')===fc);
+  h+=`<div class="n-rules">${list.map(r=>ruleCard(r,rs.indexOf(r))).join('')}</div>`;
+  return h;
+}
+/* ---- costumbres ---- */
+function nCostumbres(){
+  const cs=nl('costumbre');let h=nHead('costumbres','costumbre');
+  const miss=(tl('qcustoms')||[]).map((x,i)=>[...x,i]).filter(x=>!cs.some(c=>c.title===x[0]));
+  if(miss.length)h+=`<div class="lm-chips" style="margin-bottom:14px"><span class="lm-meta" style="margin:0 4px 0 0">${tl('n_ideas')}:</span>${miss.map(([s,w,i])=>`<button type="button" class="lm-chip" data-nqc="${i}">${NWHEN[w]} ${esc(s)}</button>`).join('')}</div>`;
+  if(!cs.length)return h+empty('costumbre',t('empty'),`<button class="lm-btn sm" type="button" data-nadd="costumbre">${t('addFirst')}</button>`);
+  h+=Object.keys(NWHEN).filter(w=>cs.some(c=>(c.when||'especial')===w)).map(w=>`<div class="nc-cathead">${NWHEN[w]} ${tl('nw_'+w)}</div><div class="lm-grid">${cs.filter(c=>(c.when||'especial')===w).sort((a,b)=>(a.created||0)-(b.created||0)).map(c=>`<article class="lm-card n-custom"><h4>${esc(c.title)}</h4>${c.cat&&c.cat!=='otros'?`<div class="lm-meta"><span>${NCATS[c.cat]} ${tl('nc_'+c.cat)}</span></div>`:''}${c.notes?`<p class="lm-notes">${esc(c.notes)}</p>`:''}${acts('nosotros',c)}</article>`).join('')}</div>`).join('');
+  return h;
+}
+/* ---- fechas ---- */
+function nFechas(){
+  const ds=allDates();let h=nHead('fechas','fecha');
+  const m=nm8();const sugg=[];if(!m.since)sugg.push(`<button type="button" class="lm-chip" data-ndatos="1">${tl('n_ann')}</button>`);
+  [['n1','🎂'],['n2','🎂']].forEach(([k,e])=>{const ttl=e+' '+an(k);if(!nl('fecha').some(f=>f.title===ttl))sugg.push(`<button type="button" class="lm-chip" data-nqd="${esc(ttl)}">${esc(ttl)}</button>`)});
+  if(!nl('fecha').some(f=>f.title===tl('n_firstDate')))sugg.push(`<button type="button" class="lm-chip" data-nqd="${esc(tl('n_firstDate'))}">📍 ${tl('n_firstDate')}</button>`);
+  if(sugg.length)h+=`<div class="lm-chips" style="margin-bottom:14px"><span class="lm-meta" style="margin:0 4px 0 0">${tl('n_ideas')}:</span>${sugg.join('')}</div>`;
+  if(!ds.length)return h+empty('fecha',tl('n_noDates'),`<button class="lm-btn sm" type="button" data-nadd="fecha">${t('addFirst')}</button>`);
+  h+=`<div class="lm-grid">${ds.map(x=>{const it=x.it;return `<article class="lm-card n-date${x.n>=0&&x.n<=7?' soon':''}"><div class="n-cd"><b>${x.n>0?x.n:x.n===0?'🎉':'💞'}</b><span>${x.n>0?(x.n===1?tl('b_day1')||'día':tl('b_days')||'días'):''}</span></div><h4>${esc(x.title)}</h4><div class="lm-meta"><span>📅 ${fd(x.date,{weekday:'short',day:'numeric',month:'long',year:'numeric'})}</span>${x.years>0?`<span>· ${tl('n_turns').replace('{n}',x.years)}</span>`:''}</div><div class="lm-meta"><span class="lm-pill ${x.n>=0&&x.n<=7?'favorito':''}">${inTxt(x.n)}</span>${x.auto?`<span class="lm-pill">${tl('n_auto')}</span>`:''}</div>${it&&it.notes?`<p class="lm-notes">${esc(it.notes)}</p>`:''}${it?acts('nosotros',it,it.inCal?'<span class="lm-pill ok">📅</span>':`<button class="lm-ic" type="button" data-ncal="${it.id}">📅</button>`):''}</article>`}).join('')}</div>`;
+  return h;
+}
+/* ---- sueños ---- */
+function nSuenos(){
+  const ds=nl('sueno').sort((a,b)=>(a.done?1:0)-(b.done?1:0)||(a.created||0)-(b.created||0));let h=nHead('suenos','sueno');
+  const miss=(tl('qdreams')||[]).filter(s=>!ds.some(d=>d.title===s));
+  if(miss.length)h+=`<div class="lm-chips" style="margin-bottom:14px"><span class="lm-meta" style="margin:0 4px 0 0">${tl('n_ideas')}:</span>${miss.map(s=>`<button type="button" class="lm-chip" data-nqs="${esc(s)}">✨ ${esc(s)}</button>`).join('')}</div>`;
+  if(!ds.length)return h+empty('sueno',t('empty'),`<button class="lm-btn sm" type="button" data-nadd="sueno">${t('addFirst')}</button>`);
+  const done=ds.filter(x=>x.done).length;
+  h+=`<p class="lm-meta" style="margin:0 0 6px">${tl('n_dreamsDone').replace('{a}',done).replace('{b}',ds.length)}</p><div class="lm-track"><i style="width:${done/ds.length*100}%;background:#C9A04A"></i></div>`;
+  h+=`<div class="lm-grid">${ds.map(d=>{const im=imgOf(d);return `<article class="lm-card${d.done?' n-done':''}">${im?`<img class="ph" src="${esc(im)}" alt="" loading="lazy" data-zoom="${esc(im)}" referrerpolicy="no-referrer">`:''}<div style="display:flex;gap:8px;align-items:flex-start"><input type="checkbox" class="nc-check" data-tog="nosotros:${d.id}:done"${d.done?' checked':''} aria-label="${esc(tl('f_ndone'))}"><h4>${esc(d.title)}</h4></div>${d.cat&&d.cat!=='otros'?`<div class="lm-meta"><span>${NCATS[d.cat]} ${tl('nc_'+d.cat)}</span></div>`:''}${d.notes?`<p class="lm-notes">${esc(d.notes)}</p>`:''}${d.link?lnk(d.link):''}${acts('nosotros',d,gotoBtn(d.goto))}</article>`}).join('')}</div>`;
+  return h;
+}
+/* ---- historia ---- */
+function nHistoria(){
+  const m=nm8();const ms=nl('momento').sort((a,b)=>(a.date||'9999').localeCompare(b.date||'9999'));
+  let h=nHead('historia','momento',`<button class="lm-btn ghost" type="button" data-ndatos="1">${m.since?tl('n_editData'):tl('n_setData')}</button>`);
+  const first=m.since||m.met?`<div class="n-tl-item first"><span class="n-dot">💞</span><div class="lm-box"><h4 class="lm-sub" style="font-size:17px">${tl('f_met')}</h4>${m.since?`<p class="lm-meta" style="margin:0 0 6px">📅 ${fd(m.since,{day:'numeric',month:'long',year:'numeric'})}${m.firstPlace?' · 📍 '+esc(m.firstPlace):''}</p>`:''}${m.met?`<p style="margin:0;white-space:pre-wrap">${esc(m.met)}</p>`:''}</div></div>`:'';
+  if(!ms.length&&!first)return h+empty('momento',t('empty'),`<button class="lm-btn sm" type="button" data-nadd="momento">${t('addFirst')}</button>`);
+  h+=`<div class="n-tl">${first}${ms.map(x=>{const im=imgOf(x);return `<div class="n-tl-item"><span class="n-dot">📸</span><article class="lm-card">${im?`<img class="ph" src="${esc(im)}" alt="" loading="lazy" data-zoom="${esc(im)}" referrerpolicy="no-referrer">`:''}<h4>${esc(x.title)}</h4><div class="lm-meta">${x.date?`<span>📅 ${fd(x.date,{day:'numeric',month:'long',year:'numeric'})}</span>`:''}${x.place?`<span>📍 ${esc(x.place)}</span>`:''}</div>${x.notes?`<p class="lm-notes" style="white-space:pre-wrap">${esc(x.notes)}</p>`:''}${acts('nosotros',x)}</article></div>`}).join('')}</div>`;
+  return h;
+}
+const SCENE_NOS=`<svg class="lm-scene" viewBox="0 0 150 170" aria-hidden="true"><circle cx="128" cy="20" r="11" fill="var(--moon)"/><circle cx="123" cy="16" r="11" fill="var(--night2)"/>
+<path d="M52 118c-26-16-38-30-38-46a18 18 0 0 1 38-6 18 18 0 0 1 38 6c0 16-12 30-38 46z" fill="var(--pink)" stroke="var(--btn-shadow)" stroke-width="3" stroke-linejoin="round"/>
+<path d="M98 150c-18-11-27-21-27-32a13 13 0 0 1 27-4 13 13 0 0 1 27 4c0 11-9 21-27 32z" fill="var(--butter)" stroke="var(--btn-shadow)" stroke-width="3" stroke-linejoin="round"/>
+<path d="M30 140c20 10 40-6 60-30" fill="none" stroke="var(--star)" stroke-width="2.5" stroke-dasharray="4 5" stroke-linecap="round"/>
+<path d="M104 52l14-6-4 7 8 3-14 6 4-7z" fill="var(--paper)" stroke="var(--btn-shadow)" stroke-width="2" stroke-linejoin="round"/>
+<path d="M30 24l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="var(--star)"/><path d="M80 30l1.5 3.5 3.5 1.5-3.5 1.5-1.5 3.5-1.5-3.5-3.5-1.5 3.5-1.5z" fill="var(--star)"/></svg>`;
+function renderNosotros(){
+  const m=nm8();if(!NTABS.some(x=>x[0]===tabN))tabN='resumen';
+  const title=`${esc(an('n1'))} <span>&amp;</span> ${esc(an('n2'))}`;
+  const ym=togYM();
+  const dates=m.since?`<span>💞 ${fd(m.since,{day:'numeric',month:'long',year:'numeric'})}${ym?' · '+tl('n_years').replace('{y}',ym.y).replace('{m}',ym.m):''}</span><button type="button" class="lm-link" data-ndatos="1">${tl('n_editData')}</button>`:`<button type="button" class="lm-link" data-ndatos="1">${tl('n_setData')}</button>`;
+  const d=togDays();
+  const cnt={acuerdos:nl('acuerdo').length,costumbres:nl('costumbre').length,fechas:nl('fecha').length,suenos:nl('sueno').filter(x=>!x.done).length,historia:nl('momento').length};
+  let body;
+  if(tabN==='acuerdos')body=nAcuerdos();else if(tabN==='costumbres')body=nCostumbres();else if(tabN==='fechas')body=nFechas();else if(tabN==='suenos')body=nSuenos();else if(tabN==='historia')body=nHistoria();else body=nResumen();
+  nosotros.innerHTML=heroHtml(SCENE_NOS,title,tl('n_hand'),dates,`<div class="lm-count"><div><b>${d!=null&&d>=0?d:'💞'}</b><span>${d!=null&&d>=0?esc(tl('n_daysTog')):''}</span></div></div>`,tw(25,20,.2)+tw(58,72,1.4,9)+tw(80,25,.7,12)+tw(42,85,2.2,10))+
+   `<div class="lm-tabs" role="tablist">${NTABS.map(([k,e])=>`<button type="button" role="tab" class="lm-tab" data-ntab="${k}" aria-selected="${tabN===k}">${e} ${tl('n_'+k)}${cnt[k]?`<span class="n">${cnt[k]}</span>`:''}</button>`).join('')}</div><div class="lm-panel">${body}</div>`;
+}
+function nosClick(e){
+  const b=e.target.closest('button');if(!b)return false;const d=b.dataset;
+  if(d.ntab){tabN=d.ntab;try{localStorage.setItem('nc-ntab',tabN)}catch(_){}render();return true}
+  if(d.ndatos){openForm('ndatos');return true}
+  if(d.nadd){const pre={};if(d.nadd==='acuerdo'&&filt.na_c&&filt.na_c!=='*')pre.cat=filt.na_c;if(d.nadd==='costumbre')pre.when='semanal';if(d.nadd==='fecha')pre.yearly=true;openForm(d.nadd,null,pre);return true}
+  if(d.ngo){view=d.ngo;try{localStorage.setItem('nc-view',view)}catch(_){}applyView();window.scrollTo({top:0});return true}
+  if(d.nrule){const n=nl('acuerdo').length;if(n>1){let x;do{x=Math.floor(Math.random()*n)}while(x===ruleIdx);ruleIdx=x}render();return true}
+  if(d.nqr!=null){const q=(tl('qrules')||[])[+d.nqr];if(q)put('nosotros',{id:rid(),kind:'acuerdo',title:q[0],cat:q[1],goto:q[2],star:false,created:Date.now()});return true}
+  if(d.nqc!=null){const q=(tl('qcustoms')||[])[+d.nqc];if(q)put('nosotros',{id:rid(),kind:'costumbre',title:q[0],when:q[1],created:Date.now()});return true}
+  if(d.nqs){put('nosotros',{id:rid(),kind:'sueno',title:d.nqs,done:false,created:Date.now()});return true}
+  if(d.nqd){openForm('fecha',null,{title:d.nqd,yearly:true});return true}
+  if(d.ncal){const it=S.nosotros.items[d.ncal];if(!it)return true;const o=nextOcc(it.date,it.yearly);(async()=>{try{await setDoc(doc(fdb,'espacios',sp,'citas',rid()),{titulo:('🎉 '+it.title).slice(0,120),fecha:o.date,hora:'',nota:it.notes||'',cat:'especial',hecho:false,fotos:[],creado:Date.now()});put('nosotros',{...it,inCal:true});toast(t('addedCal'))}catch(_){toast(t('errSave'))}})();return true}
+  if(d.ncopy){const rs=sortedRules();copyText('🤝 '+tl('n_rulesTitle')+' — '+an('n1')+' & '+an('n2')+'\n\n'+rs.map((r,i)=>`${i+1}. ${r.title}`).join('\n'));return true}
+  return false;
+}
+nosotros.addEventListener('click',e=>{if(!nosClick(e))onClick(e)});
+nosotros.addEventListener('change',onChange);
+
 /* ================= render ================= */
 const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
 function renderDash(){
@@ -2916,12 +3130,12 @@ function renderDash(){
   const td=today();const next=Object.values(S.citas).filter(c=>c.fecha&&c.fecha>=td&&!c.hecho).sort((a,b)=>(a.fecha+(a.hora||'')).localeCompare(b.fecha+(b.hora||'')))[0];
   const trip=S.luna.trip;let lun=t('setDate');if(trip.start){const n=Math.ceil((new Date(trip.start+'T00:00:00')-new Date().setHours(0,0,0,0))/864e5);lun=n>0?`${n} ${n===1?t('dayLeft'):t('daysLeft')}`:t('onTrip')}
   const s=cSums();const casaTxt=s.ps.length?t('progress',{a:s.ps.filter(p=>p.bought).length,b:s.ps.length}):t('noProg');
-  d.innerHTML=`<div class="nc-dc"><b>💕 ${t('nextDate')}</b><span>${next?esc(next.titulo||'')+' · '+fd(next.fecha,{weekday:'short',day:'numeric',month:'short'})+(next.hora?' '+esc(next.hora):''):t('noNext')}</span></div><button type="button" class="nc-dc" data-go="luna"><b>✈️ ${t('nav2')}</b><span>${esc(lun)}</span></button><button type="button" class="nc-dc" data-go="casa"><b>🏡 ${t('nav3')}</b><span>${esc(casaTxt)}</span></button><button type="button" class="nc-dc" data-go="alquiler"><b>🔑 ${tl('nav7')}</b><span>${(()=>{const it=incT();return it?tl('a_dash').replace('{a}',eur(Math.round(it-fixedM()))):tl('a_dashNo')})()}</span></button><button type="button" class="nc-dc" data-go="stock"><b>📦 ${tl('nav4')}</b><span>${(()=>{const n=stItems().filter(i=>stLevel(i)!=='ok').length;return stItems().length?(n?tl('s_dash').replace('{n}',n):tl('s_dashOk')):tl('s_welcome').split('!')[0]+'!'})()}</span></button><button type="button" class="nc-dc" data-go="boda"><b>💍 ${tl('nav6')}</b><span>${(()=>{const n=bDays();return n==null?tl('b_dashNo'):n>0?tl('b_dash').replace('{n}',n):n===0?tl('b_today'):tl('b_married')})()}</span></button><button type="button" class="nc-dc" data-go="juegos"><b>🎲 ${tl('nav5')}</b><span>${(()=>{const[a,b]=scoreOf(null);return `${esc(nm(1))} ${a} – ${b} ${esc(nm(2))}`})()}</span></button>`;
+  d.innerHTML=`<div class="nc-dc"><b>💕 ${t('nextDate')}</b><span>${next?esc(next.titulo||'')+' · '+fd(next.fecha,{weekday:'short',day:'numeric',month:'short'})+(next.hora?' '+esc(next.hora):''):t('noNext')}</span></div><button type="button" class="nc-dc" data-go="luna"><b>✈️ ${t('nav2')}</b><span>${esc(lun)}</span></button><button type="button" class="nc-dc" data-go="casa"><b>🏡 ${t('nav3')}</b><span>${esc(casaTxt)}</span></button><button type="button" class="nc-dc" data-go="nosotros"><b>💞 ${tl('nav8')}</b><span>${(()=>{const d=togDays();const n=allDates().find(x=>x.n>=0);return (d!=null&&d>=0?tl('n_daysTogL').replace('{n}',d):tl('n_acuerdos')+': '+nl('acuerdo').length)+(n?' · '+n.title+' '+inTxt(n.n):'')})()}</span></button><button type="button" class="nc-dc" data-go="alquiler"><b>🔑 ${tl('nav7')}</b><span>${(()=>{const it=incT();return it?tl('a_dash').replace('{a}',eur(Math.round(it-fixedM()))):tl('a_dashNo')})()}</span></button><button type="button" class="nc-dc" data-go="stock"><b>📦 ${tl('nav4')}</b><span>${(()=>{const n=stItems().filter(i=>stLevel(i)!=='ok').length;return stItems().length?(n?tl('s_dash').replace('{n}',n):tl('s_dashOk')):tl('s_welcome').split('!')[0]+'!'})()}</span></button><button type="button" class="nc-dc" data-go="boda"><b>💍 ${tl('nav6')}</b><span>${(()=>{const n=bDays();return n==null?tl('b_dashNo'):n>0?tl('b_dash').replace('{n}',n):n===0?tl('b_today'):tl('b_married')})()}</span></button><button type="button" class="nc-dc" data-go="juegos"><b>🎲 ${tl('nav5')}</b><span>${(()=>{const[a,b]=scoreOf(null);return `${esc(nm(1))} ${a} – ${b} ${esc(nm(2))}`})()}</span></button>`;
 }
 function render(){
-  $('ncN1').textContent=t('nav1');$('ncN2').textContent=t('nav2');$('ncN3').textContent=t('nav3');$('ncN4').textContent=tl('nav4');$('ncN5').textContent=tl('nav5');$('ncN6').textContent=tl('nav6');$('ncN7').textContent=tl('nav7');
+  $('ncN1').textContent=t('nav1');$('ncN2').textContent=t('nav2');$('ncN3').textContent=t('nav3');$('ncN4').textContent=tl('nav4');$('ncN5').textContent=tl('nav5');$('ncN6').textContent=tl('nav6');$('ncN7').textContent=tl('nav7');$('ncN8').textContent=tl('nav8');
   const y=window.scrollY;const ae=document.activeElement;const keep=ae&&ae.id&&['ncStayQ','ncAmt'].includes(ae.id)?ae.id:null;
-  if(view==='luna')renderLuna();else if(view==='casa')renderCasa();else if(view==='stock')renderStock();else if(view==='boda')renderBoda();else if(view==='alquiler')renderAlquiler();else if(view==='juegos'){if(!G.game)renderJuegos();else updStat()}
+  if(view==='luna')renderLuna();else if(view==='casa')renderCasa();else if(view==='stock')renderStock();else if(view==='boda')renderBoda();else if(view==='alquiler')renderAlquiler();else if(view==='nosotros')renderNosotros();else if(view==='juegos'){if(!G.game)renderJuegos();else updStat()}
   renderDash();
   window.scrollTo(0,y);if(keep&&$(keep))$(keep).focus();
 }
@@ -2970,7 +3184,7 @@ new MutationObserver(()=>{if(!app.hidden)connect();else{unsubs.forEach(u=>u());u
 if(T[document.documentElement.lang])L=document.documentElement.lang;
 readImport();
 addEventListener('hashchange',()=>{readImport();if(pendingImport)askImport()});
-if(!['cal','luna','casa','stock','juegos','boda','alquiler'].includes(view))view='cal';
+if(!['cal','luna','casa','stock','juegos','boda','alquiler','nosotros'].includes(view))view='cal';
 if(!LTABS.includes(tabL))tabL='resumen';if(!(['resumen','producto','tarea','cnota','presupuesto'].includes(tabC)||tabC.startsWith('r:')))tabC='resumen';
 if(!app.hidden)connect();
 applyView();
