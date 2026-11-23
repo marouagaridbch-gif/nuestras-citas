@@ -1053,7 +1053,7 @@ button.nc-dc{cursor:pointer}button.nc-dc:hover{background:rgba(255,255,255,.12)}
 
 .w-grid{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
 .w-card.visto{opacity:.82}.w-card.abandonado{opacity:.6}
-.w-poster{aspect-ratio:2/3;object-fit:cover;height:auto!important;max-height:300px}
+.w-card .w-poster{width:100%;aspect-ratio:2/3!important;height:auto!important;max-height:none!important;object-fit:cover}
 .w-noposter{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(135deg,var(--night2),#2B3A78);display:grid;place-items:center;font-size:44px}
 .w-st{display:flex;gap:4px;flex-wrap:wrap}
 .w-sb{border:2px solid var(--line);background:var(--paper);border-radius:999px;padding:4px 8px;font:700 12px var(--f-body);color:var(--soft);cursor:pointer;display:inline-flex;gap:4px;align-items:center}
@@ -1065,6 +1065,10 @@ button.nc-dc{cursor:pointer}button.nc-dc:hover{background:rgba(255,255,255,.12)}
 .w-bar #ncWQ{flex:2;min-width:180px;width:auto}
 .w-bar select{flex:1;min-width:140px;width:auto}
 .w-pick{margin-bottom:14px}
+.w-noposter{flex-direction:column;gap:8px;position:relative}
+.w-retry{font-size:12px}
+.w-spin{display:inline-block;animation:wspin 1s linear infinite}
+@keyframes wspin{to{transform:rotate(360deg)}}
 
 @keyframes ncTw{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
 @keyframes lmFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-6px) rotate(2deg)}}
@@ -3152,7 +3156,7 @@ es:{nav9:'Para ver',w_title1:'Para',w_title2:'ver',w_hand:'pelis, series, realit
  pl_netflix:'Netflix',pl_prime:'Prime Video',pl_disney:'Disney+',pl_max:'Max',pl_apple:'Apple TV+',pl_movistar:'Movistar+',pl_crunchy:'Crunchyroll',pl_youtube:'YouTube',pl_shahid:'Shahid',pl_cine:'Cine',pl_otro:'Otra',
  ww_ambos:'Los dos',
  w_random:'🎲 ¿Qué vemos hoy?',w_pick:'Esta noche toca…',w_noPick:'No hay nada pendiente con estos filtros.',w_search:'Buscar por título…',w_where:'¿Dónde está?',w_next:'+1 cap.',w_epOf:'T{s} · Cap. {e}',w_left:'por ver',w_watching:'viendo',w_seen:'vistos',w_all:'Todos',w_anyGenre:'Todas las categorías',w_ourRating:'Nuestra nota',w_empty:'Aún no hay nada. ¡Añadid la primera!',w_dash:'{a} por ver · {b} viendo',w_dashNo:'Pelis y series para ver juntos',w_saveW:'Para ver',w_saveWD:'Peli, serie o anime',w_markSeen:'✅ ¡Vista!',w_ideas:'Para empezar',w_watchTonight:'🍿 Ver esta noche',w_sortNew:'Recientes',w_sortRate:'Mejor nota',w_sortAZ:'A–Z',
- w_pickAgain:'🔀 Otra',w_toCal:'📅 Al calendario',w_noTitle:'Escribe un título'},
+ w_findPic:'Buscar foto',w_pickAgain:'🔀 Otra',w_toCal:'📅 Al calendario',w_noTitle:'Escribe un título'},
 en:{nav9:'To watch',w_title1:'To',w_title2:'watch',w_hand:'movies, series, reality shows and anime to watch together',
  w_todo:'All',w_peli:'Movies',w_serie:'Series',w_reality:'Reality shows',w_anime:'Anime',w_docu:'Documentaries',
  one_ver:'title',f_wtitle:'Title',f_wtype:'Type',f_genre:'Category',f_genre2:'Another category',f_wstatus:'Watched?',f_platform:'Where to watch',f_wwho:'Who wants to watch it?',f_year:'Year',f_season:'Season',f_ep:'Episode',f_seasons:'Total seasons',f_r1:'{n}’s rating (1–5)',f_r2:'{n}’s rating (1–5)',f_wdate:'Day we watched it',
@@ -3162,7 +3166,7 @@ en:{nav9:'To watch',w_title1:'To',w_title2:'watch',w_hand:'movies, series, reali
  pl_netflix:'Netflix',pl_prime:'Prime Video',pl_disney:'Disney+',pl_max:'Max',pl_apple:'Apple TV+',pl_movistar:'Movistar+',pl_crunchy:'Crunchyroll',pl_youtube:'YouTube',pl_shahid:'Shahid',pl_cine:'Cinema',pl_otro:'Other',
  ww_ambos:'Both',
  w_random:'🎲 What shall we watch?',w_pick:'Tonight it’s…',w_noPick:'Nothing pending with these filters.',w_search:'Search by title…',w_where:'Where is it?',w_next:'+1 ep.',w_epOf:'S{s} · Ep. {e}',w_left:'to watch',w_watching:'watching',w_seen:'watched',w_all:'All',w_anyGenre:'All categories',w_ourRating:'Our rating',w_empty:'Nothing yet. Add the first one!',w_dash:'{a} to watch · {b} watching',w_dashNo:'Movies and series to watch together',w_saveW:'To watch',w_saveWD:'Movie, series or anime',w_markSeen:'✅ Watched!',w_ideas:'To start',w_watchTonight:'🍿 Watch tonight',w_sortNew:'Newest',w_sortRate:'Best rated',w_sortAZ:'A–Z',
- w_pickAgain:'🔀 Another',w_toCal:'📅 To calendar',w_noTitle:'Write a title'},
+ w_findPic:'Find picture',w_pickAgain:'🔀 Another',w_toCal:'📅 To calendar',w_noTitle:'Write a title'},
 it:{nav9:'Da vedere',w_title1:'Da',w_title2:'vedere',w_hand:'film, serie, reality e anime da vedere insieme',
  w_todo:'Tutto',w_peli:'Film',w_serie:'Serie',w_reality:'Reality',w_anime:'Anime',w_docu:'Documentari',
  one_ver:'titolo',f_wtitle:'Titolo',f_wtype:'Tipo',f_genre:'Categoria',f_genre2:'Altra categoria',f_wstatus:'Visto?',f_platform:'Dove vederlo',f_wwho:'Chi lo vuole vedere?',f_year:'Anno',f_season:'Stagione',f_ep:'Episodio',f_seasons:'Stagioni totali',f_r1:'Voto di {n} (1–5)',f_r2:'Voto di {n} (1–5)',f_wdate:'Giorno in cui l’abbiamo visto',
@@ -3172,7 +3176,7 @@ it:{nav9:'Da vedere',w_title1:'Da',w_title2:'vedere',w_hand:'film, serie, realit
  pl_netflix:'Netflix',pl_prime:'Prime Video',pl_disney:'Disney+',pl_max:'Max',pl_apple:'Apple TV+',pl_movistar:'Movistar+',pl_crunchy:'Crunchyroll',pl_youtube:'YouTube',pl_shahid:'Shahid',pl_cine:'Cinema',pl_otro:'Altro',
  ww_ambos:'Tutti e due',
  w_random:'🎲 Cosa guardiamo oggi?',w_pick:'Stasera tocca a…',w_noPick:'Niente in sospeso con questi filtri.',w_search:'Cerca per titolo…',w_where:'Dove si trova?',w_next:'+1 ep.',w_epOf:'S{s} · Ep. {e}',w_left:'da vedere',w_watching:'in corso',w_seen:'visti',w_all:'Tutti',w_anyGenre:'Tutte le categorie',w_ourRating:'Il nostro voto',w_empty:'Ancora niente. Aggiungete il primo!',w_dash:'{a} da vedere · {b} in corso',w_dashNo:'Film e serie da vedere insieme',w_saveW:'Da vedere',w_saveWD:'Film, serie o anime',w_markSeen:'✅ Visto!',w_ideas:'Per iniziare',w_watchTonight:'🍿 Stasera',w_sortNew:'Recenti',w_sortRate:'Voto migliore',w_sortAZ:'A–Z',
- w_pickAgain:'🔀 Un altro',w_toCal:'📅 Nel calendario',w_noTitle:'Scrivi un titolo'},
+ w_findPic:'Cerca foto',w_pickAgain:'🔀 Un altro',w_toCal:'📅 Nel calendario',w_noTitle:'Scrivi un titolo'},
 ar:{nav9:'للمشاهدة',w_todo:'الكل',w_peli:'أفلام',w_serie:'مسلسلات',w_reality:'برامج الواقع',w_anime:'أنمي',w_docu:'وثائقيات'}};
 for(const l in T9)Object.assign(T[l],T9[l]);
 const watch=document.createElement('section');watch.id='watch';watch.className='ncv';watch.hidden=true;footer.before(watch);
@@ -3186,6 +3190,26 @@ Object.assign(KEMO,{ver:'🍿'});Object.assign(EMPTY_FOR,{ver:'plane'});
 const wl=()=>Object.values(S.watch.items).filter(i=>i.kind==='ver');
 const wnum=v=>v===''||v==null?null:+v;
 FIELDS.ver=()=>[F('title','f_wtitle','text',{req:1,full:1}),F('wtype','f_wtype','sel',{opts:WTYPES,pre:'ty_'}),F('wstatus','f_wstatus','sel',{opts:WST,pre:'ws_'}),F('genre','f_genre','sel',{opts:GENRES,pre:'ge_'}),F('genre2','f_genre2','opts',{opts:()=>[['','—'],...Object.keys(GENRES).map(k=>[k,GENRES[k]+' '+tl('ge_'+k)])]}),F('platform','f_platform','sel',{opts:PLATS,pre:'pl_'}),F('wwho','f_wwho','opts',{opts:()=>[['ambos','💞 '+tl('ww_ambos')],['n1','💗 '+an('n1')],['n2','💙 '+an('n2')]]}),F('year','f_year','number',{min:1900}),F('season','f_season','number',{min:1}),F('ep','f_ep','number',{min:0}),F('seasons','f_seasons','number',{min:1}),F('r1','f_r1','opts',{opts:()=>[['',''],...[1,2,3,4,5].map(n=>[String(n),'⭐'.repeat(n)])],lv:{n:an('n1')}}),F('r2','f_r2','opts',{opts:()=>[['',''],...[1,2,3,4,5].map(n=>[String(n),'⭐'.repeat(n)])],lv:{n:an('n2')}}),F('date','f_wdate','date'),F('link','f_link','url',{full:1}),F('img','f_img','url',{full:1}),F('photo','f_photo','photo',{full:1}),F('notes','f_notes','textarea')];
+
+/* ---- fotos automáticas ---- */
+const PJ=async u=>(await fetch(u)).json();
+const PSUF={peli:[' film',' película'],serie:[' TV series',' serie de televisión'],reality:[' reality show',' programa de televisión'],anime:[' anime',' anime'],docu:[' documentary',' documental'],otro:['','']};
+const PBAD=/^(List of|Music of|Anexo)|accolades|soundtrack|banda sonora|discograf/i;
+const PWP='&prop=pageimages&piprop=thumbnail&pithumbsize=600&pilicense=any&format=json&origin=*';
+const pnorm=x=>String(x).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+const pmatch=(pt,q)=>{if(!q)return true;const w=pnorm(q).split(/[^\p{L}\p{N}]+/u).filter(x=>x.length>=3);if(!w.length)return true;const t=pnorm(pt);return w.some(x=>t.includes(x))};
+const ppick=(j,q)=>{const ps=Object.values((j.query||{}).pages||{}).sort((a,b)=>(a.index||0)-(b.index||0)).filter(p=>!PBAD.test(p.title)&&pmatch(p.title,q));const p=ps.find(p=>p.thumbnail);return p?p.thumbnail.source:null};
+async function pWiki(title,ty){const s=PSUF[ty]||PSUF.otro;
+  try{const j=await PJ(`https://es.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(title+s[1])}&gsrlimit=3&prop=langlinks&lllang=en&format=json&origin=*`);const ps=Object.values((j.query||{}).pages||{}).sort((a,b)=>a.index-b.index).filter(p=>!PBAD.test(p.title)&&pmatch(p.title,title));const en=ps.map(p=>p.langlinks&&p.langlinks[0]&&p.langlinks[0]['*']).find(Boolean);if(en){const r=ppick(await PJ(`https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(en)}${PWP}`));if(r)return r}}catch(_){}
+  try{const r=ppick(await PJ(`https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(title+s[0])}&gsrlimit=3${PWP}`),title);if(r)return r}catch(_){}
+  if(/[\u0600-\u06FF]/.test(title))try{const r=ppick(await PJ(`https://ar.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(title)}&gsrlimit=3${PWP}`),title);if(r)return r}catch(_){}
+  try{const r=ppick(await PJ(`https://es.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(title+s[1])}&gsrlimit=3${PWP}`),title);if(r)return r}catch(_){}
+  return null}
+async function pTvm(title){try{const j=await PJ('https://api.tvmaze.com/search/shows?q='+encodeURIComponent(title));const x=j.find(x=>x.show&&x.show.image);return x?{img:x.show.image.original||x.show.image.medium,year:x.show.premiered?+x.show.premiered.slice(0,4):null}:null}catch(_){return null}}
+async function pAni(title){try{const r=await fetch('https://graphql.anilist.co',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({query:'query($s:String){Media(search:$s,type:ANIME){seasonYear coverImage{extraLarge large}}}',variables:{s:title}})});const j=await r.json();const m=j.data&&j.data.Media;return m?{img:m.coverImage.extraLarge||m.coverImage.large,year:m.seasonYear}:null}catch(_){return null}}
+async function findPoster(title,ty){let r=null;if(ty==='anime')r=await pAni(title);else if(ty!=='peli'&&ty!=='otro')r=await pTvm(title);if(r&&r.img)return r;const w=await pWiki(title,ty);return w?{img:w,year:r&&r.year}:r}
+const posterQ=new Set();
+function autoPosters(){wl().filter(i=>!i.img&&!i.photo&&i.title&&i.posterFor!==i.title&&!posterQ.has(i.id)).slice(0,6).forEach(async i=>{posterQ.add(i.id);let r=null;try{r=await findPoster(i.title,i.wtype||'peli')}catch(_){}posterQ.delete(i.id);const cur=S.watch.items[i.id];if(!cur||cur.img||cur.photo)return;put('watch',{...cur,posterFor:cur.title,...(r&&r.img?{img:r.img}:{}),...(r&&r.year&&!cur.year?{year:r.year}:{})})})}
 let tabW='todo';try{tabW=localStorage.getItem('nc-wtab')||'todo'}catch(e){}
 let wPick=null;
 const avgR=i=>{const r=[i.r1,i.r2].map(wnum).filter(x=>x);return r.length?r.reduce((a,x)=>a+x,0)/r.length:null};
@@ -3194,7 +3218,7 @@ function wFiltered(){const ft=tabW,fs=filt.w_s||'*',fg=filt.w_g||'*',fp=filt.w_p
 function wSort(l){const s=filt.w_o||'new';const ord=['viendo','pendiente','visto','abandonado'];return l.sort((a,b)=>s==='az'?a.title.localeCompare(b.title):s==='rate'?(avgR(b)||0)-(avgR(a)||0):ord.indexOf(a.wstatus||'pendiente')-ord.indexOf(b.wstatus||'pendiente')||(b.created||0)-(a.created||0))}
 function wCard(i){const im=imgOf(i);const st=i.wstatus||'pendiente';const ty=i.wtype||'peli';const ser=['serie','anime','reality','docu'].includes(ty)&&ty!=='peli';const r=avgR(i);
   const jw='https://www.justwatch.com/es/buscar?q='+encodeURIComponent(i.title);
-  return `<article class="lm-card w-card ${st}">${im?`<img class="ph w-poster" src="${esc(im)}" alt="" loading="lazy" data-zoom="${esc(im)}" referrerpolicy="no-referrer">`:`<div class="w-noposter">${WTYPES[ty]}</div>`}
+  return `<article class="lm-card w-card ${st}">${im?`<img class="ph w-poster" src="${esc(im)}" alt="" loading="lazy" data-zoom="${esc(im)}" referrerpolicy="no-referrer">`:`<div class="w-noposter">${posterQ.has(i.id)?'<span class="w-spin">🔎</span>':WTYPES[ty]}${i.posterFor===i.title&&!posterQ.has(i.id)?`<button type="button" class="lm-ic w-retry" data-wposter="${i.id}">🖼️ ${tl('w_findPic')}</button>`:''}</div>`}
    <h4>${esc(i.title)}${i.year?` <small style="color:var(--soft);font-weight:600">(${esc(String(i.year))})</small>`:''}</h4>
    <div class="lm-meta"><span>${WTYPES[ty]} ${tl('ty_'+ty)}</span>${i.genre?`<span>· ${GENRES[i.genre]||''} ${tl('ge_'+i.genre)}</span>`:''}${i.genre2?`<span>· ${GENRES[i.genre2]||''} ${tl('ge_'+i.genre2)}</span>`:''}</div>
    <div class="lm-meta">${i.platform?`<span class="lm-pill">${PLATS[i.platform]} ${tl('pl_'+i.platform)}</span>`:''}${i.wwho&&i.wwho!=='ambos'?`<span>${i.wwho==='n1'?'💗':'💙'} ${esc(an(i.wwho))}</span>`:''}</div>
@@ -3222,6 +3246,7 @@ function renderWatch(){
   h+=list.length?`<div class="lm-grid w-grid">${list.map(wCard).join('')}</div>`:(all.length?`<div class="lm-empty"><p>${t('noFilter')}</p></div>`:empty('ver',tl('w_empty'),`<button class="lm-btn sm" type="button" data-wadd="1">${t('addFirst')}</button>`));
   watch.innerHTML=heroHtml(SCENE_WATCH,`${tl('w_title1')} <span>${tl('w_title2')}</span>`,tl('w_hand'),`<span>⏳ ${left} ${tl('w_left')}</span><span>▶️ ${viewing} ${tl('w_watching')}</span>`,`<div class="lm-count"><div><b>${seen}</b><span>${esc(tl('w_seen'))}</span></div></div>`,tw(25,20,.3)+tw(60,70,1.2,9)+tw(82,28,.8,12)+tw(40,85,2,10))+
    `<div class="lm-tabs" role="tablist">${WTABS.map(k=>`<button type="button" role="tab" class="lm-tab" data-wtab="${k}" aria-selected="${tabW===k}">${k==='todo'?'🍿':WTYPES[k]} ${tl('w_'+k)}${cnt[k]?`<span class="n">${cnt[k]}</span>`:''}</button>`).join('')}</div><div class="lm-panel">${h}</div>`;
+  autoPosters();
 }
 const SCENE_WATCH=`<svg class="lm-scene" viewBox="0 0 150 170" aria-hidden="true"><circle cx="128" cy="20" r="11" fill="var(--moon)"/><circle cx="123" cy="16" r="11" fill="var(--night2)"/>
 <rect x="14" y="44" width="104" height="72" rx="12" fill="var(--night2)" stroke="var(--btn-shadow)" stroke-width="3"/><rect x="22" y="52" width="88" height="56" rx="6" fill="#2B3A78"/><path d="M58 66v28l22-14z" fill="var(--star)"/><path d="M50 116l-8 12M82 116l8 12" stroke="var(--btn-shadow)" stroke-width="4" stroke-linecap="round"/><path d="M52 44l14-14 14 14" fill="none" stroke="var(--btn-shadow)" stroke-width="3" stroke-linecap="round"/>
@@ -3236,6 +3261,7 @@ function watchClick(e){
   if(d.wst){const[id,k]=d.wst.split(':');const i=S.watch.items[id];if(i){const x={...i,wstatus:k};if(k==='visto'&&!i.date){const n=new Date();x.date=`${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}-${String(n.getDate()).padStart(2,'0')}`}if(k==='viendo'&&['serie','anime','reality','docu'].includes(i.wtype)&&!i.season){x.season=1;x.ep=i.ep||0}put('watch',x);if(wPick===id&&k!=='pendiente')wPick=null;if(k==='visto')openForm('ver',x)}return true}
   if(d.wep){const i=S.watch.items[d.wep];if(i)put('watch',{...i,ep:(+i.ep||0)+1,wstatus:'viendo'});return true}
   if(d.wrand){const l=wFiltered().filter(i=>(i.wstatus||'pendiente')==='pendiente');if(!l.length){wPick=false}else{let x;do{x=l[Math.floor(Math.random()*l.length)].id}while(l.length>1&&x===wPick);wPick=x}render();return true}
+  if(d.wposter){const i=S.watch.items[d.wposter];if(i){const x={...i};delete x.posterFor;put('watch',x)}return true}
   if(d.wclose){wPick=null;render();return true}
   if(d.wtocal){const i=S.watch.items[d.wtocal];if(!i)return true;const n=new Date();const iso=`${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}-${String(n.getDate()).padStart(2,'0')}`;(async()=>{try{await setDoc(doc(fdb,'espacios',sp,'citas',rid()),{titulo:('🍿 '+i.title).slice(0,120),fecha:iso,hora:'21:30',nota:'',cat:'peli',hecho:false,fotos:[],creado:Date.now()});toast(t('addedCal'))}catch(_){toast(t('errSave'))}})();return true}
   return false;
